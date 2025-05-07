@@ -16,13 +16,13 @@
 }
 
 .footer {
+}
+
+.details-text {
   background-color: #bf77e6;
   bottom: 0;
   position: absolute;
   width: 100%;
-}
-
-.details-text {
 }
 
 .super-footer {
