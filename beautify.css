@@ -13,3 +13,9 @@
   left: 0;
   right: 0;
 }
+
+#map {
+  position: absolute;
+  bottom: 0;
+  right 0;
+}
