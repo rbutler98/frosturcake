@@ -50,8 +50,8 @@
 
 #map {
   bottom: 0;
-  right: 60px;
-  position: absolute;
+  right: 10px;
+  left: 60px;
 }
 
 #details {
