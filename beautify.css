@@ -49,9 +49,7 @@
 }
 
 #map {
-  bottom: 0;
-  right: 10px;
-  left: 60px;
+  position: absolute;
 }
 
 #details {
