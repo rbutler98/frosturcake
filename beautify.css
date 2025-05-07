@@ -1,15 +1,1 @@
-.info-pane {
-  position: fixed;
-}
 
-.info-pane input {
-  padding-left: 20px;
-}
-
-.info-pane .static-box {
-  position: fixed;
-  display: inline-block;
-  background-color: #df87fa;
-    width: 60px;
-    height: 60px;
-}
