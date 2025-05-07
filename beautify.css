@@ -6,7 +6,6 @@
 
 #map {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
-  height: 100px;
+  bottom: 0;
+  right: 60px;
 }
