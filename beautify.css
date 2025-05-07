@@ -7,12 +7,9 @@
 .footer {
   padding-top: 20px;
   position: absolute;
+  height: 100%;
   width: 100%;
   bottom: 0;
-}
-
-#map {
-  position: absolute;
-  bottom: 0;
+  left: 0;
   right: 0;
 }
