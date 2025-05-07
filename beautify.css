@@ -1,1 +1,6 @@
+.info-pane {
+  position: fixed
+}
 
+.info-pane input {
+  
