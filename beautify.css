@@ -4,16 +4,6 @@
   width: 100%;
 }
 
-.footer {
-  padding-top: 20px;
-  position: absolute;
-  height: 80px;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
 #map {
   position: absolute;
   bottom: 0;
