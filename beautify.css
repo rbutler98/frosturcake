@@ -8,6 +8,8 @@
 }
 
 .b1 {
+  background-color: #9b56f5;
+  height: 500px;
 }
 
 .b2 {
@@ -40,10 +42,8 @@
 
 #about-us {
   float: right;
-  background-color: #9b56f5;
   position: absolute;
   right: 60px;
-  height: 400pxpx;
   width: 600px;
 }
 
