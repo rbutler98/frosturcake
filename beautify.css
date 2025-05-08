@@ -1,9 +1,7 @@
 // classes
 
 .intro {
-  border-style: double;
-  border-width: 10px;
-  border-color: #a172f7;
+  border: 10px double purple;
 }
 
 .body-whole {
