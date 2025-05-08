@@ -17,14 +17,12 @@
 
 .footer {
   background-color: #bf77e6;
-  bottom: 0;
   z-index: 2;
   width: 100%;
-  text-align: left;
-  position: absolute;
 }
 
 .details-text {
+  float: left;
 }
 
 .super-footer {
