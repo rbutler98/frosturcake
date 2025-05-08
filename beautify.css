@@ -18,7 +18,6 @@ t// classes
 .footer {
   background-color: #bf77e6;
   bottom: 0;
-  position: relative;
   width: 100%;
   z-index: 1;
 }
@@ -50,7 +49,6 @@ t// classes
   bottom: 0;
   right: 0;
   z-index: 2;
-  position: absolute;
 }
 
 #details {
