@@ -17,6 +17,10 @@
 
 .footer {
   background-color: #a172f7;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .details-text {
@@ -43,9 +47,6 @@
 }
 
 #map {
-  position: fixed;
-  bottom: 0;
-  right: 0;
 }
 
 #details {
