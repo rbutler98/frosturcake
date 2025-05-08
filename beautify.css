@@ -44,9 +44,8 @@
 }
 
 #map {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 60px;
+  right: 60px;
 }
 
 #details {
