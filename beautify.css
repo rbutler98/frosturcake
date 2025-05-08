@@ -41,9 +41,11 @@
 }
 
 #about-us {
+  float: right;
 }
 
 #how-works {
+  float: left;
 }
 
 #info-pane {
