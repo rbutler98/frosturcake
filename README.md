@@ -1,4 +1,4 @@
-# frosturcake
+Project: frostyourcake
 
 Website for "Frost Your Cake Studio"
 Represented by: Dustin Wear and Julie Salamone
