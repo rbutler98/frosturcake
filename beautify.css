@@ -84,11 +84,10 @@
 // images
 
 #s1 {
-  display: block;
-  height: 60px;
-  width: 200px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100px;
+  height: 40px;
+  background-image: url('https://i.ibb.co/Y7pd9y0H/no-Bg-Color.png');
+  background-size: contain;
 }
 
 #s2 {
