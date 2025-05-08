@@ -8,8 +8,6 @@
 }
 
 .b1 {
-  background-color: #9b56f5;
-  height: 500px;
 }
 
 .b2 {
@@ -45,6 +43,10 @@
   position: absolute;
   right: 60px;
   width: 600px;
+  background-color: #9b56f5;
+  content: "";
+  clear: both;
+  display: table;
 }
 
 #how-works {
@@ -55,6 +57,9 @@
 }
 
 #map {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 #details {
