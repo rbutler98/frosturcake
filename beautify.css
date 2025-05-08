@@ -20,6 +20,9 @@
   bottom: 0;
   left: 0;
   z-index: 2;
+  width: 100%;
+  text-align: left;
+  position: absolute;
 }
 
 .details-text {
@@ -49,6 +52,7 @@
   bottom: 0;
   right: 0;
   z-index: 2;
+  float: right;
 }
 
 #details {
