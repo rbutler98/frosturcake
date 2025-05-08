@@ -53,7 +53,7 @@
 #how-works {
   float: left;
   position: absolute;
-  right: 60px;
+  left: 60px;
   width: 600px;
   background-color: #9b56f5;
   content: "";
