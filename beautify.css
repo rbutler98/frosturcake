@@ -20,6 +20,7 @@
   bottom: 0;
   position: absolute;
   width: 100%;
+  z-index: 1;
 }
 
 .details-text {
@@ -48,6 +49,7 @@
 #map {
   bottom: 0;
   right: 0;
+  z-index: 2;
 }
 
 #details {
