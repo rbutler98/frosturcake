@@ -84,6 +84,9 @@
 // images
 
 #s1 {
+  margins: auto;
+  height: 60px;
+  width: 200px;
 }
 
 #s2 {
