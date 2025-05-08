@@ -16,13 +16,9 @@
 }
 
 .footer {
-  background-color: #bf77e6;
-  width: 100%;
-  bottom: 0;
 }
 
 .details-text {
-  float: left;
 }
 
 .super-footer {
@@ -50,9 +46,11 @@
 }
 
 #details {
+  float: left;
 }
 
 #details-name {
+  float: left;
 }
 
 #links {
