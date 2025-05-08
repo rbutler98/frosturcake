@@ -18,6 +18,8 @@
 .footer {
   background-color: #a172f7;
   bottom: 0;
+  left: 0;
+  right: 0;
   position: absolute;
 }
 
