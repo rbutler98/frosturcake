@@ -40,6 +40,9 @@
 
 #about-us {
   float: right;
+  background-color: #9b56f5;
+  position: absolute;
+  right: 60px;
 }
 
 #how-works {
