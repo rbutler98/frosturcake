@@ -1,1 +1,97 @@
+// classes
 
+.intro {
+  border: 10px double purple;
+}
+
+.body-whole {
+}
+
+.b1 {
+  padding-bottom: 20px;
+}
+
+.b2 {
+}
+
+.b3 {
+}
+
+.footer {
+  background-color: #a172f7;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.details-text {
+}
+
+.super-footer {
+}
+
+// ids
+
+#start {
+}
+
+#whole {
+}
+
+#about-us {
+  float: right;
+  position: absolute;
+  right: 60px;
+  width: 600px;
+  background-color: #9b56f5;
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#how-works {
+  float: left;
+  position: absolute;
+  left: 60px;
+  width: 600px;
+  background-color: #9b56f5;
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#info-pane {
+}
+
+#map {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#details {
+  float: left;
+}
+
+#details-name {
+  float: left;
+}
+
+#links {
+}
+
+// images
+
+#s1 {
+  width: 100px;
+  height: 40px;
+  background-image: url('https://i.ibb.co/Y7pd9y0H/no-Bg-Color.png');
+  background-size: contain;
+}
+
+#s2 {
+}
+
+#bottom-image {
+}
