@@ -46,19 +46,19 @@ html, body {
   transform: translate(-50%, -50%);
 }
 
-/* Buttons: center on left side */
+/* Horizontally aligned buttons on the left */
 .banner-buttons {
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* horizontal layout */
   gap: 15px;
   padding-left: 20px;
 }
 
-/* Match gradient border */
+/* Gradient border on buttons */
 .banner-buttons button {
   background-color: white;
   color: #7c3e9d;
@@ -77,7 +77,7 @@ html, body {
   color: white;
 }
 
-/* Center slogan vertically on right side and reverse gradient outline */
+/* Slogan with white fill and flipped gradient outline */
 .slogan {
   position: absolute;
   right: 0;
@@ -85,13 +85,15 @@ html, body {
   transform: translateY(-50%);
   padding-right: 20px;
   font-size: 2.7rem;
+  font-family: 'Lobster', cursive;
   text-align: right;
-  background-image: linear-gradient(to bottom, #ffffff, #b38ac8);
+  color: white;
+  -webkit-text-stroke: 1.2px transparent;
+  background: linear-gradient(to top, #d6b0e9, #ffffff);
   -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-stroke: 1.2px;
-  -webkit-text-stroke-color: #ffffff;
-  text-shadow: 0 0 3px #7c3e9d;
+  -webkit-text-fill-color: white;
+  -webkit-mask-image: linear-gradient(to top, #d6b0e9, #ffffff);
+  text-shadow: 0 0 2px #b38ac8;
 }
 
     /* Main Content Section */
