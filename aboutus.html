@@ -229,6 +229,38 @@
     justify-content: center;
   }
 }
+  .dripping-divider {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  position: relative;
+  background: none;
+}
+
+.dripping-divider svg {
+  display: block;
+  width: 100%;
+  height: 100px;
+}
+
+.drip-path {
+  fill: url(#icingGradient);
+  animation: dripMove 6s ease-in-out infinite alternate;
+}
+
+/* Optional gradient fill matching your banner */
+.dripping-divider svg defs {
+  position: absolute;
+}
+
+@keyframes dripMove {
+  0% {
+    d: path("M0,0 C180,100 360,0 540,80 C720,160 900,0 1080,100 C1260,200 1440,0 1440,0 L1440,150 L0,150 Z");
+  }
+  100% {
+    d: path("M0,0 C180,80 360,20 540,100 C720,140 900,10 1080,90 C1260,160 1440,30 1440,0 L1440,150 L0,150 Z");
+  }
+} 
   </style>
 </head>
   
@@ -271,6 +303,13 @@
     </div>
   </div>
 </section>
+
+<!-- Animated Dripping Icing Divider -->
+<div class="dripping-divider">
+  <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+    <path class="drip-path" d="M0,0 C180,100 360,0 540,80 C720,160 900,0 1080,100 C1260,200 1440,0 1440,0 L1440,150 L0,150 Z"></path>
+  </svg>
+</div>
     
   <!-- Footer with Carousel -->
   <footer>
