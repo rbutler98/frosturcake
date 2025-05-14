@@ -10,10 +10,18 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: 'Pacifico', cursive;
       background-color: #fff;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
     }
 
     /* === Banner === */
@@ -25,20 +33,30 @@
       background: linear-gradient(to left, #ffb6c1, #d98eff);
       height: 100px;
       flex-wrap: wrap;
-    }
-
-    .left-nav, .right-text {
-      flex: 1;
-      display: flex;
-      align-items: center;
+      position: relative;
     }
 
     .left-nav {
+      display: flex;
       gap: 15px;
     }
 
+    .left-nav a {
+      text-decoration: none;
+      background-color: white;
+      color: #a64dff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .left-nav a:hover {
+      background-color: #a64dff;
+      color: white;
+    }
+
     .right-text {
-      justify-content: center;
       color: #a64dff;
       font-size: 1.2em;
       text-align: center;
@@ -56,7 +74,6 @@
     }
 
     .logo {
-      flex: 0 0 auto;
       background-color: white;
       border-radius: 50%;
       padding: 8px;
@@ -82,28 +99,67 @@
       }
     }
 
-    .banner a {
+    /* === Hamburger === */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+
+    .mobile-menu a {
       text-decoration: none;
-      background-color: white;
       color: #a64dff;
-      padding: 8px 14px;
-      border-radius: 6px;
       font-weight: bold;
-      transition: background 0.3s, color 0.3s;
+      font-size: 1.2em;
     }
 
-    .banner a:hover {
-      background-color: #a64dff;
-      color: white;
+    .mobile-menu.active {
+      right: 0;
     }
 
-    /* === Body === */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 998;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* === Main Content === */
     .main-body {
       display: flex;
       gap: 40px;
       padding: 60px 40px;
       align-items: center;
       flex-wrap: wrap;
+      flex: 1;
     }
 
     .text-box {
@@ -131,12 +187,18 @@
       text-align: center;
     }
 
+    .carousel-container {
+      display: flex;
+      justify-content: center;
+    }
+
     .carousel {
       display: flex;
       overflow-x: auto;
       scroll-behavior: smooth;
       gap: 20px;
       padding: 10px 0;
+      max-width: 100%;
     }
 
     .carousel::-webkit-scrollbar {
@@ -148,25 +210,21 @@
       width: auto;
       border-radius: 10px;
       flex-shrink: 0;
-      animation: scrollLoop 20s linear infinite;
     }
 
-    @keyframes scrollLoop {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
+    /* === Mobile Styles === */
     @media (max-width: 768px) {
-      .banner {
-        flex-direction: column;
-        height: auto;
-        gap: 10px;
-        padding: 20px;
+      .left-nav {
+        display: none;
       }
 
-      .left-nav, .right-text {
-        justify-content: center;
-        flex: none;
+      .hamburger {
+        display: flex;
+      }
+
+      .banner {
+        flex-wrap: nowrap;
+        padding: 10px 20px;
       }
 
       .main-body {
@@ -179,32 +237,50 @@
         height: 250px;
       }
 
-      .carousel {
-        flex-direction: row;
-      }
-
       .text-box {
         width: 100%;
+      }
+
+      .right-text {
+        font-size: 1em;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
   <!-- Banner -->
-  <header class="banner">
+  <header class="banner" id="banner">
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
     <div class="left-nav">
       <a href="home.html">Home</a>
       <a href="visit.html">Visit Us</a>
       <a href="parties.html">Parties</a>
     </div>
+
     <div class="logo">
       <img src="logo.png" alt="Bakery Logo">
     </div>
+
     <div class="right-text">
       Create. Decorate. Celebrate.
     </div>
   </header>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="home.html">Home</a>
+    <a href="visit.html">Visit Us</a>
+    <a href="parties.html">Parties</a>
+  </nav>
 
   <!-- Body -->
   <section class="main-body">
@@ -216,13 +292,55 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="carousel">
-      <img src="https://via.placeholder.com/200x150" alt="Item 1" />
-      <img src="https://via.placeholder.com/200x150" alt="Item 2" />
-      <img src="https://via.placeholder.com/200x150" alt="Item 3" />
-      <img src="https://via.placeholder.com/200x150" alt="Item 4" />
+    <div class="carousel-container">
+      <div class="carousel">
+        <img src="https://via.placeholder.com/200x150" alt="Item 1" />
+        <img src="https://via.placeholder.com/200x150" alt="Item 2" />
+        <img src="https://via.placeholder.com/200x150" alt="Item 3" />
+        <img src="https://via.placeholder.com/200x150" alt="Item 4" />
+      </div>
     </div>
   </footer>
 
+  <!-- JS for Mobile Menu and Swiping -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('overlay');
+
+    function openMenu() {
+      mobileMenu.classList.add('active');
+      overlay.classList.add('active');
+    }
+
+    function closeMenu() {
+      mobileMenu.classList.remove('active');
+      overlay.classList.remove('active');
+    }
+
+    hamburger.addEventListener('click', openMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // Swipe gesture
+    let touchStartX = 0;
+
+    window.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    window.addEventListener('touchend', e => {
+      const touchEndX = e.changedTouches[0].screenX;
+      const screenWidth = window.innerWidth;
+
+      if (screenWidth < 768) {
+        if (touchStartX > screenWidth - 50 && touchEndX < touchStartX - 30) {
+          openMenu(); // Swipe from right to left
+        }
+        if (touchStartX < screenWidth && touchEndX > touchStartX + 30 && mobileMenu.classList.contains('active')) {
+          closeMenu(); // Swipe from left to right
+        }
+      }
+    });
+  </script>
 </body>
 </html>
