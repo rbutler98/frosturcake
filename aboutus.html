@@ -16,17 +16,29 @@
   
 <body>
   <!-- Banner -->
-  <header class="banner">
-    <div class="left-nav">
-      <a href="home.html">Home</a>
-      <a href="visit.html">Visit Us</a>
-      <a href="parties.html">Parties</a>
+  <div class="banner">
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-    <div class="logo">
-      <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" />
+
+    <div class="banner-buttons">
+      <button onclick="aboutus.html">Home</button>
+      <button onclick="visit.html">Visit Us</button>
+      <button>Parties</button>
     </div>
+
+    <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
+
     <div class="slogan">Create. Decorate. Celebrate.</div>
-  </header>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button>Home</button>
+    <button>Visit Us</button>
+    <button>Parties</button>
+  </div>
 
   <!-- Main Body -->
   <main>
