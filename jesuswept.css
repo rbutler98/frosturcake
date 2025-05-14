@@ -20,11 +20,11 @@ html, body {
 
    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-    body {
+   /* body {
       margin: 0;
       font-family: 'Pacifico', cursive;
       background-color: white;
-    }
+    } */
 
     .banner {
       display: flex;
