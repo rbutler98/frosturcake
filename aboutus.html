@@ -165,69 +165,57 @@
       }
     }
 
+  /* Parties Section */
     .parties-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 60px 40px;
-  background-color: #fff;
-}
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px 40px;
+      background-color: #fff;
+    }
 
-.parties-left {
-  flex: 1;
-  min-width: 300px;
-}
+  .parties-left {
+      flex: 1;
+      min-width: 300px;
+    }
 
-.parties-right {
-  flex: 1;
-  min-width: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-}
+  .parties-right {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
 
-.parties-right p {
-  font-size: 1.2em;
-  color: #000;
-  max-width: 400px;
-}
+  .parties-right p {
+      font-size: 1.2em;
+      color: #000;
+      max-width: 400px;
+    }
 
-.parties-header-decorated {
-  background-color: white;
-  border: 8px dashed #ffb6c1;
-  border-radius: 20px;
-  padding: 30px 40px;
-  position: relative;
-  max-width: 600px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
+  .parties-header-decorated {
+      background-color: white;
+      border: 8px dashed #ffb6c1;
+      border-radius: 20px;
+      padding: 30px 40px;
+      position: relative;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
 
-.parties-header-decorated h2 {
-  font-family: 'Pacifico', cursive;
-  font-size: 2.8em;
-  margin: 0;
-  color: #a64dff;
-  z-index: 1;
-  position: relative;
-}
-
-/* Sprinkle background in the header */
-.parties-header-decorated::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('https://i.ibb.co/YdDNZ3Y/sprinkle-bg.png');
-  background-size: contain;
-  background-repeat: repeat;
-  opacity: 0.3;
-  z-index: 0;
-  border-radius: 20px;
-}
+  .parties-header-decorated h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8em;
+      margin: 0;
+      color: #a64dff;
+      z-index: 1;
+      position: relative;
+    }
 
 /* Responsive tweak */
 @media (max-width: 768px) {
@@ -241,24 +229,10 @@
     justify-content: center;
   }
 }
-
-/* Sprinkle decoration (background sprinkles using pseudo-elements) */
-.parties-header-decorated::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('https://i.ibb.co/YdDNZ3Y/sprinkle-bg.png'); /* Example sprinkle PNG */
-  background-size: contain;
-  background-repeat: repeat;
-  opacity: 0.3;
-  z-index: 0;
-  border-radius: 20px;
-}
   </style>
 </head>
   
 <body>
-  
   <!-- Banner -->
   <header class="banner">
     <div class="left-nav">
