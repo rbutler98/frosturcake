@@ -142,7 +142,21 @@
   height: 60px;
   display: block;
 }
+.animated-drip {
+  animation: dripWave 6s ease-in-out infinite alternate;
+}
 
+@keyframes dripWave {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 
     /* Carousel Footer */
     footer {
@@ -225,20 +239,17 @@
     <!-- Parties Section -->
     <section class="celebration-section">
   <div class="frosting-border">
-    <svg class="frosting-top" viewBox="0 0 1440 100" preserveAspectRatio="none">
-      <path d="M0,30 C360,90 1080,-30 1440,60 L1440,0 L0,0 Z" fill="#ffb6c1"/>
-    </svg>
+  <svg class="frosting-top animated-drip" viewBox="0 0 1440 100" preserveAspectRatio="none">
+    <path d="M0,30 C360,90 1080,-30 1440,60 L1440,0 L0,0 Z" fill="#ffb6c1" />
+  </svg>
 
-    <h2 class="celebration-heading">Parties and Celebrations</h2>
+  <h2 class="celebration-heading">Parties and Celebrations</h2>
 
-    <svg class="frosting-bottom" viewBox="0 0 1440 100" preserveAspectRatio="none">
-      <path d="M0,60 C360,-30 1080,90 1440,30 L1440,100 L0,100 Z" fill="#ffb6c1"/>
-    </svg>
-  </div>
+  <svg class="frosting-bottom animated-drip" viewBox="0 0 1440 100" preserveAspectRatio="none">
+    <path d="M0,60 C360,-30 1080,90 1440,30 L1440,100 L0,100 Z" fill="#ffb6c1" />
+  </svg>
+</div>
 
-  <div class="celebration-image-container">
-    <img src="https://via.placeholder.com/900x400" alt="Celebration Placeholder" class="celebration-image"/>
-  </div>
 </section>
 
   <!-- Footer with Carousel -->
