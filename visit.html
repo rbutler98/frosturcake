@@ -113,19 +113,21 @@
     }
 
   .text-box {
-      flex: 0 0 40%;
-      max-width: 40%;
-      height: 560px;
-      padding: 20px 30px;
-      background-color: #f6f2ff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: center; /* vertical centering */
-      text-align: left; /* ensures left alignment */
-      box-sizing: border-box;
-  }
+  flex: 0 0 40%;
+  max-width: 40%;
+  height: 560px;
+  padding: 20px 30px;
+  background-color: #f6f2ff;
+  border-radius: 12px;
+  box-shadow:
+    4px 4px 0px #5a2d91,  /* deep purple "3D" shadow */
+    8px 8px 20px rgba(90, 45, 145, 0.3);  /* soft glow/shadow */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  box-sizing: border-box;
+}
   
     .text-box h2 {
       font-family: 'Pacifico', cursive;
