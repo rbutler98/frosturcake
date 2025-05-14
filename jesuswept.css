@@ -31,7 +31,7 @@ html, body {
   justify-content: space-between;
   align-items: center;
   height: 240px;
-  padding: 0 0 60px 0;
+  padding: 0 0 40px 0;
   background: linear-gradient(to bottom, #d6b0e9 20%, #ffffff 95%);
   position: relative;
 }
