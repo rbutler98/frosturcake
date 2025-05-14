@@ -165,71 +165,6 @@
       }
     }
 
-  /* Parties Section */
-    .parties-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      padding: 60px 40px;
-      background-color: #fff;
-    }
-
-    .parties-left {
-      flex: 1;
-      min-width: 300px;
-    }
-
-    .parties-right {
-      flex: 1;
-      min-width: 300px;
-      display: flex;
-      justify-content: center;
-      align-items: right;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .parties-right p {
-      font-size: 1.2em;
-      color: #000;
-      max-width: 400px;
-    }
-
-    .parties-header-decorated {
-      background-color: white;
-      border: 8px dashed #8C52FF;
-      border-radius: 20px;
-      padding: 30px 40px;
-      position: relative;
-      max-width: 600px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-
-  .parties-header-decorated h2 {
-      font-family: 'Pacifico', cursive;
-      font-size: 2.8em;
-      margin: 0;
-      color: #a64dff;
-      z-index: 1;
-      position: relative;
-    }
-
-/* Responsive tweak */
-@media (max-width: 768px) {
-  .parties-section {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .parties-right, .parties-left {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
 /* Icing Divider */
     .gooey-divider {
   width: 100%;
@@ -252,6 +187,82 @@
     d: path("M0,0 C180,80 360,20 540,100 C720,140 900,10 1080,90 C1260,160 1440,30 1440,0 L1440,150 L0,150 Z");
   }
 } 
+    .parties-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .parties-text-box {
+      flex: 1;
+      max-width: 600px;
+      padding-right: 20px;
+    }
+
+    .parties-header {
+      background: white;
+      border: 4px solid #a64dff;
+      border-radius: 20px;
+      padding: 20px 30px;
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5em;
+      text-align: center;
+      color: #a64dff;
+      background-image: url('https://www.transparenttextures.com/patterns/sprinkles.png');
+      background-size: contain;
+      background-repeat: repeat;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .parties-description {
+      font-size: 1.2em;
+      color: #000;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .parties-image-container {
+      flex: 1;
+      max-width: 600px;
+      padding-left: 20px;
+    }
+
+    .parties-image {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .parties-image.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .parties-container {
+        flex-direction: column;
+      }
+
+      .parties-text-box, .parties-image-container {
+        padding: 0;
+        max-width: 100%;
+      }
+
+      .parties-header {
+        font-size: 2em;
+      }
+
+      .parties-description {
+        text-align: center;
+      }
+    }
   </style>
 </head>
   
@@ -281,20 +292,29 @@
       <div class="image-section"></div>
     </section>
     
-<!-- Parties Section -->
-<section class="parties-section">
-  <div class="parties-content">
-    <div class="parties-header-decorated">
-      <h2>Parties and Celebrations</h2>
-    </div>
-    <div class="parties-right">
-      <p>
+<!-- Parties and Celebrations Section -->
+<section id="parties" style="padding: 60px 20px; background-color: #fff;">
+  <div class="parties-container">
+    <!-- Left Side (Header + Text) -->
+    <div class="parties-text-box">
+      <div class="parties-header">Parties and Celebrations</div>
+      <p class="parties-description">
         We love celebrating! Bring your friends or family and celebrate special days with private parties. We’re the perfect spot for birthdays, bridal showers, baby showers, holidays, and special events. Reserve our private party room that holds up to 20 guests.
       </p>
     </div>
+    <!-- Right Side (Image) -->
+    <div class="parties-image-container">
+      <img
+        src="https://i.ibb.co/PsF9TXzr/Firefly-Many-adults-decorating-cookies-at-a-party-786202.jpg"
+        alt="Party Celebration"
+        class="parties-image"
+        id="partyImage"
+      />
+    </div>
   </div>
-</section>
 
+</section>
+  
 <!-- Gooey Dripping Icing Divider -->
 <div class="gooey-divider">
   <svg id="dripSvg" viewBox="0 0 1440 150" preserveAspectRatio="none">
@@ -377,6 +397,19 @@
   }
 
   requestAnimationFrame(animateDrip);
+
+    // Fade-in on scroll
+    const partyImage = document.getElementById('partyImage');
+    function handleScroll() {
+      const rect = partyImage.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        partyImage.classList.add('visible');
+        window.removeEventListener('scroll', handleScroll);
+      }
+    }
+    window.addEventListener('scroll', handleScroll);
+    // Trigger check on load in case already in view
+    handleScroll();
   </script>
 </body>
 </html>
