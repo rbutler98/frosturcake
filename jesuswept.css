@@ -18,7 +18,25 @@ html, body {
     }
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-   @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+.handwritten-message {
+  font-family: 'Pacifico', cursive;
+  color: #8a2be2;
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 40px auto;
+  max-width: 800px;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeInTop 1.5s ease-out forwards;
+}
+
+@keyframes fadeInTop {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
    /* body {
       margin: 0;
