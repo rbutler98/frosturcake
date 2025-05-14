@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Bakery Banner</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&display=swap');
 
     body {
       margin: 0;
@@ -21,13 +21,14 @@
       height: 200px;
       position: relative;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
     }
 
     .nav-buttons {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
       justify-content: center;
+      gap: 15px;
+      font-family: 'Caveat', cursive;
     }
 
     .nav-buttons button {
@@ -36,9 +37,10 @@
       border: 2px solid #9a4dff;
       border-radius: 8px;
       padding: 10px 18px;
-      font-size: 14px;
+      font-size: 20px;
       cursor: pointer;
       transition: 0.3s;
+      font-family: 'Caveat', cursive;
     }
 
     .nav-buttons button:hover {
@@ -51,14 +53,37 @@
       left: 50%;
       transform: translateX(-50%);
       height: 120px;
+      opacity: 0;
+      animation: fadeInLogo 1.5s ease forwards;
+    }
+
+    @keyframes fadeInLogo {
+      to {
+        opacity: 1;
+      }
     }
 
     .slogan {
       font-family: 'Pacifico', cursive;
       font-size: 30px;
       color: white;
-      text-align: right;
-      max-width: 250px;
+      text-align: center;
+      max-width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      opacity: 0;
+      transform: translateX(40px);
+      animation: fadeInRight 1.2s ease forwards;
+      animation-delay: 1.6s;
+    }
+
+    @keyframes fadeInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     @media (max-width: 768px) {
@@ -69,7 +94,7 @@
       }
 
       .nav-buttons {
-        flex-direction: row;
+        flex-direction: column;
         margin-bottom: 10px;
       }
 
@@ -77,10 +102,13 @@
         position: static;
         transform: none;
         margin: 10px 0;
+        animation-delay: 0.5s;
       }
 
       .slogan {
         text-align: center;
+        margin-top: 10px;
+        animation-delay: 2s;
       }
     }
   </style>
