@@ -27,110 +27,72 @@ html, body {
     } */
 
     .banner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 240px;
-      padding: 0 40px;
-      background: linear-gradient(to bottom, #b38ac8 40%, #ffffff 95%);
-      position: relative;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 240px;
+  padding: 0 40px;
+  background: linear-gradient(to bottom, #d6b0e9 20%, #ffffff 95%);
+  position: relative;
+}
 
-    .logo {
-      height: 120px;
-      animation: fadeIn 2s ease-in-out;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
+/* Center logo in the page */
+.logo {
+  height: 120px;
+  animation: fadeIn 2s ease-in-out;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
-    .banner-buttons {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      padding-left: 20px;
-    }
+/* Buttons: center on left side */
+.banner-buttons {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-left: 20px;
+}
 
-    .banner-buttons button {
-      background-color: white;
-      color: #7c3e9d;
-      border: 2px solid;
-      border-image: linear-gradient(to bottom, #b38ac8, #ffffff) 1;
-      padding: 12px 20px;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-family: 'Pacifico', cursive;
-      transition: all 0.3s ease;
-    }
+/* Match gradient border */
+.banner-buttons button {
+  background-color: white;
+  color: #7c3e9d;
+  border: 2px solid;
+  border-image: linear-gradient(to bottom, #d6b0e9, #ffffff) 1;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Pacifico', cursive;
+  transition: all 0.3s ease;
+}
 
-    .banner-buttons button:hover {
-      background-color: #7c3e9d;
-      color: white;
-    }
+.banner-buttons button:hover {
+  background-color: #7c3e9d;
+  color: white;
+}
 
-    .slogan {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      padding-right: 20px;
-      font-size: 2.2rem;
-      text-align: right;
-      background-clip: text;
-      color: transparent;
-      -webkit-text-fill-color: white;
-      -webkit-text-stroke: 1.2px transparent;
-      -webkit-text-stroke-color: transparent;
-      background-image: linear-gradient(to top, #ffffff, #b38ac8);
-      -webkit-background-clip: text;
-      text-shadow: 0 0 2px #7c3e9d;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -55%) scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .banner {
-        flex-direction: column;
-        height: auto;
-        padding: 20px;
-      }
-
-      .logo {
-        position: static;
-        transform: none;
-        margin: 20px auto;
-      }
-
-      .banner-buttons {
-        position: static;
-        flex-direction: row;
-        justify-content: center;
-        margin-bottom: 20px;
-        transform: none;
-      }
-
-      .slogan {
-        position: static;
-        transform: none;
-        text-align: center;
-        margin-bottom: 20px;
-      }
-    }
+/* Center slogan vertically on right side and reverse gradient outline */
+.slogan {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-right: 20px;
+  font-size: 2.7rem;
+  text-align: right;
+  background-image: linear-gradient(to bottom, #ffffff, #b38ac8);
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1.2px;
+  -webkit-text-stroke-color: #ffffff;
+  text-shadow: 0 0 3px #7c3e9d;
+}
 
     /* Main Content Section */
     .main-content {
