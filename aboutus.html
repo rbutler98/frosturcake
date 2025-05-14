@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bakery Website</title>
+  
+  <title>Frost Your Cake - Home </title>
+  
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  
   <style>
     html, body {
       margin: 0;
@@ -159,10 +164,101 @@
         font-size: 1.5em;
       }
     }
+
+    .parties-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 40px;
+  background-color: #fff;
+}
+
+.parties-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.parties-right {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.parties-right p {
+  font-size: 1.2em;
+  color: #000;
+  max-width: 400px;
+}
+
+.parties-header-decorated {
+  background-color: white;
+  border: 8px dashed #ffb6c1;
+  border-radius: 20px;
+  padding: 30px 40px;
+  position: relative;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.parties-header-decorated h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.8em;
+  margin: 0;
+  color: #a64dff;
+  z-index: 1;
+  position: relative;
+}
+
+/* Sprinkle background in the header */
+.parties-header-decorated::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://i.ibb.co/YdDNZ3Y/sprinkle-bg.png');
+  background-size: contain;
+  background-repeat: repeat;
+  opacity: 0.3;
+  z-index: 0;
+  border-radius: 20px;
+}
+
+/* Responsive tweak */
+@media (max-width: 768px) {
+  .parties-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .parties-right, .parties-left {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Sprinkle decoration (background sprinkles using pseudo-elements) */
+.parties-header-decorated::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://i.ibb.co/YdDNZ3Y/sprinkle-bg.png'); /* Example sprinkle PNG */
+  background-size: contain;
+  background-repeat: repeat;
+  opacity: 0.3;
+  z-index: 0;
+  border-radius: 20px;
+}
   </style>
 </head>
+  
 <body>
-
+  
   <!-- Banner -->
   <header class="banner">
     <div class="left-nav">
@@ -187,15 +283,14 @@
       </div>
       <div class="image-section"></div>
     </section>
-
-    <!-- Parties Section -->
+    
 <!-- Parties Section -->
 <section class="parties-section">
   <div class="parties-content">
     <div class="parties-header-decorated">
       <h2>Parties and Celebrations</h2>
     </div>
-    <div class="parties-text-box">
+    <div class="parties-right">
       <p>
         We love celebrating! Bring your friends or family and celebrate special days with private parties. We’re the perfect spot for birthdays, bridal showers, baby showers, holidays, and special events. Reserve our private party room that holds up to 20 guests.
       </p>
@@ -203,61 +298,6 @@
   </div>
 </section>
     
-<style>
- .parties-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 20px;
-  background-color: #fff;
-}
-
-.parties-header-decorated {
-  background-color: white;
-  border: 8px dashed #ffb6c1; /* Bakery-style border (icing-inspired) */
-  border-radius: 20px;
-  padding: 30px 40px;
-  position: relative;
-  max-width: 600px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-
-.parties-header-decorated h2 {
-  font-family: 'Pacifico', cursive;
-  font-size: 2.8em;
-  margin: 0;
-  color: #a64dff;
-  z-index: 1;
-  position: relative;
-}
-
-/* Sprinkle decoration (background sprinkles using pseudo-elements) */
-.parties-header-decorated::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('https://i.ibb.co/YdDNZ3Y/sprinkle-bg.png'); /* Example sprinkle PNG */
-  background-size: contain;
-  background-repeat: repeat;
-  opacity: 0.3;
-  z-index: 0;
-  border-radius: 20px;
-}
-</style>
-
-<script>
-  // Reveal effect on scroll
-  window.addEventListener('scroll', () => {
-    const image = document.querySelector('.parties-image');
-    const rect = image.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      image.classList.add('reveal');
-    }
-  });
-</script>
-
   <!-- Footer with Carousel -->
   <footer>
     <div class="carousel-container">
@@ -271,17 +311,6 @@
   </footer>
 
   <script>
-    // Animate party image on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    observer.observe(document.getElementById('partyImage'));
-
     // Carousel functionality
     const carouselImages = document.querySelectorAll("#carousel img");
     let index = 0;
@@ -291,10 +320,16 @@
       carouselImages[index].classList.add("active");
       index = (index + 1) % carouselImages.length;
     }
-
     setInterval(cycleCarousel, 3000);
-  </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    // Reveal effect on scroll
+  window.addEventListener('scroll', () => {
+    const image = document.querySelector('.parties-image');
+    const rect = image.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      image.classList.add('reveal');
+    }
+  });
+  </script>
 </body>
 </html>
