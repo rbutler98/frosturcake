@@ -3,107 +3,108 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Frost Your Cake Studio</title>
+  <title>Bakery Banner</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Pacifico', cursive;
-      background-color: #fff;
+      background: #fff;
     }
 
-    .header {
+    .banner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: white;
-      height: 140px;
-      overflow: hidden;
-      position: relative;
+      padding: 10px 40px;
+      background: linear-gradient(to right, #ffb6c1, #d98eff);
+      height: 100px;
+      flex-wrap: wrap;
     }
 
-    .header::before,
-    .header::after {
-      content: '';
-      background-color: #b34bff;
-      width: 100%;
-      height: 50px;
-      position: absolute;
-      top: 0;
-      z-index: 0;
-    }
-
-    .header::after {
-      top: auto;
-      bottom: 0;
-    }
-
-    .nav-left,
-    .nav-right {
-      display: flex;
+    .left-nav, .right-text {
       flex: 1;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-    }
-
-    .nav-left a,
-    .nav-right a {
-      color: #b34bff;
-      background-color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 1.5rem;
-    }
-
-    .logo-container {
-      z-index: 2;
-      background-color: white;
-      padding: 10px 30px;
-      border-radius: 50%;
       display: flex;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 0 10px white;
     }
 
-    .logo-container img {
-      height: 120px;
+    .left-nav {
+      gap: 15px;
+    }
+
+    .right-text {
+      justify-content: flex-end;
+      font-size: 1.2em;
+      color: white;
+      text-align: right;
+    }
+
+    .logo {
+      flex: 0 0 auto;
+      background-color: white;
+      border-radius: 50%;
+      padding: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 80px;
+      width: auto;
+    }
+
+    .banner a {
+      text-decoration: none;
+      background-color: white;
+      color: #a64dff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .banner a:hover {
+      background-color: #a64dff;
+      color: white;
     }
 
     @media (max-width: 768px) {
-      .header {
+      .banner {
         flex-direction: column;
         height: auto;
-        padding: 20px 0;
+        gap: 15px;
+        padding: 20px;
+        text-align: center;
       }
 
-      .nav-left,
-      .nav-right {
-        flex-direction: column;
-        margin-bottom: 10px;
+      .left-nav, .right-text {
+        justify-content: center;
+        flex: none;
       }
 
-      .logo-container {
-        border-radius: 20px;
-        box-shadow: none;
+      .right-text {
+        font-size: 1em;
       }
     }
   </style>
 </head>
 <body>
 
-  <header class="header">
-    <div class="nav-left">
+  <header class="banner">
+    <div class="left-nav">
       <a href="home.html">Home</a>
       <a href="visit.html">Visit Us</a>
+      <a href="parties.html">Parties</a>
     </div>
-    <div class="logo-container">
-      <img src="Untitled-1.png" alt="Frost Your Cake Studio Logo" />
+
+    <div class="logo">
+      <img src="logo.png" alt="Bakery Logo" />
     </div>
-    <div class="nav-right">
-      <a href="baked-goods.html">We Got Baked Goods</a>
+
+    <div class="right-text">
+      Create. Decorate. Celebrate.
     </div>
   </header>
 
