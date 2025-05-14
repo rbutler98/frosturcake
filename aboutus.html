@@ -189,67 +189,64 @@
     </section>
 
     <!-- Parties Section -->
+<!-- Parties Section -->
 <section class="parties-section">
-  <div class="parties-header">
-    Parties and Celebrations
+  <div class="parties-content">
+    <div class="parties-header">
+      <img src="https://i.ibb.co/yRq5VvJ/icing-header.png" alt="Icing Header" />
+      <h2>Parties and Celebrations</h2>
+    </div>
+    <div class="parties-text-box">
+      <p>
+        Host your next party in sweet style! We provide the frosting, sprinkles, and fun — you bring the creativity. Perfect for birthdays, baby showers, and more.
+      </p>
+    </div>
   </div>
-  <div class="parties-image"></div>
 </section>
+
 
 <style>
   .parties-section {
-    padding: 60px 20px;
-    background-color: #fff0fb;
-    text-align: center;
-  }
+  padding: 40px 20px;
+  background-color: #fff;
+}
 
-  .parties-header {
-    font-family: 'Pacifico', cursive;
-    font-size: 3em;
-    color: white;
-    background: linear-gradient(to right, #ffb6c1, #d98eff);
-    padding: 20px 30px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-  }
+.parties-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
 
-  /* Dripping icing border */
-  .parties-header::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 20px;
-    background: url('https://i.ibb.co/HHY1JgB/drip-purple.png') repeat-x;
-    background-size: contain;
-    animation: drip 4s linear infinite;
-  }
+.parties-header {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
-  @keyframes drip {
-    from { background-position: 0 0; }
-    to { background-position: 100% 0; }
-  }
+.parties-header img {
+  max-width: 300px;
+  height: auto;
+  margin-bottom: 10px;
+}
+.parties-header h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.5em;
+  color: #a64dff;
+  margin: 0;
+}
 
-  .parties-image {
-    height: 60vh;
-    max-width: 90%;
-    margin: 0 auto;
-    background: url('https://via.placeholder.com/1200x600') center/cover no-repeat;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 1s ease;
-  }
+.parties-text-box {
+  flex: 1;
+  max-width: 50%;
+  text-align: center;
+  color: #000;
+  font-size: 1.2em;
+}
 
-  .parties-image.reveal {
-    opacity: 1;
-    transform: translateY(0);
-  }
 </style>
 
 <script>
