@@ -65,7 +65,7 @@ html {
 
     .banner-buttons a {
       background-color: white;
-      color: #7c3e9d;
+      color: #8557f3;
       border: 2px solid;
       border-image: linear-gradient(to bottom, #8c52ff, #ffffff) 1;
       padding: 12px 20px;
@@ -79,7 +79,7 @@ html {
     }
 
     .banner-buttons a:hover {
-      background-color: #7c3e9d;
+      background-color: #8557f3;
       color: white;
     }
 
