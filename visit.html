@@ -120,6 +120,8 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: left;
+      height: 560px; /* add this line */
+      box-sizing: border-box;
     }
 
     .text-box h2 {
@@ -136,10 +138,13 @@
 
     iframe {
       flex: 0 0 60%;
-      max-width: 60%z
+      max-width: 60%;
+      height: 560px; /* was 400px → increased by 40% */
       border: none;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding-right: 20px;
+      box-sizing: border-box;
     }
 
     @media (max-width: 768px) {
@@ -147,6 +152,13 @@
         flex-direction: column;
         height: auto;
         padding: 20px;
+        
+      .text-box, iframe {
+        width: 100%;
+        flex: unset;
+        height: auto;
+      }
+
       }
 
       .logo {
