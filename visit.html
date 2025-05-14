@@ -19,7 +19,7 @@
       background: linear-gradient(to bottom, #9a4dff 0%, #ffffff 80%);
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       padding: 0 60px;
       overflow: hidden;
     }
@@ -55,7 +55,7 @@
 
     .slogan {
       font-family: 'Pacifico', cursive;
-      font-size: 30px;
+      font-size: 26px;
       color: white;
       animation: slideFadeIn 1.5s ease-in-out forwards;
       opacity: 0;
@@ -76,17 +76,60 @@
       }
     }
 
-    .slogan::after {
-      content: "";
-      display: block;
-      margin: 10px auto 0;
-      width: 160px;
-      height: 30px;
-      background: url('https://i.imgur.com/JxQslBo.png') no-repeat center;
-      background-size: contain;
+    /* Button Navigation */
+    .nav-buttons {
+      display: flex;
+      gap: 20px;
+      z-index: 3;
     }
 
-    /* Hamburger Menu */
+    .nav-buttons button {
+      font-family: 'Caveat', cursive;
+      font-size: 20px;
+      background-color: white;
+      color: #9a4dff;
+      border: 2px solid #9a4dff;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-buttons button:hover {
+      background-color: #9a4dff;
+      color: white;
+    }
+
+    .nav-buttons button::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 12px;
+      border: 2px solid #fff;
+      animation: pulse 2s infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+    }
+
+    /* Hamburger Mobile Only */
     .hamburger {
       display: none;
       position: absolute;
@@ -147,8 +190,12 @@
         display: flex;
       }
 
+      .nav-buttons {
+        display: none;
+      }
+
       .slogan {
-        font-size: 24px;
+        font-size: 22px;
         right: 20px;
         text-align: right;
       }
@@ -177,6 +224,11 @@
 
   <!-- Banner -->
   <header class="banner">
+    <div class="nav-buttons">
+      <button>Home</button>
+      <button>Visit Us</button>
+      <button>Parties</button>
+    </div>
     <img src="https://i.imgur.com/TzWcihb.png" alt="Bakery Logo" class="logo" />
     <div class="slogan">Create. Decorate. Celebrate.</div>
   </header>
