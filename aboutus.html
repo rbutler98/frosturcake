@@ -99,9 +99,8 @@
       box-shadow: 10px 10px 20px #7a3f99;
       color: white;
       font-family: 'Dancing Script', cursive;
-      font-size: 2.4em;
+      font-size: 2.0em;
     }
-
 
     .image-section {
       flex: 0 0 70%;
@@ -113,51 +112,37 @@
     }
 
     /* Parties Section */
-    .parties-section {
-      text-align: center;
-      padding: 60px 20px;
-    }
+    .celebration-section {
+  text-align: center;
+  padding: 40px 20px;
+}
 
-    .parties-heading {
-      font-size: 3em;
-      margin-bottom: 20px;
-      position: relative;
-      display: inline-block;
-      color: #a64dff;
-    }
+.frosting-border {
+  position: relative;
+  background-color: #fff0f5;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 0 auto 40px auto;
+  max-width: 90%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
 
-    .parties-heading::before, .parties-heading::after {
-      content: '✨✨✨✨✨';
-      position: absolute;
-      top: -20px;
-      font-size: 1em;
-    }
+.celebration-heading {
+  font-size: 2.5em;
+  color: #a64dff;
+  padding: 40px 20px;
+  margin: 0;
+  background-image: url('https://i.ibb.co/3yrpgMs/sprinkles-bg.png');
+  background-size: 200px;
+  background-repeat: repeat;
+}
 
-    .parties-heading::before {
-      left: -130px;
-    }
+.frosting-top, .frosting-bottom {
+  width: 100%;
+  height: 60px;
+  display: block;
+}
 
-    .parties-heading::after {
-      right: -130px;
-    }
-
-    .party-image {
-      width: 90%;
-      max-width: 900px;
-      height: 400px;
-      background: url('https://i.ibb.co/KxqPHCxv/Firefly-An-adult-decorating-cupcakes-at-an-event-94672.jpg') center/cover no-repeat;
-      margin: 0 auto;
-      border-radius: 10px;
-      opacity: 0;
-      transform: scale(0.95);
-      transition: all 1s ease;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .party-image.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
 
     /* Carousel Footer */
     footer {
@@ -238,11 +223,23 @@
     </section>
 
     <!-- Parties Section -->
-    <section class="parties-section">
-      <h2 class="parties-heading">Parties and Celebrations</h2>
-      <div class="party-image" id="partyImage"></div>
-    </section>
-  </main>
+    <section class="celebration-section">
+  <div class="frosting-border">
+    <svg class="frosting-top" viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0,30 C360,90 1080,-30 1440,60 L1440,0 L0,0 Z" fill="#ffb6c1"/>
+    </svg>
+
+    <h2 class="celebration-heading">Parties and Celebrations</h2>
+
+    <svg class="frosting-bottom" viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0,60 C360,-30 1080,90 1440,30 L1440,100 L0,100 Z" fill="#ffb6c1"/>
+    </svg>
+  </div>
+
+  <div class="celebration-image-container">
+    <img src="https://via.placeholder.com/900x400" alt="Celebration Placeholder" class="celebration-image"/>
+  </div>
+</section>
 
   <!-- Footer with Carousel -->
   <footer>
