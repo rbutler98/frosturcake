@@ -2,371 +2,228 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Frost Your Cake - Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bakery Website</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Pacifico', cursive;
-      background-color: #fff;
-      overflow-x: hidden;
-    }
-
     body {
-      display: flex;
-      flex-direction: column;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffffff;
     }
 
-    /* === Banner === */
+    /* Banner */
     .banner {
+      background: linear-gradient(to right, #b36fd4, #d594f3);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 10px 40px;
-      background: linear-gradient(to left, #ffb6c1, #d98eff);
-      height: 100px;
-      flex-wrap: wrap;
-      position: relative;
+      height: 120px;
     }
 
-    .left-nav {
+    .banner-left,
+    .banner-right {
+      flex: 1;
       display: flex;
-      gap: 15px;
+      align-items: center;
+      justify-content: center;
     }
 
-    .left-nav a {
+    .banner-center {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .banner-buttons a {
+      padding: 8px 16px;
+      background-color: #ffffff;
+      color: #9b4fc4;
       text-decoration: none;
-      background-color: white;
-      color: #a64dff;
-      padding: 8px 14px;
-      border-radius: 6px;
+      border: none;
+      border-radius: 5px;
       font-weight: bold;
-      transition: background 0.3s, color 0.3s;
+      transition: background-color 0.3s ease;
     }
 
-    .left-nav a:hover {
-      background-color: #a64dff;
+    .banner-buttons a:hover {
+      background-color: #8025a0;
       color: white;
-    }
-
-    .right-text {
-      color: #a64dff;
-      font-size: 1.2em;
-      text-align: center;
-      opacity: 0;
-      transform: translateX(40px);
-      animation: slideFadeIn 1s ease-out forwards;
-      animation-delay: 0.4s;
-    }
-
-    @keyframes slideFadeIn {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
     }
 
     .logo {
-      background-color: white;
-      border-radius: 50%;
-      padding: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transform: scale(0.8);
-      animation: logoPopIn 0.8s ease-out forwards;
-      animation-delay: 0.2s;
-    }
-
-    .logo img {
       height: 80px;
-      width: auto;
+      width: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      background-color: white;
+      padding: 5px;
     }
 
-    @keyframes logoPopIn {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+    .slogan {
+      color: white;
+      font-size: 1.5em;
+      text-align: center;
     }
 
-    /* === Hamburger === */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-    }
-
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: #fff;
-    }
-
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -250px;
-      width: 250px;
-      height: 100%;
-      background: #fff;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-      padding: 60px 20px;
+    /* Body Content */
+    .main-content {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      transition: right 0.3s ease;
-      z-index: 999;
+      justify-content: space-between;
+      align-items: center;
+      margin: 40px 40px 60px 40px;
+      gap: 40px;
     }
 
-    .mobile-menu a {
-      text-decoration: none;
-      color: #a64dff;
-      font-weight: bold;
+    .text-section {
+      flex: 1;
+      background-color: #e6ccf3; /* lighter purple */
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 10px 10px 20px #7a3f99;
+      color: white;
       font-size: 1.2em;
     }
 
-    .mobile-menu.active {
-      right: 0;
-    }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: 998;
-    }
-
-    .overlay.active {
-      display: block;
-    }
-
-    /* === Main Content === */
-    .main-body {
-      display: flex;
-      gap: 40px;
-      padding: 60px 40px;
-      align-items: center;
-      flex-wrap: wrap;
-      flex: 1;
-    }
-
-    .text-box {
-      flex: 1;
-      background-color: #c083f7;
-      color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 10px 10px 20px rgba(100, 50, 200, 0.5);
-    }
-
-    .image-box {
+    .image-section {
       flex: 2;
-      background-image: url('https://i.ibb.co/PsLvpB00/Firefly-An-adult-decorating-cupcakes-at-an-event-793127.jpg');
+      background-image: url('https://via.placeholder.com/1000x700');
       background-size: cover;
       background-position: center;
       height: 400px;
       border-radius: 10px;
     }
 
-    /* === Footer === */
-    .footer {
-      background: linear-gradient(to right, #d98eff, #ffb6c1);
+    /* Footer */
+    footer {
+      background: linear-gradient(to left, #b36fd4, #d594f3);
       padding: 40px 20px;
       text-align: center;
     }
 
     .carousel-container {
-  overflow: hidden;
-  width: 100%;
-}
+      overflow: hidden;
+      max-width: 100%;
+    }
 
-.carousel-wrapper {
-  position: relative;
-  width: 100%;
-}
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+    }
 
-.carousel {
-  display: flex;
-  gap: 20px;
-  animation: scroll-left 20s linear infinite;
-}
+    .carousel {
+      display: flex;
+      gap: 20px;
+      animation: scroll-left 20s linear infinite;
+      justify-content: center;
+    }
 
-.carousel img {
-  height: 150px;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-  border-radius: 10px;
-}
+    .carousel img {
+      height: 150px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+      border-radius: 10px;
+    }
 
-.carousel img:hover {
-  transform: scale(1.1);
-  animation-play-state: paused;
-}
+    .carousel img:hover {
+      transform: scale(1.1);
+      animation-play-state: paused;
+    }
 
-/* Pause animation when hovered over the carousel container */
-.carousel:hover {
-  animation-play-state: paused;
-}
+    .carousel:hover {
+      animation-play-state: paused;
+    }
 
-/* Keyframes to scroll left */
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
 
-    /* === Mobile Styles === */
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .left-nav {
-        display: none;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
       .banner {
-        flex-wrap: nowrap;
-        padding: 10px 20px;
-      }
-
-      .main-body {
         flex-direction: column;
-        padding: 40px 20px;
+        height: auto;
+        padding: 20px;
+        text-align: center;
       }
 
-      .image-box {
-        width: 100%;
+      .banner-left,
+      .banner-center,
+      .banner-right {
+        justify-content: center;
+        margin: 10px 0;
+      }
+
+      .main-content {
+        flex-direction: column;
+        margin: 20px;
+      }
+
+      .image-section {
         height: 250px;
-      }
-
-      .text-box {
         width: 100%;
-      }
-
-      .right-text {
-        font-size: 1em;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Overlay -->
-  <div class="overlay" id="overlay"></div>
-
   <!-- Banner -->
-  <header class="banner" id="banner">
-    <div class="hamburger" id="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
+  <header class="banner">
+    <div class="banner-left">
+      <div class="banner-buttons">
+        <a href="home.html">Home</a>
+        <a href="visit.html">Visit Us</a>
+        <a href="parties.html">Parties</a>
+      </div>
     </div>
-
-    <div class="left-nav">
-      <a href="home.html">Home</a>
-      <a href="visit.html">Visit Us</a>
-      <a href="parties.html">Parties</a>
+    <div class="banner-center">
+      <img src="https://via.placeholder.com/80" alt="Logo" class="logo" />
     </div>
-
-    <div class="logo">
-      <img src="https://i.ibb.co/Y7pd9y0H/no-Bg-Color.png" alt="Bakery Logo">
-    </div>
-
-    <div class="right-text">
-      Create. Decorate. Celebrate.
+    <div class="banner-right">
+      <div class="slogan">Create. Decorate. Celebrate.</div>
     </div>
   </header>
 
-  <!-- Mobile Menu -->
-  <nav class="mobile-menu" id="mobileMenu">
-    <a href="home.html">Home</a>
-    <a href="visit.html">Visit Us</a>
-    <a href="parties.html">Parties</a>
-  </nav>
-
   <!-- Body -->
-  <section class="main-body">
-    <div class="text-box">
-      <p>Do you love to decorate cookies, cakes and cupcakes? Or, maybe you’ve always wanted to try decorating, but didn’t know where to start, or didn’t want the mess or expense. At Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an “unlimited decorating experience”. Decorate cookies, cakes, or cupcakes however you desire. Use as many colors, frosting tips, and sprinkles as you need to bring your creation from idea to reality. All of levels of experience and ages are welcome! Even if you’ve never decorated before, we’re happy to help provide some inspiration or useful tips and tricks.<p>
+  <main class="main-content">
+    <div class="text-section">
+      <p>
+        Do you love to decorate cookies, cakes and cupcakes? Or, maybe you’ve always wanted to try decorating, but didn’t know where to start, or didn’t want the mess or expense. At Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an “unlimited decorating experience”. Decorate cookies, cakes, or cupcakes however you desire. Use as many colors, frosting tips, and sprinkles as you need to bring your creation from idea to reality. All levels of experience and ages are welcome! Even if you’ve never decorated before, we’re happy to help provide some inspiration or useful tips and tricks.
+      </p>
     </div>
-    <div class="image-box"></div>
-  </section>
+    <div class="image-section"></div>
+  </main>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer>
     <div class="carousel-container">
-  <div class="carousel-wrapper">
-    <div class="carousel" id="carousel">
-      <img src="https://via.placeholder.com/200x150" alt="Item 1" />
-      <img src="https://via.placeholder.com/200x150" alt="Item 2" />
-      <img src="https://via.placeholder.com/200x150" alt="Item 3" />
-      <img src="https://via.placeholder.com/200x150" alt="Item 4" />
-      <!-- Duplicate images for seamless looping -->
-      <img src="https://via.placeholder.com/200x150" alt="Item 1" />
-      <img src="https://via.placeholder.com/200x150" alt="Item 2" />
-      <img src="https://via.placeholder.com/200x150" alt="Item 3" />
-      <img src="https://via.placeholder.com/200x150" alt="Item 4" />
+      <div class="carousel-wrapper">
+        <div class="carousel" id="carousel">
+          <img src="https://via.placeholder.com/200x150" alt="Item 1" />
+          <img src="https://via.placeholder.com/200x150" alt="Item 2" />
+          <img src="https://via.placeholder.com/200x150" alt="Item 3" />
+          <img src="https://via.placeholder.com/200x150" alt="Item 4" />
+          <!-- Duplicate images for looping -->
+          <img src="https://via.placeholder.com/200x150" alt="Item 1" />
+          <img src="https://via.placeholder.com/200x150" alt="Item 2" />
+          <img src="https://via.placeholder.com/200x150" alt="Item 3" />
+          <img src="https://via.placeholder.com/200x150" alt="Item 4" />
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
   </footer>
 
-  <!-- JS for Mobile Menu and Swiping -->
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const overlay = document.getElementById('overlay');
-
-    function openMenu() {
-      mobileMenu.classList.add('active');
-      overlay.classList.add('active');
-    }
-
-    function closeMenu() {
-      mobileMenu.classList.remove('active');
-      overlay.classList.remove('active');
-    }
-
-    hamburger.addEventListener('click', openMenu);
-    overlay.addEventListener('click', closeMenu);
-
-    // Swipe gesture
-    let touchStartX = 0;
-
-    window.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-
-    window.addEventListener('touchend', e => {
-      const touchEndX = e.changedTouches[0].screenX;
-      const screenWidth = window.innerWidth;
-
-      if (screenWidth < 768) {
-        if (touchStartX > screenWidth - 50 && touchEndX < touchStartX - 30) {
-          openMenu(); // Swipe from right to left
-        }
-        if (touchStartX < screenWidth && touchEndX > touchStartX + 30 && mobileMenu.classList.contains('active')) {
-          closeMenu(); // Swipe from left to right
-        }
-      }
-    });
-  </script>
 </body>
 </html>
