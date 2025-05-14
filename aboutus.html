@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Responsive Layout</title>
+  <title>Frost Your Cake</title>
   <style>
     body {
       margin: 0;
@@ -37,14 +37,15 @@
       gap: 10px;
     }
 
-    .banner-logo {
-      background-color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      color: #a64dff;
-      text-align: center;
-    }
+    .banner-logo img {
+  width: 80px; /* Adjust size as needed */
+  height: 80px;
+  border-radius: 50%;
+  background-color: white;
+  padding: 10px; /* Optional spacing inside the white circle */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional subtle shadow */
+}
+
 
     /* Hamburger Button */
     .hamburger {
@@ -130,7 +131,7 @@
 
     .image-section {
       flex: 2;
-      background-image: url('https://via.placeholder.com/1200x800');
+      background-image: url('https://i.ibb.co/PsLvpB00/Firefly-An-adult-decorating-cupcakes-at-an-event-793127.jpg');
       background-size: cover;
       background-position: center;
     }
@@ -200,7 +201,9 @@
         <button>About</button>
       </nav>
     </div>
-    <div class="banner-logo">LOGO</div>
+    <div class="banner-logo">
+      <img src="your-logo.png" alt="Logo">
+    </div>
     <div class="banner-right">
       <span>Welcome!</span>
     </div>
