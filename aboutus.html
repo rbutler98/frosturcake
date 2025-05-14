@@ -2,53 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>About | Frost Your Cake Studio</title>
+  <title>Custom Layout</title>
   <style>
-    .container {
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+    }
+
+    /* --- Banner Styles --- */
+    .banner {
       display: flex;
-      height: 100vh;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background-color: #d145de;
+      color: white;
+    }
+
+    .banner-left,
+    .banner-right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .banner-left {
+      justify-content: flex-start;
+      gap: 15px;
+    }
+
+    .banner-logo {
+      flex: 0 0 auto;
+      text-align: center;
+    }
+
+    .banner-logo img {
+      height: 80px;
+    }
+
+    .banner-right {
+      justify-content: flex-end;
+      font-size: 1.1em;
+    }
+
+    .banner button {
+      padding: 10px 20px;
+      border: none;
+      background-color: white;
+      color: #d145de;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .banner button:hover {
+      background-color: #e9e9e9;
+    }
+
+    /* --- Main Content Styles --- */
+    .main-content {
+      display: flex;
+      height: calc(100vh - 120px); /* Adjust height based on banner */
       width: 100%;
     }
 
-    .text-section {
+    .main-text {
       flex: 1;
-      padding: 40px;
+      padding: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5em;
-      background-color: #d145de;
-      color: #ffffff; /* Corrected from 'text-color' to 'color' */
+      font-size: 1.3em;
+      background-color: #fff;
     }
 
-    .image-section {
+    .main-image {
       flex: 2;
+      background-image: url('https://via.placeholder.com/1200x800'); /* Replace with your image URL */
       background-size: cover;
       background-position: center;
-      background-image: url('https://via.placeholder.com/1200x800'); /* Replace with your image URL */
     }
 
-    /* Responsive layout */
+    /* Responsive adjustments */
     @media (max-width: 768px) {
-      .container {
+      .banner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .banner-left, .banner-right {
+        justify-content: center;
+        margin: 10px 0;
+      }
+
+      .main-content {
         flex-direction: column;
       }
 
-      .text-section, .image-section {
+      .main-text, .main-image {
         flex: unset;
         height: 50vh;
-      }
-    }
-  </style>
-</head>
-<body>
 
-  <div class="container">
-    <div class="text-section">
-      <p>Do you love to decorate cookies, cakes and cupcakes? Or, maybe you’ve always wanted to try decorating, but didn’t know where to start, or didn’t want the mess or expense. At Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an “unlimited decorating experience”. Decorate cookies, cakes, or cupcakes however you desire. Use as many colors, frosting tips, and sprinkles as you need to bring your creation from idea to reality. All levels of experience and ages are welcome! Even if you’ve never decorated before, we’re happy to help provide some inspiration or useful tips and tricks.</p>
-    </div>
-    <div class="image-section"></div>
-  </div>
-
-</body>
-</html>
