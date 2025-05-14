@@ -5,152 +5,102 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bakery Banner</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    html {
+      scroll-behavior: smooth;
+    }
 
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffffff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scroll-enlarge {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes fadeInTop {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .handwritten-message {
       font-family: 'Pacifico', cursive;
-      background-color: white;
+      color: #ae88ff;
+      text-align: center;
+      font-size: .9rem;
+      margin: 40px auto;
+      max-width: 800px;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeInTop 1.5s ease-out forwards;
     }
 
     .banner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      background: linear-gradient(to bottom, #b38ac8, #ffffff 80%);
+      height: 240px;
+      background: linear-gradient(to bottom, #8c52ff 20%, #ffffff 95%);
       position: relative;
-      height: 200px;
+      padding: 0 20px;
     }
 
     .logo {
-      height: 110px;
+      height: 120px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       animation: fadeIn 2s ease-in-out;
     }
 
     .banner-buttons {
       display: flex;
-      gap: 15px;
+      gap: 10px;
     }
 
-    .banner-buttons button {
+    .banner-buttons a {
       background-color: white;
-      color: #7c3e9d;
-      border: 2px solid #7c3e9d;
+      color: #8557f3;
+      border: 2px solid;
+      border-image: linear-gradient(to bottom, #8c52ff, #ffffff) 1;
       padding: 12px 20px;
       font-size: 1rem;
       border-radius: 8px;
       cursor: pointer;
       font-family: 'Pacifico', cursive;
       transition: all 0.3s ease;
-      animation: pulse 2s infinite;
+      text-decoration: none;
+      display: inline-block;
     }
 
-    .banner-buttons button:hover {
-      background-color: #7c3e9d;
+    .banner-buttons a:hover {
+      background-color: #8557f3;
       color: white;
     }
 
     .slogan {
-      color: white;
-      font-size: 2.5rem;
+      font-size: 3.625rem;
+      font-family: 'Great Vibes', cursive;
       text-align: right;
-      animation: fadeInRight 2s ease-in-out;
-      width: 30%;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes fadeInRight {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(124, 62, 157, 0.4);
-      }
-      70% {
-        box-shadow: 0 0 0 10px rgba(124, 62, 157, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(124, 62, 157, 0);
-      }
-    }
-
-    /* Hamburger menu styling */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      cursor: pointer;
-      width: 30px;
-      height: 25px;
-    }
-
-    .hamburger div {
-      height: 4px;
-      background-color: #7c3e9d;
-      margin: 4px 0;
-      border-radius: 2px;
-      transition: 0.4s;
-    }
-
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 80px;
-      left: 0;
-      background-color: white;
-      width: 100%;
-      padding: 20px;
-      flex-direction: column;
-      align-items: flex-start;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    }
-
-    .mobile-nav button {
-      margin: 10px 0;
-      width: 100%;
-      text-align: left;
-    }
-
-    /* Media Query for Mobile */
-    @media (max-width: 768px) {
-      .banner {
-        flex-direction: row;
-        justify-content: space-between;
-        height: auto;
-        padding: 15px 20px;
-      }
-
-      .banner-buttons {
-        display: none;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .slogan {
-        font-size: 1.8rem;
-        width: 50%;
-      }
+      color: white;
+      -webkit-text-stroke: 1.2px transparent;
+      background: linear-gradient(to top, #8c52ff, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: white;
+      -webkit-mask-image: linear-gradient(to top, #d6b0e9, #ffffff);
+      text-shadow: 0 0 2px #b38ac8;
     }
   </style>
 </head>
