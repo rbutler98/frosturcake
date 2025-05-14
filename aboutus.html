@@ -17,66 +17,7 @@
     body {
       background-color: #ffffff;
     }
-
-    /* Banner */
-    .banner {
-      background: linear-gradient(to right, #b36fd4, #d594f3);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 40px;
-      height: 120px;
-      position: relative;
-    }
-
-    .banner-left,
-    .banner-center,
-    .banner-right {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .banner-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .banner-buttons a {
-      padding: 8px 16px;
-      background-color: #ffffff;
-      color: #9b4fc4;
-      text-decoration: none;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    .banner-buttons a:hover {
-      background-color: #8025a0;
-      color: white;
-    }
-
-    .logo {
-      height: 80px;
-      width: 80px;
-      object-fit: cover;
-      border-radius: 50%;
-      background-color: white;
-      padding: 5px;
-      animation: fadeInDown 1s ease forwards;
-    }
-
-    .slogan {
-      color: white;
-      font-size: 1.5em;
-      text-align: center;
-      opacity: 0;
-      animation: fadeInRight 1.5s ease forwards;
-    }
-
+    
     /* Animations */
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
@@ -243,44 +184,113 @@
 <body>
 
   <!-- Banner -->
-  <header class="banner" style="background: linear-gradient(to right, #b36fd4, #d594f3);">
-  <div class="banner-left">
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <div class="banner-buttons">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bakery Banner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pacifico', cursive;
+      background: #fff;
+    }
+
+    .banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      background: linear-gradient(to right, #ffb6c1, #d98eff);
+      height: 100px;
+      flex-wrap: wrap;
+    }
+
+    .left-nav, .right-text {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .left-nav {
+      gap: 15px;
+    }
+
+    .right-text {
+      justify-content: center;
+      color: #a64dff; /* Match banner purple */
+      font-size: 1.2em;
+      text-align: center;
+    }
+
+    .logo {
+      flex: 0 0 auto;
+      background-color: white;
+      border-radius: 50%;
+      padding: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 80px;
+      width: auto;
+    }
+
+    .banner a {
+      text-decoration: none;
+      background-color: white;
+      color: #a64dff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .banner a:hover {
+      background-color: #a64dff;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .banner {
+        flex-direction: column;
+        height: auto;
+        gap: 15px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .left-nav, .right-text {
+        justify-content: center;
+        flex: none;
+      }
+
+      .right-text {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="banner">
+    <div class="left-nav">
       <a href="home.html">Home</a>
       <a href="visit.html">Visit Us</a>
       <a href="parties.html">Parties</a>
     </div>
-  </div>
 
-  <div class="banner-center">
-    <img src="https://i.ibb.co/Y7pd9y0H/no-Bg-Color.png" alt="Logo" class="logo" />
-  </div>
-
-  <div class="banner-right">
-    <div class="slogan">Create. Decorate. Celebrate.</div>
-  </div>
-
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="home.html">Home</a>
-    <a href="visit.html">Visit Us</a>
-    <a href="parties.html">Parties</a>
-  </div>
-</header>
-
-    <div class="banner-center">
-      <img src="https://i.ibb.co/PsLvpB00/Firefly-An-adult-decorating-cupcakes-at-an-event-793127.jpg" alt="Logo" class="logo" />
+    <div class="logo">
+      <img src="logo.png" alt="Bakery Logo" />
     </div>
 
-    <div class="banner-right">
-      <div class="slogan">Create. Decorate. Celebrate.</div>
+    <div class="right-text">
+      Create. Decorate. Celebrate.
     </div>
-
+  </header>
     <!-- Mobile menu -->
     <div class="mobile-menu" id="mobileMenu">
       <a href="home.html">Home</a>
