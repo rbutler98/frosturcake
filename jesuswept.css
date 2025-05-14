@@ -158,6 +158,8 @@ html, body {
       background-position: center;
       border-radius: 10px;
       animation: fadeIn 1s ease forwards;
+      position: absolute;
+      right: 40px;
     }
   
     @media (max-width: 768px) {
