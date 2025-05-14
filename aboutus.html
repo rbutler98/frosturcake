@@ -25,35 +25,80 @@
       50% { transform: scale(1.1); }
     }
 
-    /* Parties and Celebrations Image */
-
-    .fade-image-section {
-  padding: 0 20px;
-  margin: 60px 0;
+    .parties-section {
+  padding: 60px 20px;
+  background-image: url('https://i.ibb.co/qJkxwFV/sprinkle-bg.png'); /* Change to your sprinkle image */
+  background-size: cover;
+  background-repeat: repeat;
+  background-position: center;
+  position: relative;
+  z-index: 1;
 }
 
-.fade-image-container {
-  height: 40vh;
+.icing-border {
+  border-top: 30px solid transparent;
+  border-image: url('https://i.ibb.co/p3C5kSm/icing-drip-purple.png') 30 stretch;
+  border-image-slice: 30 fill;
+  animation: drip 3s infinite alternate ease-in-out;
+  padding: 40px 20px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.parties-heading {
+  font-size: 3em;
+  color: white;
+  font-family: 'Pacifico', cursive;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Dripping animation for icing */
+@keyframes drip {
+  0% { border-image-width: 30px; }
+  100% { border-image-width: 35px; }
+}
+    .parties-image-container {
+  padding: 40px 24px 60px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.fade-image {
-  height: 100%;
-  width: auto;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+.parties-image {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  animation: fadeInImage 1s ease forwards;
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease, transform 1s ease;
+  transform: scale(0.95);
 }
 
-.fade-image.show {
-  opacity: 1;
-  transform: translateY(0);
+/* Fade in on scroll */
+@keyframes fadeInImage {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
+/* Scroll trigger */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = 'fadeInImage 1s ease forwards';
+    }
+  });
+});
 
+document.querySelectorAll('.parties-image').forEach(img => {
+  observer.observe(img);
+});
+    
     /* Banner */
     .banner {
       display: flex;
@@ -141,45 +186,6 @@
       animation: fadeIn 1s ease forwards;
     }
 
-    /* Parties Section */
-    /* .celebration-section {
-  text-align: center;
-  padding: 40px 20px;
-} */
-
-.frosting-border {
-  position: relative;
-  text-align: center;
-  margin: 40px 0;
-}
-
-.celebration-heading {
-  font-size: 2.5em;
-  margin: 40px auto;
-  color: white;
-  font-family: 'Pacifico', cursive;
-  z-index: 2;
-  position: absolute;
-  text-align: center;
-}
-
-/* Animation */
-.animated-drip {
-  animation: dripWave 6s ease-in-out infinite alternate;
-}
-
-@keyframes dripWave {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(3px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
     /* Carousel Footer */
     footer {
       background: linear-gradient(to left, #b36fd4, #d594f3);
@@ -258,37 +264,17 @@
       <div class="image-section"></div>
     </section>
 
-    <!-- Parties Section -->
-  <div class="frosting-border">
-  <svg class="frosting-top animated-drip" viewBox="0 0 1440 100" preserveAspectRatio="none">
-    <path d="M0,30 C360,90 1080,-30 1440,60 L1440,0 L0,0 Z" fill="url(#frostGradient)" />
-    <defs>
-      <linearGradient id="frostGradient" x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0%" stop-color="#ffb6c1" />
-        <stop offset="100%" stop-color="#d98eff" />
-      </linearGradient>
-    </defs>
-  </svg>
-
-  <h2 class="celebration-heading">Parties and Celebrations</h2>
-
-  <svg class="frosting-bottom animated-drip" viewBox="0 0 1440 100" preserveAspectRatio="none">
-    <path d="M0,60 C360,-30 1080,90 1440,30 L1440,100 L0,100 Z" fill="url(#frostGradient2)" />
-    <defs>
-      <linearGradient id="frostGradient2" x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0%" stop-color="#ffb6c1" />
-        <stop offset="100%" stop-color="#d98eff" />
-      </linearGradient>
-    </defs>
-  </svg>
-</div>
-    
-<section class="fade-image-section">
-  <div class="fade-image-container">
-    <img src="https://i.ibb.co/KxqPHCxv/Firefly-An-adult-decorating-cupcakes-at-an-event-94672.jpg" alt="Decorated Cake" class="fade-image" />
+  <!-- Parties Section -->
+<section class="parties-section">
+  <div class="icing-border">
+    <h2 class="parties-heading">Parties and Celebrations</h2>
+  </div>
+  <div class="parties-image-container">
+    <img src="https://via.placeholder.com/1200x600" alt="Parties Celebration" class="parties-image" />
   </div>
 </section>
-    
+
+
   <!-- Footer with Carousel -->
   <footer>
     <div class="carousel-container">
@@ -302,17 +288,7 @@
   </footer>
 
   <script>
-    // Animate party image on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    observer.observe(document.getElementById('partyImage'));
-
+    
     // Carousel functionality
     const carouselImages = document.querySelectorAll("#carousel img");
     let index = 0;
