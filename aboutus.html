@@ -47,7 +47,7 @@
 
     .text-section {
       flex: 1;
-      background-color: #e6ccf3;
+      background-color: #b36bff;
       padding: 40px;
       border-radius: 10px;
       box-shadow: 10px 10px 20px #7a3f99;
@@ -179,6 +179,35 @@
         width: 100%;
       }
     }
+    .parties-section {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.parties-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #a64dff;
+}
+
+.party-image-placeholder {
+  height: 400px;
+  background-color: #f0f0f0;
+  margin: 0 auto;
+  width: 80%;
+  border-radius: 10px;
+  background-image: url('https://via.placeholder.com/800x400');
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.party-image-placeholder.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
   </style>
 </head>
 <body>
@@ -223,7 +252,7 @@
 .right-text {
   justify-content: center;
   color: white; /* Change slogan text to white */
-  font-size: 1.2em;
+  font-size: 2.4em;
   text-align: center;
 }
 
@@ -280,7 +309,6 @@
   </style>
 </head>
 <body>
-
   <header class="banner">
     <div class="left-nav">
       <a href="aboutus.html">Home</a>
@@ -313,7 +341,28 @@
     </div>
     <div class="image-section"></div>
   </main>
+  
+<section class="parties-section">
+  <h2>Parties and Celebrations</h2>
+  <div class="party-image-placeholder"></div>
+</section>
 
+  <script>
+  function revealOnScroll() {
+    const placeholder = document.querySelector('.party-image-placeholder');
+    const rect = placeholder.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+    if (rect.top <= windowHeight - 100) {
+      placeholder.classList.add('visible');
+      window.removeEventListener('scroll', revealOnScroll);
+    }
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
+</script>
+  
   <!-- Footer -->
   <footer>
     <div class="carousel-container">
