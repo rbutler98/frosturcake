@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bakery Banner</title>
   <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&display=swap" rel="stylesheet">
   <style>
@@ -11,7 +11,6 @@
       font-family: 'Caveat', cursive;
     }
 
-    /* Dripping frosting SVG container */
     .drip-border {
       position: absolute;
       top: 0;
@@ -51,38 +50,20 @@
       font-size: 20px;
       cursor: pointer;
       font-family: 'Caveat', cursive;
-      overflow: hidden;
-      transition: color 0.3s, background 0.3s;
-      position: relative;
+      transition: background 0.3s, color 0.3s;
     }
 
-    .nav-buttons button::before {
-      content: "";
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(90deg, #9a4dff, #e0b3ff, #9a4dff);
-      z-index: 0;
-      border-radius: 10px;
-      opacity: 0;
-      transition: opacity 0.3s;
-      animation: borderPulse 2s linear infinite;
-    }
-
-    .nav-buttons button:hover::before {
-      opacity: 1;
-    }
-
-    .nav-buttons button span {
-      position: relative;
-      z-index: 1;
+    .nav-buttons button:hover {
+      background: #9a4dff;
+      color: white;
     }
 
     .logo-container {
-      flex: 0 0 auto;
       z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
     }
 
     .logo {
@@ -93,7 +74,7 @@
     .slogan-container {
       flex: 1;
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
       text-align: center;
       z-index: 10;
@@ -102,7 +83,7 @@
     .slogan {
       font-family: 'Pacifico', cursive;
       color: white;
-      font-size: 2.8rem;
+      font-size: 2.4rem; /* reduced by 15% from 2.8rem */
       animation: fadeInRight 1.5s ease-in-out;
     }
 
@@ -127,15 +108,6 @@
         transform: translateX(0);
       }
     }
-
-    @keyframes borderPulse {
-      0% {
-        background-position: 0% 50%;
-      }
-      100% {
-        background-position: 100% 50%;
-      }
-    }
   </style>
 </head>
 <body>
@@ -147,9 +119,9 @@
   <header class="bakery-banner">
     <!-- Left Buttons -->
     <div class="nav-buttons">
-      <button><span>Home</span></button>
-      <button><span>Visit Us</span></button>
-      <button><span>Parties</span></button>
+      <button>Home</button>
+      <button>Visit Us</button>
+      <button>Parties</button>
     </div>
 
     <!-- Center Logo -->
