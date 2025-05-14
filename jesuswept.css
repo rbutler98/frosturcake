@@ -31,7 +31,7 @@ html, body {
   justify-content: space-between;
   align-items: center;
   height: 240px;
-  background: linear-gradient(to bottom, #d6b0e9 20%, #ffffff 95%);
+  background: linear-gradient(to bottom, #8c52ff 20%, #ffffff 95%);
   position: relative;
   padding: 0 20px; /* horizontal padding only */
 }
@@ -78,7 +78,7 @@ html, body {
   text-align: right;
   color: white;
   -webkit-text-stroke: 1.2px transparent;
-  background: linear-gradient(to top, #d6b0e9, #ffffff);
+  background: linear-gradient(to top, #8c52ff, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: white;
   -webkit-mask-image: linear-gradient(to top, #d6b0e9, #ffffff);
