@@ -112,18 +112,21 @@
       gap: 40px;
     }
 
-    .text-box {
+  .text-box {
       flex: 0 0 40%;
       max-width: 40%;
-      padding: 20px;
+      height: 560px;
+      padding: 20px 30px;
       background-color: #f6f2ff;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-align: left;
-      height: 560px; /* add this line */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* vertical centering */
+      text-align: left; /* ensures left alignment */
       box-sizing: border-box;
-    }
-
+  }
+  
     .text-box h2 {
       font-family: 'Pacifico', cursive;
       color: #8c52ff;
@@ -137,15 +140,16 @@
     }
 
     iframe {
-      flex: 0 0 60%;
-      max-width: 60%;
-      height: 560px; /* was 400px → increased by 40% */
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding-right: 20px;
-      box-sizing: border-box;
-    }
+  flex: 0 0 60%;
+  max-width: 60%;
+  height: 560px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding-right: 40px; /* increased from 20px */
+  box-sizing: border-box;
+}
+
 
     @media (max-width: 768px) {
       .banner {
