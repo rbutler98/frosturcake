@@ -229,29 +229,20 @@
     justify-content: center;
   }
 }
-  .dripping-divider {
+
+/* Icing Divider */
+    .gooey-divider {
   width: 100%;
   overflow: hidden;
   line-height: 0;
-  position: relative;
-  background: none;
 }
 
-.dripping-divider svg {
+.gooey-divider svg {
   display: block;
   width: 100%;
   height: 100px;
 }
 
-.drip-path {
-  fill: url(#icingGradient);
-  animation: dripMove 6s ease-in-out infinite alternate;
-}
-
-/* Optional gradient fill matching your banner */
-.dripping-divider svg defs {
-  position: absolute;
-}
 
 @keyframes dripMove {
   0% {
@@ -304,13 +295,19 @@
   </div>
 </section>
 
-<!-- Animated Dripping Icing Divider -->
-<div class="dripping-divider">
-  <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
-    <path class="drip-path" d="M0,0 C180,100 360,0 540,80 C720,160 900,0 1080,100 C1260,200 1440,0 1440,0 L1440,150 L0,150 Z"></path>
+<!-- Gooey Dripping Icing Divider -->
+<div class="gooey-divider">
+  <svg id="dripSvg" viewBox="0 0 1440 150" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="icingGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#ffb6c1;" />
+        <stop offset="100%" style="stop-color:#d98eff;" />
+      </linearGradient>
+    </defs>
+    <path id="dripPath" fill="url(#icingGradient)"></path>
   </svg>
 </div>
-    
+ 
   <!-- Footer with Carousel -->
   <footer>
     <div class="carousel-container">
@@ -343,6 +340,43 @@
       image.classList.add('reveal');
     }
   });
+    
+  const dripPath = document.getElementById("dripPath");
+
+  const baseY = 80;
+  const amplitude = 20;
+  const frequency = 0.002;
+
+  function generateDripPath(time) {
+    const points = [];
+    const width = 1440;
+    const segments = 30;
+
+    for (let i = 0; i <= segments; i++) {
+      const x = (i / segments) * width;
+      const y = baseY + Math.sin(time * 0.001 + i * frequency * 500) * amplitude;
+      points.push([x, y]);
+    }
+
+    let path = `M0,0 `;
+    for (let i = 0; i < points.length - 1; i++) {
+      const [x1, y1] = points[i];
+      const [x2, y2] = points[i + 1];
+      const xc = (x1 + x2) / 2;
+      const yc = (y1 + y2) / 2;
+      path += `Q ${x1},${y1} ${xc},${yc} `;
+    }
+    path += `L1440,0 L1440,150 L0,150 Z`;
+
+    return path;
+  }
+
+  function animateDrip(time) {
+    dripPath.setAttribute("d", generateDripPath(time));
+    requestAnimationFrame(animateDrip);
+  }
+
+  requestAnimationFrame(animateDrip);
   </script>
 </body>
 </html>
