@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bakery Website</title>
+  <title>Frost Your Cake - Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
     * {
@@ -173,7 +173,7 @@
 
     .image-box {
       flex: 2;
-      background-image: url('https://via.placeholder.com/800x600');
+      background-image: url('https://i.ibb.co/PsLvpB00/Firefly-An-adult-decorating-cupcakes-at-an-event-793127.jpg');
       background-size: cover;
       background-position: center;
       height: 400px;
@@ -188,29 +188,47 @@
     }
 
     .carousel-container {
-      display: flex;
-      justify-content: center;
-    }
+  overflow: hidden;
+  width: 100%;
+}
 
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      gap: 20px;
-      padding: 10px 0;
-      max-width: 100%;
-    }
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
 
-    .carousel::-webkit-scrollbar {
-      display: none;
-    }
+.carousel {
+  display: flex;
+  gap: 20px;
+  animation: scroll-left 20s linear infinite;
+}
 
-    .carousel img {
-      height: 150px;
-      width: auto;
-      border-radius: 10px;
-      flex-shrink: 0;
-    }
+.carousel img {
+  height: 150px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  border-radius: 10px;
+}
+
+.carousel img:hover {
+  transform: scale(1.1);
+  animation-play-state: paused;
+}
+
+/* Pause animation when hovered over the carousel container */
+.carousel:hover {
+  animation-play-state: paused;
+}
+
+/* Keyframes to scroll left */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
     /* === Mobile Styles === */
     @media (max-width: 768px) {
@@ -267,7 +285,7 @@
     </div>
 
     <div class="logo">
-      <img src="logo.png" alt="Bakery Logo">
+      <img src="https://i.ibb.co/Y7pd9y0H/no-Bg-Color.png" alt="Bakery Logo">
     </div>
 
     <div class="right-text">
@@ -285,7 +303,7 @@
   <!-- Body -->
   <section class="main-body">
     <div class="text-box">
-      <p>Welcome to our bakery! Whether you're here for cupcakes, cookies, or custom cake creations, our studio gives you everything you need to create and decorate with joy. We provide the supplies—you bring the creativity!</p>
+      <p>Do you love to decorate cookies, cakes and cupcakes? Or, maybe you’ve always wanted to try decorating, but didn’t know where to start, or didn’t want the mess or expense. At Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an “unlimited decorating experience”. Decorate cookies, cakes, or cupcakes however you desire. Use as many colors, frosting tips, and sprinkles as you need to bring your creation from idea to reality. All of levels of experience and ages are welcome! Even if you’ve never decorated before, we’re happy to help provide some inspiration or useful tips and tricks.<p>
     </div>
     <div class="image-box"></div>
   </section>
@@ -293,13 +311,21 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="carousel-container">
-      <div class="carousel">
-        <img src="https://via.placeholder.com/200x150" alt="Item 1" />
-        <img src="https://via.placeholder.com/200x150" alt="Item 2" />
-        <img src="https://via.placeholder.com/200x150" alt="Item 3" />
-        <img src="https://via.placeholder.com/200x150" alt="Item 4" />
-      </div>
+  <div class="carousel-wrapper">
+    <div class="carousel" id="carousel">
+      <img src="https://via.placeholder.com/200x150" alt="Item 1" />
+      <img src="https://via.placeholder.com/200x150" alt="Item 2" />
+      <img src="https://via.placeholder.com/200x150" alt="Item 3" />
+      <img src="https://via.placeholder.com/200x150" alt="Item 4" />
+      <!-- Duplicate images for seamless looping -->
+      <img src="https://via.placeholder.com/200x150" alt="Item 1" />
+      <img src="https://via.placeholder.com/200x150" alt="Item 2" />
+      <img src="https://via.placeholder.com/200x150" alt="Item 3" />
+      <img src="https://via.placeholder.com/200x150" alt="Item 4" />
     </div>
+  </div>
+</div>
+
   </footer>
 
   <!-- JS for Mobile Menu and Swiping -->
