@@ -25,59 +25,6 @@
       50% { transform: scale(1.1); }
     }
 
-    .parties-section {
-  padding: 60px 20px;
-  background-image: url('https://i.ibb.co/qJkxwFV/sprinkle-bg.png'); /* Change to your sprinkle image */
-  background-size: cover;
-  background-repeat: repeat;
-  background-position: center;
-  position: relative;
-  z-index: 1;
-}
-
-.icing-border {
-  border-top: 30px solid transparent;
-  border-image: url('https://i.ibb.co/p3C5kSm/icing-drip-purple.png') 30 stretch;
-  border-image-slice: 30 fill;
-  animation: drip 3s infinite alternate ease-in-out;
-  padding: 40px 20px;
-  background-color: rgba(255, 255, 255, 0.85);
-  border-radius: 12px;
-  text-align: center;
-}
-
-.parties-heading {
-  font-size: 3em;
-  color: white;
-  font-family: 'Pacifico', cursive;
-  margin: 0;
-  position: relative;
-  z-index: 2;
-}
-
-/* Dripping animation for icing */
-@keyframes drip {
-  0% { border-image-width: 30px; }
-  100% { border-image-width: 35px; }
-}
-    .parties-image-container {
-  padding: 40px 24px 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.parties-image {
-  width: 100%;
-  max-height: 60vh;
-  object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  animation: fadeInImage 1s ease forwards;
-  opacity: 0;
-  transform: scale(0.95);
-}
-
 /* Fade in on scroll */
 @keyframes fadeInImage {
   to {
@@ -265,15 +212,58 @@ document.querySelectorAll('.parties-image').forEach(img => {
     </section>
 
   <!-- Parties Section -->
+<!-- Parties and Celebrations Section -->
 <section class="parties-section">
-  <div class="icing-border">
-    <h2 class="parties-heading">Parties and Celebrations</h2>
-  </div>
-  <div class="parties-image-container">
-    <img src="https://via.placeholder.com/1200x600" alt="Parties Celebration" class="parties-image" />
+  <div class="drip-header">
+    <h2>Parties and Celebrations</h2>
+    <div class="drip-icing"></div>
   </div>
 </section>
 
+<style>
+  .parties-section {
+    position: relative;
+    text-align: center;
+    padding: 80px 20px 40px;
+    background: url('https://www.transparenttextures.com/patterns/sprinkles.png') repeat;
+  }
+
+  .drip-header {
+    position: relative;
+    display: inline-block;
+    background: #d98eff;
+    padding: 40px 60px 80px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .drip-header h2 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5em;
+    color: white;
+    margin: 0;
+    z-index: 2;
+    position: relative;
+  }
+
+  .drip-icing {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: #ffb6c1;
+    border-bottom-left-radius: 50% 20px;
+    border-bottom-right-radius: 50% 20px;
+    animation: dripFlow 3s infinite ease-in-out;
+  }
+
+  @keyframes dripFlow {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+    100% { transform: translateY(0); }
+  }
+</style>
 
   <!-- Footer with Carousel -->
   <footer>
