@@ -57,7 +57,7 @@ html, body {
   background-color: white;
   color: #7c3e9d;
   border: 2px solid;
-  border-image: linear-gradient(to bottom, #d6b0e9, #ffffff) 1;
+  border-image: linear-gradient(to bottom, #8c52ff, #ffffff) 1;
   padding: 12px 20px;
   font-size: 1rem;
   border-radius: 8px;
@@ -95,7 +95,7 @@ html, body {
 
     .text-section {
       flex: 1;
-      background-color: #c663ff;
+      background-color: #b084ff;
       padding: 40px;
       border-radius: 10px;
       box-shadow: 10px 10px 20px #7a3f99;
