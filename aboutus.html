@@ -13,12 +13,13 @@
 
     /* Banner */
     .banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 10px 20px; /* was 20px — now tighter */
-  gap: 10px; /* optional: adds uniform spacing */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 10px 20px; /* was 20px — now tighter */
+      gap: 10px; /* optional: adds uniform spacing */
+      margin-bottom: 30px;
 }
     .banner-left {
   display: flex;
@@ -151,12 +152,41 @@
 
     /* Footer */
     footer {
-      background: linear-gradient(to top, #e0b3ff, #a64dff);
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-      margin-top: 30px;
-    }
+  background: linear-gradient(to top, #e0b3ff, #a64dff); /* Reversed gradient */
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 30px;
+}
+
+.carousel-container {
+  overflow: hidden;
+  position: relative;
+  max-width: 100%;
+  margin: 20px auto 0;
+}
+
+.carousel {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  animation: scroll-carousel 20s linear infinite;
+  touch-action: pan-x;
+}
+
+.carousel img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Animation */
+@keyframes scroll-carousel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
   </style>
 </head>
 <body>
@@ -186,7 +216,17 @@
 
   <!-- Footer -->
   <footer>
-    <p>Footer content goes here</p>
+    <footer>
+  <div class="carousel-container">
+    <div class="carousel">
+      <img src="https://via.placeholder.com/300x200?text=1" alt="1">
+      <img src="https://via.placeholder.com/300x200?text=2" alt="2">
+      <img src="https://via.placeholder.com/300x200?text=3" alt="3">
+      <img src="https://via.placeholder.com/300x200?text=4" alt="4">
+    </div>
+  </div>
+</footer>
+
   </footer>
 
   <!-- JavaScript for hamburger menu and swipe -->
@@ -214,6 +254,21 @@
     menu.addEventListener('touchstart', handleTouchStart, false);
     menu.addEventListener('touchend', handleTouchEnd, false);
   </script>
+  <script>
+  const carousel = document.querySelector('.carousel');
+  let isTouched = false;
 
+  carousel.addEventListener('touchstart', () => {
+    carousel.style.animationPlayState = 'paused';
+    isTouched = true;
+  });
+
+  carousel.addEventListener('touchend', () => {
+    if (isTouched) {
+      carousel.style.animationPlayState = 'running';
+      isTouched = false;
+    }
+  });
+</script>
 </body>
 </html>
