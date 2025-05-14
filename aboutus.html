@@ -9,19 +9,33 @@
     html, body {
       margin: 0;
       padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #ffffff;
     }
 
     /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes scroll-enlarge {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInImage {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes dripWave {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(3px); }
+      100% { transform: translateY(0); }
     }
 
     /* Banner */
@@ -36,26 +50,21 @@
       font-family: 'Pacifico', cursive;
     }
 
-    .left-nav {
+    .left-nav, .right-text {
       flex: 1;
       display: flex;
+      align-items: center;
       justify-content: center;
+    }
+
+    .left-nav {
       gap: 15px;
     }
 
-    .left-nav a {
-      text-decoration: none;
-      background-color: white;
-      color: #a64dff;
-      padding: 8px 14px;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .left-nav a:hover {
-      background-color: #a64dff;
+    .right-text {
       color: white;
+      font-size: 2.4em;
+      animation: fadeInRight 1s ease;
     }
 
     .logo {
@@ -67,28 +76,39 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      animation: fadeInDown 1s ease;
     }
 
     .logo img {
       height: 80px;
       width: auto;
-      animation: fadeIn 1s ease forwards;
     }
 
-    .slogan {
-      flex: 1;
+    .banner a {
+      text-decoration: none;
+      background-color: white;
+      color: #a64dff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .banner a:hover {
+      background-color: #a64dff;
       color: white;
-      text-align: center;
-      font-size: 2.4em;
-      animation: fadeIn 1s ease forwards;
     }
 
-    /* Main Content Section */
+    /* Body */
     .main-content {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 40px;
+      flex: 1;
+      padding: 0 20px;
       height: 90vh;
-      padding: 20px;
-      box-sizing: border-box;
+      gap: 40px;
     }
 
     .text-section {
@@ -98,103 +118,138 @@
       border-radius: 10px;
       box-shadow: 10px 10px 20px #7a3f99;
       color: white;
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.0em;
+      font-size: 2.4em;
+      font-family: 'Pacifico', cursive;
     }
 
     .image-section {
-      flex: 0 0 70%;
+      flex: 2.3;
       background-image: url('https://i.ibb.co/PsLvpB00/Firefly-An-adult-decorating-cupcakes-at-an-event-793127.jpg');
       background-size: cover;
       background-position: center;
+      height: 100%;
       border-radius: 10px;
-      animation: fadeIn 1s ease forwards;
+      animation: fadeInImage 1s ease forwards;
     }
 
-    /* Parties Section */
-    /* .celebration-section {
-  text-align: center;
-  padding: 40px 20px;
-} */
+    /* Parties and Celebrations */
+    .frosting-border {
+      position: relative;
+      text-align: center;
+      margin: 60px 0 30px;
+    }
 
-.frosting-border {
-  position: relative;
-  text-align: center;
-  margin: 40px 0;
-}
+    .celebration-heading {
+      font-size: 2.5em;
+      margin: 40px auto;
+      color: white;
+      font-family: 'Pacifico', cursive;
+      z-index: 2;
+      position: relative;
+    }
 
-.celebration-heading {
-  font-size: 2.5em;
-  margin: 40px auto;
-  color: white;
-  font-family: 'Pacifico', cursive;
-  z-index: 2;
-  position: relative;
-}
+    .frosting-top,
+    .frosting-bottom {
+      width: 100%;
+      height: 100px;
+    }
 
-/* Animation */
-.animated-drip {
-  animation: dripWave 6s ease-in-out infinite alternate;
-}
+    .animated-drip {
+      animation: dripWave 6s ease-in-out infinite alternate;
+    }
 
-@keyframes dripWave {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(3px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
+    .party-image {
+      width: 90%;
+      height: 400px;
+      background-color: #ddd;
+      margin: 30px auto 60px;
+      border-radius: 20px;
+      animation: fadeInImage 1s ease forwards;
+    }
 
-    /* Carousel Footer */
+    /* Footer */
     footer {
       background: linear-gradient(to left, #b36fd4, #d594f3);
       padding: 40px 20px;
       text-align: center;
+      margin-top: auto;
     }
 
     .carousel-container {
-      max-width: 100%;
       overflow: hidden;
+      max-width: 100%;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      justify-content: center;
     }
 
     .carousel {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
+      gap: 20px;
+      animation: carouselScroll 24s infinite;
+    }
+
+    @keyframes carouselScroll {
+      0%, 5% { transform: translateX(0); }
+      15%, 20% { transform: translateX(-25%); }
+      30%, 35% { transform: translateX(-50%); }
+      45%, 50% { transform: translateX(-75%); }
+      60%, 100% { transform: translateX(0); }
     }
 
     .carousel img {
       height: 150px;
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      flex-shrink: 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
     }
 
-    .carousel img.active {
+    .carousel img:hover {
       transform: scale(1.1);
+      animation-play-state: paused;
     }
 
+    .carousel:hover {
+      animation-play-state: paused;
+    }
+
+    /* Mobile */
     @media (max-width: 768px) {
+      .banner {
+        flex-direction: column;
+        height: auto;
+        gap: 15px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .left-nav, .right-text {
+        justify-content: center;
+        flex: none;
+      }
+
       .main-content {
         flex-direction: column;
+        margin: 20px;
+        padding: 0 10px;
         height: auto;
       }
 
-      .text-section, .image-section {
+      .image-section {
+        height: 250px;
         width: 100%;
-        margin: 0 0 20px 0;
       }
 
-      .left-nav {
-        justify-content: center;
+      .text-section {
+        font-size: 1.6em;
       }
 
-      .slogan {
-        font-size: 1.5em;
+      .party-image {
+        width: 95%;
+        height: 250px;
       }
     }
   </style>
@@ -211,86 +266,59 @@
     <div class="logo">
       <img src="https://i.ibb.co/Y7pd9y0H/no-Bg-Color.png" alt="Bakery Logo" />
     </div>
-    <div class="slogan">Create. Decorate. Celebrate.</div>
+    <div class="right-text">
+      Create. Decorate. Celebrate.
+    </div>
   </header>
 
   <!-- Main Body -->
-  <main>
-    <section class="main-content">
-      <div class="text-section">
-        Do you love to decorate cookies, cakes and cupcakes? Or, maybe you’ve always wanted to try decorating, but didn’t know where to start, or didn’t want the mess or expense. 
-        At Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an “unlimited decorating experience”. Decorate cookies, cakes, or cupcakes however you desire. 
-        Use as many colors, frosting tips, and sprinkles as you need to bring your creation from idea to reality. 
-        All of levels of experience and ages are welcome! Even if you’ve never decorated before, we’re happy to help provide some inspiration or useful tips and tricks.
+  <main class="main-content">
+    <div class="text-section">
+      Do you love to decorate cookies, cakes and cupcakes? Or, maybe you’ve always wanted to try decorating, but didn’t know where to start, or didn’t want the mess or expense. At Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an “unlimited decorating experience”. Decorate cookies, cakes, or cupcakes however you desire.
+    </div>
+    <div class="image-section"></div>
+  </main>
 
-      </div>
-      <div class="image-section"></div>
-    </section>
+  <!-- Parties Section -->
+  <section class="frosting-border">
+    <svg class="frosting-top animated-drip" viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0,30 C360,90 1080,-30 1440,60 L1440,0 L0,0 Z" fill="url(#frostGradient)" />
+      <defs>
+        <linearGradient id="frostGradient" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0%" stop-color="#ffb6c1" />
+          <stop offset="100%" stop-color="#d98eff" />
+        </linearGradient>
+      </defs>
+    </svg>
 
-    <!-- Parties Section -->
-    <div class="frosting-border">
-  <svg class="frosting-top animated-drip" viewBox="0 0 1440 100" preserveAspectRatio="none">
-    <path d="M0,30 C360,90 1080,-30 1440,60 L1440,0 L0,0 Z" fill="url(#frostGradient)" />
-    <defs>
-      <linearGradient id="frostGradient" x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0%" stop-color="#ffb6c1" />
-        <stop offset="100%" stop-color="#d98eff" />
-      </linearGradient>
-    </defs>
-  </svg>
+    <h2 class="celebration-heading">Parties and Celebrations</h2>
 
-  <h2 class="celebration-heading">Parties and Celebrations</h2>
+    <svg class="frosting-bottom animated-drip" viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0,60 C360,-30 1080,90 1440,30 L1440,100 L0,100 Z" fill="url(#frostGradient2)" />
+      <defs>
+        <linearGradient id="frostGradient2" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0%" stop-color="#ffb6c1" />
+          <stop offset="100%" stop-color="#d98eff" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </section>
 
-  <svg class="frosting-bottom animated-drip" viewBox="0 0 1440 100" preserveAspectRatio="none">
-    <path d="M0,60 C360,-30 1080,90 1440,30 L1440,100 L0,100 Z" fill="url(#frostGradient2)" />
-    <defs>
-      <linearGradient id="frostGradient2" x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0%" stop-color="#ffb6c1" />
-        <stop offset="100%" stop-color="#d98eff" />
-      </linearGradient>
-    </defs>
-  </svg>
-</div>
+  <div class="party-image"></div>
 
-</section>
-
-  <!-- Footer with Carousel -->
+  <!-- Footer Carousel -->
   <footer>
     <div class="carousel-container">
-      <div class="carousel" id="carousel">
-        <img src="https://i.ibb.co/Zzshdc4H/IMG-20250513-194356.jpg" alt="Item 1">
-        <img src="https://i.ibb.co/dJ6d0B6q/IMG-20250513-194405.jpg" alt="Item 2">
-        <img src="https://i.ibb.co/CpqMHyCR/IMG-20250513-194400.jpg" alt="Item 3">
-        <img src="https://i.ibb.co/679qp2zs/IMG-20250513-194408.jpg" alt="Item 4">
+      <div class="carousel-wrapper">
+        <div class="carousel">
+          <img src="https://via.placeholder.com/200x150" alt="Item 1" />
+          <img src="https://via.placeholder.com/200x150" alt="Item 2" />
+          <img src="https://via.placeholder.com/200x150" alt="Item 3" />
+          <img src="https://via.placeholder.com/200x150" alt="Item 4" />
+        </div>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Animate party image on scroll
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    observer.observe(document.getElementById('partyImage'));
-
-    // Carousel functionality
-    const carouselImages = document.querySelectorAll("#carousel img");
-    let index = 0;
-
-    function cycleCarousel() {
-      carouselImages.forEach(img => img.classList.remove("active"));
-      carouselImages[index].classList.add("active");
-      index = (index + 1) % carouselImages.length;
-    }
-
-    setInterval(cycleCarousel, 3000);
-  </script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </body>
 </html>
