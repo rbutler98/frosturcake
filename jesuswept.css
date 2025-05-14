@@ -90,50 +90,31 @@ html, body {
   display: flex;
   gap: 30px;
   padding: 50px 80px;
-  background-color: #fff4fb;
+  background: linear-gradient(to top, #ffffff 0%, #fff4fb 30%, #fff4fb 70%, #ffffff 100%);
+  align-items: stretch;
 }
 
-.main-left {
-  flex: 2;
-}
-
-.main-left img {
-  width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.main-right {
-  flex: 1;
+.text-columns {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  flex: 1;
 }
 
 .text-box {
-  background-color: white;
-  padding: 25px 30px;
+  background: #fff;
   border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.text-box h2 {
-  font-size: 1.75rem;
-  margin-bottom: 10px;
-  border-bottom: 3px solid #d6b0e9;
-  display: inline-block;
-  padding-bottom: 5px;
-  font-family: 'Montserrat', sans-serif;
-  color: #5c3c77;
+.main-image {
+  object-fit: cover;
+  height: calc(100% + 40px); /* 20px extra on top and bottom */
+  align-self: center;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
-
-.text-box p {
-  font-size: 1rem;
-  font-family: 'Montserrat', sans-serif;
-  color: #333;
-  line-height: 1.5;
-}
-
 
 /* Icing Divider */
     .gooey-divider {
