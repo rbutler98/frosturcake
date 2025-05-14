@@ -49,13 +49,11 @@ html, body {
 /* Horizontally aligned buttons on the left */
 .banner-buttons {
   position: absolute;
-  left: 0;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
-  flex-direction: row; /* horizontal layout */
   gap: 10px;
-  padding-left: 20px;
 }
 
 /* Gradient border on buttons */
@@ -80,11 +78,10 @@ html, body {
 /* Slogan with white fill and flipped gradient outline */
 .slogan {
   position: absolute;
-  right: 0;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  padding-right: 20px;
-  font-size: 3rem;
+  font-size: 3.625rem; /* Increased size */
   font-family: 'Great Vibes', cursive;
   text-align: right;
   color: white;
@@ -95,6 +92,7 @@ html, body {
   -webkit-mask-image: linear-gradient(to top, #d6b0e9, #ffffff);
   text-shadow: 0 0 2px #b38ac8;
 }
+
 
     /* Main Content Section */
     .main-content {
