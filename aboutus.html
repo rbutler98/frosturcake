@@ -13,24 +13,14 @@
 
     /* Banner */
     .banner {
-  position: relative;
-  background-color: #ffffff; /* White background */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to top, #a64dff, #d8b4f8); /* Inverted gradient */
   padding: 20px 40px;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.banner::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23a64dff" fill-opacity="1" d="M0,96C30,85,60,64,90,58.7C120,53,150,64,180,80C210,96,240,117,270,122.7C300,128,330,117,360,106.7C390,96,420,85,450,90.7C480,96,510,117,540,117.3C570,117,600,96,630,90.7C660,85,690,96,720,101.3C750,107,780,107,810,106.7C840,107,870,117,900,122.7C930,128,960,128,990,122.7C1020,117,1050,107,1080,96C1110,85,1140,75,1170,85.3C1200,96,1230,128,1260,144C1290,160,1320,160,1350,149.3C1380,139,1410,117,1440,106.7V320H0Z"/></svg>') no-repeat bottom;
-  background-size: cover;
-  z-index: 2;
-  pointer-events: none;
+  position: relative;
+  flex-wrap: wrap;
+  text-align: center;
 }
     
     .banner-left {
