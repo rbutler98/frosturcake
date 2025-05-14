@@ -270,7 +270,7 @@ html, body {
   margin-top: 50px; /* Increased from 20px to 50px */
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 50px;
 }
 
   .dot {
