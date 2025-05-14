@@ -239,15 +239,22 @@
     /* Footer and Slideshow */
     .footer {
     background: linear-gradient(to right, #ffb6c1, #d98eff);
-    padding: 50px 0;
+    padding: 80px 0; /* Increased padding by 20% for more height */
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .slideshow-container {
-    max-width: 100%;
+    width: 100%;
+    max-width: 1200px;
     overflow: hidden;
     position: relative;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .slideshow {
