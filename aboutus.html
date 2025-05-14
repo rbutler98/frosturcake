@@ -12,42 +12,7 @@
     }
 
     /* Banner */
-    .banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(to top, #a64dff, #d8b4f8);
-  padding: 10px 30px; /* Reduced vertical padding */
-  position: relative;
-  flex-wrap: wrap;
-  text-align: center;
-  margin-bottom: 40px; /* Adds space below the banner */
-}
-
-    .banner-left {
-  display: flex;
-  align-items: center;
-  gap: 5px; /* was 10px — reduced to bring items closer */
-}
-.banner-right span {
-  color: #8931d4; /* Dark purple */
-  font-weight: bold;
-}
-
-    .banner-left, .banner-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .banner-logo img {
-  width: 80px;  /* Or increase to 100px if desired */
-  height: 80px;
-  border-radius: 50%;
-  background-color: white;
-  padding: 16px;  /* Increased from 10px */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    
     /* Hamburger Button */
     .hamburger {
       display: none;
@@ -212,22 +177,113 @@
 <body>
 
   <!-- Banner -->
-  <div class="banner">
-    <div class="banner-left">
-      <button class="hamburger" onclick="toggleMenu()">☰</button>
-      <nav class="nav-buttons">
-        <a href="aboutus.html" class="banner-btn">Home</a>
-        <a href="visit.html" class="banner-btn">Visit Us</a>
-        <a href="parties.html" class="banner-btn">Parties</a>
-      </nav>
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bakery Banner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pacifico', cursive;
+      background: #fff;
+    }
+
+    .banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      background: linear-gradient(to right, #ffb6c1, #d98eff);
+      height: 100px;
+      flex-wrap: wrap;
+    }
+
+    .left-nav, .right-text {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .left-nav {
+      gap: 15px;
+    }
+
+    .right-text {
+      justify-content: center;
+      color: #a64dff; /* Match banner purple */
+      font-size: 1.2em;
+      text-align: center;
+    }
+
+    .logo {
+      flex: 0 0 auto;
+      background-color: white;
+      border-radius: 50%;
+      padding: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 80px;
+      width: auto;
+    }
+
+    .banner a {
+      text-decoration: none;
+      background-color: white;
+      color: #a64dff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .banner a:hover {
+      background-color: #a64dff;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .banner {
+        flex-direction: column;
+        height: auto;
+        gap: 15px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .left-nav, .right-text {
+        justify-content: center;
+        flex: none;
+      }
+
+      .right-text {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="banner">
+    <div class="left-nav">
+      <a href="home.html">Home</a>
+      <a href="visit.html">Visit Us</a>
+      <a href="parties.html">Parties</a>
     </div>
-    <div class="banner-logo">
-      <img src="https://i.ibb.co/Y7pd9y0H/no-Bg-Color.png" alt="Logo">
+
+    <div class="logo">
+      <img src="logo.png" alt="Bakery Logo" />
     </div>
-    <div class="banner-right">
-      <span>Welcome!</span>
+
+    <div class="right-text">
+      Create. Decorate. Celebrate.
     </div>
-  </div>
+  </header>
 
   <!-- Body Section -->
   <div class="container">
