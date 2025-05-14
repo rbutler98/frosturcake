@@ -37,6 +37,8 @@ html, body {
     .logo {
       height: 110px;
       animation: fadeIn 2s ease-in-out;
+      display: flex;
+      justify-content: center;
     }
 
     .banner-buttons {
