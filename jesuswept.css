@@ -87,51 +87,53 @@ html, body {
 
     /* Main Content Section */
     .main-content {
-      display: flex;
-      height: 90vh;
-      padding: 20px;
-      box-sizing: border-box;
-    }
+  display: flex;
+  gap: 30px;
+  padding: 50px 80px;
+  background-color: #fff4fb;
+}
 
-    .text-section {
-      flex: 1;
-      background-color: #b084ff;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 10px 10px 20px #7a3f99;
-      color: white;
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.0em;
-    }
+.main-left {
+  flex: 2;
+}
 
-    .image-section {
-      flex: 0 0 70%;
-      background-image: url('https://i.ibb.co/PsLvpB00/Firefly-An-adult-decorating-cupcakes-at-an-event-793127.jpg');
-      background-size: cover;
-      background-position: center;
-      border-radius: 10px;
-      animation: fadeIn 1s ease forwards;
-    }
-  
-    @media (max-width: 768px) {
-      .main-content {
-        flex-direction: column;
-        height: auto;
-      }
+.main-left img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-      .text-section, .image-section {
-        width: 100%;
-        margin: 0 0 20px 0;
-      }
+.main-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 
-      .left-nav {
-        justify-content: center;
-      }
+.text-box {
+  background-color: white;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
 
-      .slogan {
-        font-size: 1.5em;
-      }
-    }
+.text-box h2 {
+  font-size: 1.75rem;
+  margin-bottom: 10px;
+  border-bottom: 3px solid #d6b0e9;
+  display: inline-block;
+  padding-bottom: 5px;
+  font-family: 'Montserrat', sans-serif;
+  color: #5c3c77;
+}
+
+.text-box p {
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+  line-height: 1.5;
+}
+
 
 /* Icing Divider */
     .gooey-divider {
