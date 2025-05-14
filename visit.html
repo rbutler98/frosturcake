@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bakery Banner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&display=swap');
-
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
+      font-family: 'Caveat', cursive;
+    }
+
+    /* Dripping frosting SVG container */
+    .drip-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      z-index: 5;
+      background: url('https://svgshare.com/i/146w.svg') repeat-x;
+      background-size: contain;
     }
 
     .bakery-banner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 40px;
-      background: linear-gradient(to bottom, #cba3e8, #ffffff);
-      height: 200px;
       position: relative;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, #9a4dff 0%, #ffffff 85%);
+      padding: 40px 60px;
+      height: 300px;
       overflow: hidden;
     }
 
     .nav-buttons {
       display: flex;
-      justify-content: center;
-      gap: 15px;
-      font-family: 'Caveat', cursive;
+      flex-direction: row;
+      gap: 20px;
+      z-index: 10;
     }
 
     .nav-buttons button {
+      width: 130px;
       background: white;
       color: #9a4dff;
       border: 2px solid #9a4dff;
@@ -39,92 +50,117 @@
       padding: 10px 18px;
       font-size: 20px;
       cursor: pointer;
-      transition: 0.3s;
       font-family: 'Caveat', cursive;
+      overflow: hidden;
+      transition: color 0.3s, background 0.3s;
+      position: relative;
     }
 
-    .nav-buttons button:hover {
-      background: #9a4dff;
-      color: white;
+    .nav-buttons button::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(90deg, #9a4dff, #e0b3ff, #9a4dff);
+      z-index: 0;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      animation: borderPulse 2s linear infinite;
+    }
+
+    .nav-buttons button:hover::before {
+      opacity: 1;
+    }
+
+    .nav-buttons button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-container {
+      flex: 0 0 auto;
+      z-index: 10;
     }
 
     .logo {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 120px;
-      opacity: 0;
-      animation: fadeInLogo 1.5s ease forwards;
+      width: 120px;
+      animation: fadeIn 1.5s ease-in-out;
     }
 
-    @keyframes fadeInLogo {
-      to {
-        opacity: 1;
-      }
+    .slogan-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 10;
     }
 
     .slogan {
       font-family: 'Pacifico', cursive;
-      font-size: 30px;
       color: white;
-      text-align: center;
-      max-width: 300px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      opacity: 0;
-      transform: translateX(40px);
-      animation: fadeInRight 1.2s ease forwards;
-      animation-delay: 1.6s;
+      font-size: 2.8rem;
+      animation: fadeInRight 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
       to {
         opacity: 1;
         transform: translateX(0);
       }
     }
 
-    @media (max-width: 768px) {
-      .bakery-banner {
-        flex-direction: column;
-        height: auto;
-        text-align: center;
+    @keyframes borderPulse {
+      0% {
+        background-position: 0% 50%;
       }
-
-      .nav-buttons {
-        flex-direction: column;
-        margin-bottom: 10px;
-      }
-
-      .logo {
-        position: static;
-        transform: none;
-        margin: 10px 0;
-        animation-delay: 0.5s;
-      }
-
-      .slogan {
-        text-align: center;
-        margin-top: 10px;
-        animation-delay: 2s;
+      100% {
+        background-position: 100% 50%;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Dripping frosting border -->
+  <div class="drip-border"></div>
+
+  <!-- Bakery Banner -->
   <header class="bakery-banner">
+    <!-- Left Buttons -->
     <div class="nav-buttons">
-      <button>Home</button>
-      <button>Visit Us</button>
-      <button>Parties</button>
+      <button><span>Home</span></button>
+      <button><span>Visit Us</span></button>
+      <button><span>Parties</span></button>
     </div>
 
-    <img src="your-logo.png" alt="Frost Your Cake Logo" class="logo">
+    <!-- Center Logo -->
+    <div class="logo-container">
+      <img src="your-logo.png" alt="Bakery Logo" class="logo" />
+    </div>
 
-    <div class="slogan">Create. Decorate. Celebrate.</div>
+    <!-- Right Slogan -->
+    <div class="slogan-container">
+      <h1 class="slogan">Create. Decorate. Celebrate.</h1>
+    </div>
   </header>
 
 </body>
