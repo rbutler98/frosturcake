@@ -13,16 +13,19 @@
 
     /* Banner */
     .banner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 20px 20px;
-      background: linear-gradient(to bottom, #e0b3ff, #a64dff);
-      color: white;
-      margin-bottom: 30px;
-      position: relative;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px 20px; /* was 20px — now tighter */
+  gap: 10px; /* optional: adds uniform spacing */
+}
+    .banner-left {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* was 10px — reduced to bring items closer */
+}
+
 
     .banner-left, .banner-right {
       display: flex;
@@ -51,11 +54,21 @@
     }
 
     /* Slide-in menu */
-    .nav-buttons {
-      display: flex;
-      flex-direction: row;
-      gap: 10px;
-    }
+    .nav-buttons button {
+  background-color: white;
+  color: #8931d4; /* Dark purple */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav-buttons button:hover {
+  background-color: #f0e6ff; /* Slightly tinted white */
+  color: #6a1aa9; /* Even darker purple on hover */
+}
 
     @media (max-width: 768px) {
       .banner {
