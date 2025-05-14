@@ -110,7 +110,7 @@ html, body {
 
 .main-image {
   object-fit: cover;
-  height: calc(100% + 0px); /* 20px extra on top and bottom */
+  height: calc(55% + 0px); /* 20px extra on top and bottom */
   width: 60%;
   align-self: center;
   border-radius: 20px;
