@@ -3,107 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bakery Banner</title>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #ffffff;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes scroll-enlarge {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
-    @keyframes fadeInTop {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .handwritten-message {
-      font-family: 'Pacifico', cursive;
-      color: #ae88ff;
-      text-align: center;
-      font-size: .9rem;
-      margin: 40px auto;
-      max-width: 800px;
-      line-height: 1.6;
-      opacity: 0;
-      transform: translateY(-30px);
-      animation: fadeInTop 1.5s ease-out forwards;
-    }
-
-    .banner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 240px;
-      background: linear-gradient(to bottom, #8c52ff 20%, #ffffff 95%);
-      position: relative;
-      padding: 0 20px;
-    }
-
-    .logo {
-      height: 120px;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .banner-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .banner-buttons a {
-      background-color: white;
-      color: #8557f3;
-      border: 2px solid;
-      border-image: linear-gradient(to bottom, #8c52ff, #ffffff) 1;
-      padding: 12px 20px;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-family: 'Pacifico', cursive;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .banner-buttons a:hover {
-      background-color: #8557f3;
-      color: white;
-    }
-
-    .slogan {
-      font-size: 3.625rem;
-      font-family: 'Great Vibes', cursive;
-      text-align: right;
-      color: white;
-      -webkit-text-stroke: 1.2px transparent;
-      background: linear-gradient(to top, #8c52ff, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: white;
-      -webkit-mask-image: linear-gradient(to top, #d6b0e9, #ffffff);
-      text-shadow: 0 0 2px #b38ac8;
-    }
-  </style>
+  <title>Frost Your Cake - Home</title>
+  <link rel="stylesheet" href="jesuswept.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  
 </head>
+<body>
+  <!-- Banner -->
+  <div class="banner">
+    <div class="banner-buttons">
+      <a href="aboutus.html">Home</a>
+      <a href="visit.html">Visit Us</a>
+      <a href="#parties">Parties</a>
+    </div>
+    <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
+    <div class="slogan">Create. Decorate. Celebrate.</div>
+  </div>
+
+  <div class="handwritten-message fade-in-top">
+    A unique DIY cookie, cake, and cupcake decorating studio. We’re not a bakery, we’re a creative experience.
+  </div>
+  
 <body>
   <div class="banner">
     <div class="hamburger" onclick="toggleMobileNav()">
@@ -130,10 +52,7 @@
   </div>
 
   <script>
-    function toggleMobileNav() {
-      const nav = document.getElementById('mobileNav');
-      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-    }
+    
   </script>
 </body>
 </html>
