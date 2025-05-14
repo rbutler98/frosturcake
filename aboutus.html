@@ -116,36 +116,7 @@
       border-radius: 10px;
       animation: fadeIn 1s ease forwards;
     }
-    
-    /* Carousel Footer */
-    footer {
-      background: linear-gradient(to left, #c663ff, #8C52FF);
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    .carousel-container {
-      max-width: 100%;
-      overflow: hidden;
-    }
-
-    .carousel {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .carousel img {
-      height: 150px;
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-
-    .carousel img.active {
-      transform: scale(1.1);
-    }
-
+  
     @media (max-width: 768px) {
       .main-content {
         flex-direction: column;
@@ -264,6 +235,56 @@
         text-align: center;
       }
     }
+    .footer {
+    background: linear-gradient(to bottom, #d98eff, #ffb6c1);
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .slideshow-container {
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .slideshow {
+    display: flex;
+    gap: 20px;
+    transition: transform 1s ease;
+  }
+
+  .slideshow img {
+    height: 150px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+  }
+
+  .slideshow img:hover {
+    transform: scale(1.05);
+  }
+
+  .dots-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .dot.active {
+    background-color: black;
+  }
   </style>
 </head>
   
@@ -328,31 +349,24 @@
     <path id="dripPath" fill="url(#icingGradient)"></path>
   </svg>
 </div>
- 
-  <!-- Footer with Carousel -->
-  <footer>
-    <div class="carousel-container">
-      <div class="carousel" id="carousel">
-        <img src="https://i.ibb.co/Zzshdc4H/IMG-20250513-194356.jpg" alt="Item 1">
-        <img src="https://i.ibb.co/dJ6d0B6q/IMG-20250513-194405.jpg" alt="Item 2">
-        <img src="https://i.ibb.co/CpqMHyCR/IMG-20250513-194400.jpg" alt="Item 3">
-        <img src="https://i.ibb.co/679qp2zs/IMG-20250513-194408.jpg" alt="Item 4">
-      </div>
+
+<!-- Footer Section -->
+<div class="slideshow-container">
+    <div class="slideshow" id="slideshow">
+      <img src="https://via.placeholder.com/250x150?text=Cake+1" alt="Cake 1">
+      <img src="https://via.placeholder.com/250x150?text=Cake+2" alt="Cake 2">
+      <img src="https://via.placeholder.com/250x150?text=Cake+3" alt="Cake 3">
+      <img src="https://via.placeholder.com/250x150?text=Cake+4" alt="Cake 4">
     </div>
-  </footer>
-
+    <div class="dots-container" id="dotsContainer">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+    
   <script>
-    // Carousel functionality
-    const carouselImages = document.querySelectorAll("#carousel img");
-    let index = 0;
-
-    function cycleCarousel() {
-      carouselImages.forEach(img => img.classList.remove("active"));
-      carouselImages[index].classList.add("active");
-      index = (index + 1) % carouselImages.length;
-    }
-    setInterval(cycleCarousel, 3000);
-
     // Reveal effect on scroll
   window.addEventListener('scroll', () => {
     const image = document.querySelector('.parties-image');
@@ -411,6 +425,40 @@
     window.addEventListener('scroll', handleScroll);
     // Trigger check on load in case already in view
     handleScroll();
+
+    // Footer Slideshow
+    const slideshow = document.getElementById("slideshow");
+  const images = slideshow.querySelectorAll("img");
+  const dots = document.querySelectorAll(".dot");
+  let index = 0;
+
+  function updateSlide(i) {
+    const imageWidth = images[0].offsetWidth + 20;
+    slideshow.style.transform = `translateX(-${i * imageWidth}px)`;
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[i].classList.add("active");
+    index = i;
+  }
+
+  function autoScroll() {
+    const nextIndex = (index + 1) % images.length;
+    updateSlide(nextIndex);
+  }
+
+  let interval = setInterval(autoScroll, 3000);
+
+  slideshow.addEventListener("mouseenter", () => clearInterval(interval));
+  slideshow.addEventListener("mouseleave", () => {
+    interval = setInterval(autoScroll, 3000);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      updateSlide(i);
+      clearInterval(interval);
+      interval = setInterval(autoScroll, 3000);
+    });
+  });
   </script>
 </body>
 </html>
