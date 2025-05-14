@@ -106,10 +106,11 @@
     }
 
     footer {
-      background-color: #c084fc;
+      background: linear-gradient(to top, #e0b3ff, #a64dff); /* Reversed vertical gradient */
       padding: 40px 20px;
       color: white;
     }
+
 
     .carousel-container {
       position: relative;
@@ -153,15 +154,24 @@
     }
 
     @media (max-width: 768px) {
-      .banner {
-        flex-direction: column;
-        text-align: center;
-      }
+      .banner-left,
+      .banner-right {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Reduce spacing between items */
+}
 
-      .banner-left, .banner-right {
-        justify-content: center;
-        margin: 10px 0;
-      }
+/* Optional: Remove extra padding if you had any */
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px; /* Slightly reduce horizontal padding if needed */
+  background: linear-gradient(to bottom, #e0b3ff, #a64dff);
+  color: white;
+  margin-bottom: 30px;
+}
+
 
       .main-content {
         flex-direction: column;
@@ -194,7 +204,7 @@
   <!-- Main Section -->
   <div class="main-content">
     <div class="main-text">
-      <p>Experience the joy of decorating cookies, cakes, and cupcakes without the hassle. Our studio provides all the tools and materials you need to create edible masterpieces. Perfect for beginners and pros alike!</p>
+      <p>Do you love to decorate cookies, cakes and cupcakes? Or, maybe you’ve always wanted to try decorating, but didn’t know where to start, or didn’t want the mess or expense. At Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an “unlimited decorating experience”. Decorate cookies, cakes, or cupcakes however you desire. Use as many colors, frosting tips, and sprinkles as you need to bring your creation from idea to reality. All of levels of experience and ages are welcome! Even if you’ve never decorated before, we’re happy to help provide some inspiration or useful tips and tricks.</p>
     </div>
     <div class="main-image"></div>
   </div>
