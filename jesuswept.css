@@ -31,27 +31,23 @@ html, body {
   justify-content: space-between;
   align-items: center;
   height: 240px;
-  padding: 0 0 40px 0;
   background: linear-gradient(to bottom, #d6b0e9 20%, #ffffff 95%);
   position: relative;
+  padding: 0 20px; /* horizontal padding only */
 }
 
 /* Center logo in the page */
 .logo {
   height: 120px;
-  animation: fadeIn 2s ease-in-out;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  animation: fadeIn 2s ease-in-out;
 }
 
 /* Horizontally aligned buttons on the left */
 .banner-buttons {
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
   display: flex;
   gap: 10px;
 }
@@ -77,11 +73,7 @@ html, body {
 
 /* Slogan with white fill and flipped gradient outline */
 .slogan {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 3.625rem; /* Increased size */
+  font-size: 3.625rem;
   font-family: 'Great Vibes', cursive;
   text-align: right;
   color: white;
@@ -92,7 +84,6 @@ html, body {
   -webkit-mask-image: linear-gradient(to top, #d6b0e9, #ffffff);
   text-shadow: 0 0 2px #b38ac8;
 }
-
 
     /* Main Content Section */
     .main-content {
