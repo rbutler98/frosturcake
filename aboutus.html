@@ -285,7 +285,64 @@
   text-align: center;
 }
 
+.custom-carousel {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(to left, #b36fd4, #d594f3);
+  padding: 40px 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
 
+.carousel-track {
+  display: flex;
+  gap: 30px;
+  animation: carouselSlide 20s infinite ease-in-out;
+}
+
+.carousel-track img {
+  height: 200px;
+  width: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: transform 0.5s ease;
+  flex-shrink: 0;
+}
+
+/* Animation keyframes */
+@keyframes carouselSlide {
+  0%, 5% { transform: translateX(0); }
+  25%, 30% { transform: translateX(-100%); }
+  50%, 55% { transform: translateX(-200%); }
+  75%, 80% { transform: translateX(-300%); }
+  100% { transform: translateX(0); }
+}
+
+/* Enlarge active image */
+.carousel-track img:nth-child(1) {
+  animation: focusImg 20s infinite ease-in-out 0s;
+}
+.carousel-track img:nth-child(2) {
+  animation: focusImg 20s infinite ease-in-out 5s;
+}
+.carousel-track img:nth-child(3) {
+  animation: focusImg 20s infinite ease-in-out 10s;
+}
+.carousel-track img:nth-child(4) {
+  animation: focusImg 20s infinite ease-in-out 15s;
+}
+
+@keyframes focusImg {
+  0%, 5% { transform: scale(1.1); }
+  6%, 100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  .carousel-track img {
+    height: 150px;
+  }
+}
     .logo {
       flex: 0 0 auto;
       background-color: white;
@@ -398,22 +455,15 @@
   
   <!-- Footer -->
   <footer>
-    <div class="carousel-container">
-      <div class="carousel-wrapper">
-        <div class="carousel" id="carousel">
-          <img src="https://i.ibb.co/Zzshdc4H/IMG-20250513-194356.jpg" alt="Item 1" />
-          <img src="https://i.ibb.co/dJ6d0B6q/IMG-20250513-194405.jpg" alt="Item 2" />
-          <img src="https://i.ibb.co/CpqMHyCR/IMG-20250513-194400.jpg" alt="Item 3" />
-          <img src="https://i.ibb.co/679qp2zs/IMG-20250513-194408.jpg" alt="Item 4" />
-          <!-- Duplicate for looping -->
-          <img src="https://i.ibb.co/Zzshdc4H/IMG-20250513-194356.jpg" alt="Item 1" />
-          <img src="https://i.ibb.co/dJ6d0B6q/IMG-20250513-194405.jpg" alt="Item 2" />
-          <img src="https://i.ibb.co/CpqMHyCR/IMG-20250513-194400.jpg" alt="Item 3" />
-          <img src="https://i.ibb.co/679qp2zs/IMG-20250513-194408.jpg" alt="Item 4" />
-        </div>
-      </div>
+  <div class="custom-carousel">
+    <div class="carousel-track">
+      <img src="https://via.placeholder.com/300x200" alt="Image 1" />
+      <img src="https://via.placeholder.com/300x200" alt="Image 2" />
+      <img src="https://via.placeholder.com/300x200" alt="Image 3" />
+      <img src="https://via.placeholder.com/300x200" alt="Image 4" />
     </div>
-  </footer>
+  </div>
+</footer>
 
   <script>
     function toggleMenu() {
