@@ -73,15 +73,25 @@
     }
 
     .main-text {
-      flex: 1;
-      padding: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3em;
-      background-color: #c084fc;
-      color: white;
-    }
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3em;
+  background-color: #c084fc;
+  color: white;
+
+  /* Add this shadow */
+  box-shadow: 20px 0 40px rgba(128, 0, 128, 0.4);
+  /* The values:
+     - 20px to the right
+     - 0 vertical
+     - 40px blur radius
+     - purple shadow color with 40% opacity
+  */
+}
+
 
     .main-image {
       flex: 2;
