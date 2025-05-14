@@ -119,29 +119,20 @@
 
 .frosting-border {
   position: relative;
-  background-color: #fff0f5;
-  border-radius: 20px;
-  overflow: hidden;
-  margin: 0 auto 40px auto;
-  max-width: 90%;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 40px 0;
 }
 
 .celebration-heading {
   font-size: 2.5em;
-  color: #a64dff;
-  padding: 40px 20px;
-  margin: 0;
-  background-image: url('https://i.ibb.co/3yrpgMs/sprinkles-bg.png');
-  background-size: 200px;
-  background-repeat: repeat;
+  margin: 40px auto;
+  color: white;
+  font-family: 'Pacifico', cursive;
+  z-index: 2;
+  position: relative;
 }
 
-.frosting-top, .frosting-bottom {
-  width: 100%;
-  height: 60px;
-  display: block;
-}
+/* Animation */
 .animated-drip {
   animation: dripWave 6s ease-in-out infinite alternate;
 }
@@ -237,16 +228,27 @@
     </section>
 
     <!-- Parties Section -->
-    <section class="celebration-section">
-  <div class="frosting-border">
+    <div class="frosting-border">
   <svg class="frosting-top animated-drip" viewBox="0 0 1440 100" preserveAspectRatio="none">
-    <path d="M0,30 C360,90 1080,-30 1440,60 L1440,0 L0,0 Z" fill="#ffb6c1" />
+    <path d="M0,30 C360,90 1080,-30 1440,60 L1440,0 L0,0 Z" fill="url(#frostGradient)" />
+    <defs>
+      <linearGradient id="frostGradient" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#ffb6c1" />
+        <stop offset="100%" stop-color="#d98eff" />
+      </linearGradient>
+    </defs>
   </svg>
 
   <h2 class="celebration-heading">Parties and Celebrations</h2>
 
   <svg class="frosting-bottom animated-drip" viewBox="0 0 1440 100" preserveAspectRatio="none">
-    <path d="M0,60 C360,-30 1080,90 1440,30 L1440,100 L0,100 Z" fill="#ffb6c1" />
+    <path d="M0,60 C360,-30 1080,90 1440,30 L1440,100 L0,100 Z" fill="url(#frostGradient2)" />
+    <defs>
+      <linearGradient id="frostGradient2" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#ffb6c1" />
+        <stop offset="100%" stop-color="#d98eff" />
+      </linearGradient>
+    </defs>
   </svg>
 </div>
 
