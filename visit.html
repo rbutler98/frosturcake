@@ -113,9 +113,9 @@
     }
 
     .text-box {
-      flex: 0 0 35%;
-      max-width: 400px;
-      padding: 30px;
+      flex: 0 0 40%;
+      max-width: 40%;
+      padding: 20px;
       background-color: #f6f2ff;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -136,7 +136,8 @@
 
     iframe {
       flex: 0 0 60%;
-      height: 400px;
+      max-width: 60%
+      height: 100%;
       border: none;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -175,9 +176,10 @@
       }
 
       .text-box, iframe {
-        width: 50%;
-        max-width: none;
-      }
+        width: 100%;
+        flex: unset;
+    }
+
     }
   </style>
 </head>
