@@ -243,33 +243,33 @@
     text-align: center;
   }
 
-  .slideshow-wrapper {
-    display: flex;
-    justify-content: center;
-  }
-
   .slideshow-container {
-    max-width: 90%;
+    max-width: 100%;
     overflow: hidden;
     position: relative;
+    margin: auto;
   }
 
   .slideshow {
     display: flex;
     transition: transform 1s ease;
-    gap: 20px;
+    justify-content: center;
+    gap: 40px;
   }
 
   .slideshow img {
     height: 150px;
+    width: auto;
     flex-shrink: 0;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 1s ease;
+    z-index: 1;
   }
 
-  .slideshow img:hover {
-    transform: scale(1.05);
+  .slideshow img.active {
+    transform: scale(2);
+    z-index: 2;
   }
 
   .dots-container {
@@ -358,22 +358,21 @@
 
 <!-- Footer Section -->
 <footer class="footer">
-  <div class="slideshow-wrapper">
-    <div class="slideshow-container">
-      <div class="slideshow" id="slideshow">
-        <img src="https://i.ibb.co/679qp2zs/IMG-20250513-194408.jpg" alt="Cake 1">
-        <img src="https://i.ibb.co/CpqMHyCR/IMG-20250513-194400.jpg" alt="Cake 2">
-        <img src="https://i.ibb.co/dJ6d0B6q/IMG-20250513-194405.jpg" alt="Cake 3">
-        <img src="https://i.ibb.co/Zzshdc4H/IMG-20250513-194356.jpg" alt="Cake 4">
-      </div>
-      <div class="dots-container" id="dotsContainer">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
+  <div class="slideshow-container">
+    <div class="slideshow" id="slideshow">
+      <img src="https://via.placeholder.com/250x150?text=Cake+1" alt="Cake 1">
+      <img src="https://via.placeholder.com/250x150?text=Cake+2" alt="Cake 2">
+      <img src="https://via.placeholder.com/250x150?text=Cake+3" alt="Cake 3">
+      <img src="https://via.placeholder.com/250x150?text=Cake+4" alt="Cake 4">
+    </div>
+    <div class="dots-container" id="dotsContainer">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
   </div>
+</footer>
     
   <script>
     // Reveal effect on scroll
@@ -440,12 +439,16 @@
   const images = slideshow.querySelectorAll("img");
   const dots = document.querySelectorAll(".dot");
   let index = 0;
+  let interval;
 
   function updateSlide(i) {
-    const imageWidth = images[0].offsetWidth + 20; // include gap
-    slideshow.style.transform = `translateX(-${i * imageWidth}px)`;
+    images.forEach(img => img.classList.remove("active"));
     dots.forEach(dot => dot.classList.remove("active"));
+    images[i].classList.add("active");
     dots[i].classList.add("active");
+    const imageWidth = images[i].getBoundingClientRect().width + 40; // includes gap
+    const totalShift = (imageWidth + 40) * i;
+    slideshow.style.transform = `translateX(calc(50% - ${(imageWidth / 2) + (i * imageWidth)}px))`;
     index = i;
   }
 
@@ -454,20 +457,23 @@
     updateSlide(nextIndex);
   }
 
-  let interval = setInterval(autoScroll, 3000);
+  function startSlideshow() {
+    interval = setInterval(autoScroll, 4000); // wait 4s between slides
+  }
 
   slideshow.addEventListener("mouseenter", () => clearInterval(interval));
-  slideshow.addEventListener("mouseleave", () => {
-    interval = setInterval(autoScroll, 3000);
-  });
+  slideshow.addEventListener("mouseleave", startSlideshow);
 
   dots.forEach((dot, i) => {
     dot.addEventListener("click", () => {
       updateSlide(i);
       clearInterval(interval);
-      interval = setInterval(autoScroll, 3000);
+      startSlideshow();
     });
   });
+  // Initial state
+  updateSlide(0);
+  startSlideshow();
   </script>
 </body>
 </html>
