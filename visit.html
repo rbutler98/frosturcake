@@ -106,21 +106,20 @@
 
     .text-columns {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      padding: 40px 5%;
+      padding: 40px;
       gap: 40px;
     }
 
     .text-box {
-      flex: 1 1 35%;
+      flex: 0 0 35%;
       max-width: 400px;
-      text-align: center;
-      padding: 20px;
+      padding: 30px;
       background-color: #f6f2ff;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
     }
 
     .text-box h2 {
@@ -136,7 +135,7 @@
     }
 
     iframe {
-      flex: 1 1 60%;
+      flex: 0 0 60%;
       height: 400px;
       border: none;
       border-radius: 12px;
@@ -175,8 +174,12 @@
         padding: 20px;
       }
 
-      iframe {
+      .text-box, iframe {
         width: 100%;
+        max-width: none;
+      }
+
+      iframe {
         height: 300px;
       }
     }
