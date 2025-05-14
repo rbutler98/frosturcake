@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bakery Website</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
@@ -25,27 +24,6 @@
       50% { transform: scale(1.1); }
     }
 
-/* Fade in on scroll */
-@keyframes fadeInImage {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Scroll trigger */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.animation = 'fadeInImage 1s ease forwards';
-    }
-  });
-});
-
-document.querySelectorAll('.parties-image').forEach(img => {
-  observer.observe(img);
-});
-    
     /* Banner */
     .banner {
       display: flex;
@@ -132,7 +110,7 @@ document.querySelectorAll('.parties-image').forEach(img => {
       border-radius: 10px;
       animation: fadeIn 1s ease forwards;
     }
-
+    
     /* Carousel Footer */
     footer {
       background: linear-gradient(to left, #b36fd4, #d594f3);
@@ -211,60 +189,9 @@ document.querySelectorAll('.parties-image').forEach(img => {
       <div class="image-section"></div>
     </section>
 
-  <!-- Parties Section -->
-<!-- Parties and Celebrations Section -->
-<section class="parties-section">
-  <div class="drip-header">
-    <h2>Parties and Celebrations</h2>
-    <div class="drip-icing"></div>
-  </div>
-</section>
+    <!-- Parties Section -->
 
-<style>
-  .parties-section {
-    position: relative;
-    text-align: center;
-    padding: 80px 20px 40px;
-    background: url('https://www.transparenttextures.com/patterns/sprinkles.png') repeat;
-  }
-
-  .drip-header {
-    position: relative;
-    display: inline-block;
-    background: #d98eff;
-    padding: 40px 60px 80px;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-
-  .drip-header h2 {
-    font-family: 'Pacifico', cursive;
-    font-size: 2.5em;
-    color: white;
-    margin: 0;
-    z-index: 2;
-    position: relative;
-  }
-
-  .drip-icing {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    background: #ffb6c1;
-    border-bottom-left-radius: 50% 20px;
-    border-bottom-right-radius: 50% 20px;
-    animation: dripFlow 3s infinite ease-in-out;
-  }
-
-  @keyframes dripFlow {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(5px); }
-    100% { transform: translateY(0); }
-  }
-</style>
-
+    
   <!-- Footer with Carousel -->
   <footer>
     <div class="carousel-container">
@@ -278,7 +205,17 @@ document.querySelectorAll('.parties-image').forEach(img => {
   </footer>
 
   <script>
-    
+    // Animate party image on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(document.getElementById('partyImage'));
+
     // Carousel functionality
     const carouselImages = document.querySelectorAll("#carousel img");
     let index = 0;
@@ -290,18 +227,8 @@ document.querySelectorAll('.parties-image').forEach(img => {
     }
 
     setInterval(cycleCarousel, 3000);
-
-    /* Parties and Celebrations Image */
-  const fadeImg = document.querySelector('.fade-image');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        fadeImg.classList.add('show');
-      }
-    });
-  }, { threshold: 0.3 });
-
-  observer.observe(fadeImg);
   </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </body>
 </html>
