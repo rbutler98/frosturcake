@@ -235,29 +235,36 @@
         text-align: center;
       }
     }
+
+    /* Footer and Slideshow */
     .footer {
-    background: linear-gradient(to bottom, #d98eff, #ffb6c1);
-    padding: 40px 20px;
+    background: linear-gradient(to right, #ffb6c1, #d98eff);
+    padding: 50px 0;
     text-align: center;
   }
 
+  .slideshow-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
   .slideshow-container {
-    max-width: 100%;
+    max-width: 90%;
     overflow: hidden;
     position: relative;
   }
 
   .slideshow {
     display: flex;
-    gap: 20px;
     transition: transform 1s ease;
+    gap: 20px;
   }
 
   .slideshow img {
     height: 150px;
     flex-shrink: 0;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
   }
 
@@ -266,7 +273,7 @@
   }
 
   .dots-container {
-    margin-top: 15px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -275,9 +282,8 @@
   .dot {
     width: 12px;
     height: 12px;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 50%;
-    display: inline-block;
     cursor: pointer;
     transition: background-color 0.3s;
   }
@@ -351,18 +357,21 @@
 </div>
 
 <!-- Footer Section -->
-<div class="slideshow-container">
-    <div class="slideshow" id="slideshow">
-      <img src="https://via.placeholder.com/250x150?text=Cake+1" alt="Cake 1">
-      <img src="https://via.placeholder.com/250x150?text=Cake+2" alt="Cake 2">
-      <img src="https://via.placeholder.com/250x150?text=Cake+3" alt="Cake 3">
-      <img src="https://via.placeholder.com/250x150?text=Cake+4" alt="Cake 4">
-    </div>
-    <div class="dots-container" id="dotsContainer">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+<footer class="footer">
+  <div class="slideshow-wrapper">
+    <div class="slideshow-container">
+      <div class="slideshow" id="slideshow">
+        <img src="https://i.ibb.co/679qp2zs/IMG-20250513-194408.jpg" alt="Cake 1">
+        <img src="https://i.ibb.co/CpqMHyCR/IMG-20250513-194400.jpg" alt="Cake 2">
+        <img src="https://i.ibb.co/dJ6d0B6q/IMG-20250513-194405.jpg" alt="Cake 3">
+        <img src="https://i.ibb.co/Zzshdc4H/IMG-20250513-194356.jpg" alt="Cake 4">
+      </div>
+      <div class="dots-container" id="dotsContainer">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
     </div>
   </div>
     
@@ -427,13 +436,13 @@
     handleScroll();
 
     // Footer Slideshow
-    const slideshow = document.getElementById("slideshow");
+   const slideshow = document.getElementById("slideshow");
   const images = slideshow.querySelectorAll("img");
   const dots = document.querySelectorAll(".dot");
   let index = 0;
 
   function updateSlide(i) {
-    const imageWidth = images[0].offsetWidth + 20;
+    const imageWidth = images[0].offsetWidth + 20; // include gap
     slideshow.style.transform = `translateX(-${i * imageWidth}px)`;
     dots.forEach(dot => dot.classList.remove("active"));
     dots[i].classList.add("active");
