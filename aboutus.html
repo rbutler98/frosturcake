@@ -192,61 +192,59 @@
 <!-- Parties Section -->
 <section class="parties-section">
   <div class="parties-content">
-    <div class="parties-header">
-      <img src="https://i.ibb.co/yRq5VvJ/icing-header.png" alt="Icing Header" />
+    <div class="parties-header-decorated">
       <h2>Parties and Celebrations</h2>
     </div>
     <div class="parties-text-box">
       <p>
-        Host your next party in sweet style! We provide the frosting, sprinkles, and fun — you bring the creativity. Perfect for birthdays, baby showers, and more.
+        We love celebrating! Bring your friends or family and celebrate special days with private parties. We’re the perfect spot for birthdays, bridal showers, baby showers, holidays, and special events. Reserve our private party room that holds up to 20 guests.
       </p>
     </div>
   </div>
 </section>
-
-
+    
 <style>
-  .parties-section {
-  padding: 40px 20px;
+ .parties-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
   background-color: #fff;
 }
 
-.parties-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
-.parties-header {
-  flex: 1;
-  max-width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.parties-header img {
-  max-width: 300px;
-  height: auto;
-  margin-bottom: 10px;
-}
-.parties-header h2 {
-  font-family: 'Pacifico', cursive;
-  font-size: 2.5em;
-  color: #a64dff;
-  margin: 0;
-}
-
-.parties-text-box {
-  flex: 1;
-  max-width: 50%;
+.parties-header-decorated {
+  background-color: white;
+  border: 8px dashed #ffb6c1; /* Bakery-style border (icing-inspired) */
+  border-radius: 20px;
+  padding: 30px 40px;
+  position: relative;
+  max-width: 600px;
   text-align: center;
-  color: #000;
-  font-size: 1.2em;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
 }
 
+.parties-header-decorated h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.8em;
+  margin: 0;
+  color: #a64dff;
+  z-index: 1;
+  position: relative;
+}
+
+/* Sprinkle decoration (background sprinkles using pseudo-elements) */
+.parties-header-decorated::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://i.ibb.co/YdDNZ3Y/sprinkle-bg.png'); /* Example sprinkle PNG */
+  background-size: contain;
+  background-repeat: repeat;
+  opacity: 0.3;
+  z-index: 0;
+  border-radius: 20px;
+}
 </style>
 
 <script>
