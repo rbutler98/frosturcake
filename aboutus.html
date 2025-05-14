@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bakery Website</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
@@ -23,6 +24,35 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
     }
+
+    /* Parties and Celebrations Image */
+
+    .fade-image-section {
+  padding: 0 20px;
+  margin: 60px 0;
+}
+
+.fade-image-container {
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fade-image {
+  height: 100%;
+  width: auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-image.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
     /* Banner */
     .banner {
@@ -129,7 +159,8 @@
   color: white;
   font-family: 'Pacifico', cursive;
   z-index: 2;
-  position: relative;
+  position: absolute;
+  text-align: center;
 }
 
 /* Animation */
@@ -228,7 +259,7 @@
     </section>
 
     <!-- Parties Section -->
-    <div class="frosting-border">
+  <div class="frosting-border">
   <svg class="frosting-top animated-drip" viewBox="0 0 1440 100" preserveAspectRatio="none">
     <path d="M0,30 C360,90 1080,-30 1440,60 L1440,0 L0,0 Z" fill="url(#frostGradient)" />
     <defs>
@@ -251,9 +282,13 @@
     </defs>
   </svg>
 </div>
-
+    
+<section class="fade-image-section">
+  <div class="fade-image-container">
+    <img src="https://via.placeholder.com/800x400" alt="Decorated Cake" class="fade-image" />
+  </div>
 </section>
-
+    
   <!-- Footer with Carousel -->
   <footer>
     <div class="carousel-container">
@@ -289,8 +324,18 @@
     }
 
     setInterval(cycleCarousel, 3000);
-  </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    /* Parties and Celebrations Image */
+  const fadeImg = document.querySelector('.fade-image');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        fadeImg.classList.add('show');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(fadeImg);
+  </script>
 </body>
 </html>
