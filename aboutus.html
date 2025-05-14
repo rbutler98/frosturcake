@@ -184,14 +184,85 @@
         At Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an “unlimited decorating experience”. Decorate cookies, cakes, or cupcakes however you desire. 
         Use as many colors, frosting tips, and sprinkles as you need to bring your creation from idea to reality. 
         All of levels of experience and ages are welcome! Even if you’ve never decorated before, we’re happy to help provide some inspiration or useful tips and tricks.
-
       </div>
       <div class="image-section"></div>
     </section>
 
     <!-- Parties Section -->
+<section class="parties-section">
+  <div class="parties-header">
+    Parties and Celebrations
+  </div>
+  <div class="parties-image"></div>
+</section>
 
-    
+<style>
+  .parties-section {
+    padding: 60px 20px;
+    background-color: #fff0fb;
+    text-align: center;
+  }
+
+  .parties-header {
+    font-family: 'Pacifico', cursive;
+    font-size: 3em;
+    color: white;
+    background: linear-gradient(to right, #ffb6c1, #d98eff);
+    padding: 20px 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Dripping icing border */
+  .parties-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 20px;
+    background: url('https://i.ibb.co/HHY1JgB/drip-purple.png') repeat-x;
+    background-size: contain;
+    animation: drip 4s linear infinite;
+  }
+
+  @keyframes drip {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+  }
+
+  .parties-image {
+    height: 60vh;
+    max-width: 90%;
+    margin: 0 auto;
+    background: url('https://via.placeholder.com/1200x600') center/cover no-repeat;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+  }
+
+  .parties-image.reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Reveal effect on scroll
+  window.addEventListener('scroll', () => {
+    const image = document.querySelector('.parties-image');
+    const rect = image.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      image.classList.add('reveal');
+    }
+  });
+</script>
+
   <!-- Footer with Carousel -->
   <footer>
     <div class="carousel-container">
