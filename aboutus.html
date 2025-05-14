@@ -1,46 +1,301 @@
-<html>
-	
-<div class="intro" id="start">
-	<div id="s1"> 
-		<img src="https://i.ibb.co/Y7pd9y0H/no-Bg-Color.png" alt="no-Bg-Color" border="0" style="height:60px;width:150px;display:block;margin-left:auto;margin-right:auto;">
-	</div>
-	<p class="intro"> Slogan Here </p>
-</div>	
-<div class="body-whole" id="whole">
-	<div class="b1">
-		<p class="b1" id="about-us"> Founded in 2025, Frost your cake studios is a local studio founded right here in Conway. Founded by Dustin and Julie Wear, we host a fun event
-		schedule where individuals can come in and decorate their own baked goods! This studio has been a long dream coming for everyone involved in its making! We are ecstatic
-		to be launching here soon! Can't wait to see y'all!</p>
-		<img class="b1" id="s1"></img>
-	</div>
-	<div class="b2">
-		<p class="b2" id="how-works"> No reservation? No problem! We do both event based and walk-in decorating. Come in and choose between our wide variety of baked goods and desserts.
-		We provide the treat and the icing, all you have to do is provide the art. No experience in using icing? Don't worry, all of our staff is more than experienced in techniques and tricks.
-		Just ask any of us for help!</p>
-		<img class="b2" id="s2"></img>
-	</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Frost Your Cake</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f5f5f5;
+    }
 
-	<div class="b3">
-		<img id="bottom-image"></img>
-	</div>
-</div>
-	
-<div class="footer" id="info-pane">
-	<div class="footer" id="details">
-		<p class="details-text" id="details-name"> Frost Your Cake Studio </p>
-		<p class="details-text"> Address </p>
-		<p class="details-text"> Phone Number </p>
-	</div>
-	<div class="footer" id="map" style="float:right;">
-		<iframe src="https://api.mapbox.com/styles/v1/deathnom/cma4vvq6t006w01s087mu99ry.html?title=false&access_token=pk.eyJ1IjoiZGVhdGhub20iLCJhIjoiY21hNHZwNjUxMGJ5cjJqb2lqYWxldGJleiJ9.WcQvbKcaUd-yGb2pN5svfQ&zoomwheel=false#8.49/40.7861/-73.8307" title="Tutorial" style="border:none;"></iframe>
-	</div
-</div>
+    /* Banner */
+    .banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to top, #a64dff, #d8b4f8);
+  padding: 10px 30px; /* Reduced vertical padding */
+  position: relative;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-bottom: 40px; /* Adds space below the banner */
+}
 
-<div class="super footer">
-	<p class="super-footer" id="links"> External links </p>
-</div>
+    .banner-left {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* was 10px — reduced to bring items closer */
+}
+.banner-right span {
+  color: #8931d4; /* Dark purple */
+  font-weight: bold;
+}
 
-<link rel="stylesheet" href="beautify.css">
-<script src="thejelly.js"></script>
+    .banner-left, .banner-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
+    .banner-logo img {
+  width: 80px;  /* Or increase to 100px if desired */
+  height: 80px;
+  border-radius: 50%;
+  background-color: white;
+  padding: 16px;  /* Increased from 10px */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+    /* Hamburger Button */
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
+    /* Slide-in menu */
+    .nav-buttons button {
+  background-color: white;
+  color: #8931d4; /* Dark purple */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav-buttons button:hover {
+  background-color: #f0e6ff; /* Slightly tinted white */
+  color: #6a1aa9; /* Even darker purple on hover */
+}
+.banner-btn {
+  background-color: white;
+  color: #a64dff;
+  text-decoration: none;
+  border: 2px solid #a64dff;
+  padding: 10px 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  display: inline-block;
+}
+
+.banner-btn:hover {
+  background-color: #7a26cc; /* Darker purple on hover */
+  color: white;
+}
+
+    @media (max-width: 768px) {
+      .banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+
+      .banner-left, .banner-right {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav-buttons {
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 250px;
+        height: 100%;
+        background: #a64dff;
+        padding: 20px;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+      }
+
+      .nav-buttons.show {
+        right: 0;
+      }
+    }
+
+    /* Main content */
+    .container {
+      display: flex;
+      min-height: 80vh;
+      width: 100%;
+      padding-left: clamp(1rem, 5vw, 40px);
+      /* padding-right: clamp(1rem, 5vw, 40px); */
+    }
+
+    .text-section {
+      flex: 1;
+      padding: 40px;
+      background-color: #e0b3ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      color: white;
+      box-shadow: 20px 0 20px -10px #8931d4;
+    }
+
+    .image-section {
+      flex: 2;
+      background-image: url('https://i.ibb.co/PsLvpB00/Firefly-An-adult-decorating-cupcakes-at-an-event-793127.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .text-section, .image-section {
+        height: 50vh;
+        flex: unset;
+      }
+
+      .text-section {
+        box-shadow: none;
+      }
+    }
+
+    /* Footer */
+  footer {
+  background: linear-gradient(to top, #e0b3ff, #a64dff); /* Reversed gradient */
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 30px;
+}
+
+.carousel-container {
+  overflow: hidden;
+  position: relative;
+  max-width: 100%;
+  margin: 20px auto 0;
+}
+
+.carousel {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  animation: scroll-carousel 20s linear infinite;
+  touch-action: pan-x;
+}
+
+.carousel img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Animation */
+@keyframes scroll-carousel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+  </style>
+</head>
+<body>
+
+  <!-- Banner -->
+  <div class="banner">
+    <div class="banner-left">
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      <nav class="nav-buttons">
+        <a href="aboutus.html" class="banner-btn">Home</a>
+        <a href="visit.html" class="banner-btn">Visit Us</a>
+        <a href="parties.html" class="banner-btn">Parties</a>
+      </nav>
+    </div>
+    <div class="banner-logo">
+      <img src="https://i.ibb.co/Y7pd9y0H/no-Bg-Color.png" alt="Logo">
+    </div>
+    <div class="banner-right">
+      <span>Welcome!</span>
+    </div>
+  </div>
+
+  <!-- Body Section -->
+  <div class="container">
+    <div class="text-section">
+      <p>Do you love to decorate cookies, cakes and cupcakes? Or, maybe you’ve always wanted to try decorating, but didn’t know where to start, or didn’t want the mess or expense. At Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an “unlimited decorating experience”. Decorate cookies, cakes, or cupcakes however you desire. Use as many colors, frosting tips, and sprinkles as you need to bring your creation from idea to reality. All of levels of experience and ages are welcome! Even if you’ve never decorated before, we’re happy to help provide some inspiration or useful tips and tricks.</p>
+    </div>
+    <div class="image-section"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <!-- First set -->
+      <img src="https://via.placeholder.com/300x200?text=1" alt="Image 1">
+      <img src="https://via.placeholder.com/300x200?text=2" alt="Image 2">
+      <img src="https://via.placeholder.com/300x200?text=3" alt="Image 3">
+      <img src="https://via.placeholder.com/300x200?text=4" alt="Image 4">
+
+      <!-- Duplicate set for seamless loop -->
+      <img src="https://via.placeholder.com/300x200?text=1" alt="Image 1 duplicate">
+      <img src="https://via.placeholder.com/300x200?text=2" alt="Image 2 duplicate">
+      <img src="https://via.placeholder.com/300x200?text=3" alt="Image 3 duplicate">
+      <img src="https://via.placeholder.com/300x200?text=4" alt="Image 4 duplicate">
+    </div>
+  </div>
+</footer>
+  
+  <!-- JavaScript for hamburger menu and swipe -->
+  <script>
+    const menu = document.querySelector('.nav-buttons');
+
+    function toggleMenu() {
+      menu.classList.toggle('show');
+    }
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function handleTouchStart(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }
+
+    function handleTouchEnd(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50 && menu.classList.contains('show')) {
+        menu.classList.remove('show');
+      }
+    }
+
+    menu.addEventListener('touchstart', handleTouchStart, false);
+    menu.addEventListener('touchend', handleTouchEnd, false);
+  </script>
+  <script>
+  const carousel = document.querySelector('.carousel');
+  let isTouched = false;
+
+  carousel.addEventListener('touchstart', () => {
+    carousel.style.animationPlayState = 'paused';
+    isTouched = true;
+  });
+
+  carousel.addEventListener('touchend', () => {
+    if (isTouched) {
+      carousel.style.animationPlayState = 'running';
+      isTouched = false;
+    }
+  });
+</script>
+</body>
 </html>
