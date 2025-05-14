@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bakery Banner</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, #b57edc, #ffffff);
+      padding: 20px 40px;
+      height: 200px;
+      position: relative;
+    }
+
+    .banner-buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .banner-buttons button {
+      background-color: white;
+      color: #b57edc;
+      border: 2px solid #b57edc;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+    }
+
+    .banner-buttons button:hover {
+      background-color: #b57edc;
+      color: white;
+    }
+
+    .banner-logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 50%;
+      transform: translate(-50%, -50%);
+      height: 120px;
+    }
+
+    .banner-slogan {
+      font-family: 'Pacifico', cursive;
+      font-size: 32px;
+      color: white;
+      max-width: 250px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .banner {
+        flex-direction: column;
+        height: auto;
+      }
+      .banner-slogan {
+        font-size: 24px;
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">
+    <div class="banner-buttons">
+      <button>Home</button>
+      <button>Visit Us</button>
+      <button>Parties</button>
+    </div>
+
+    <img src="your-logo.png" alt="Frost Your Cake Logo" class="banner-logo">
+
+    <div class="banner-slogan">Create. Decorate. Celebrate.</div>
+  </div>
+
+</body>
+</html>
 
