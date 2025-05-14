@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bakery Website</title>
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
       background-color: #ffffff;
     }
 
@@ -19,17 +26,12 @@
       justify-content: space-between;
       padding: 10px 40px;
       height: 120px;
+      position: relative;
     }
 
     .banner-left,
+    .banner-center,
     .banner-right {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .banner-center {
       flex: 1;
       display: flex;
       align-items: center;
@@ -64,26 +66,47 @@
       border-radius: 50%;
       background-color: white;
       padding: 5px;
+      animation: fadeInDown 1s ease forwards;
     }
 
     .slogan {
       color: white;
       font-size: 1.5em;
       text-align: center;
+      opacity: 0;
+      animation: fadeInRight 1.5s ease forwards;
     }
 
-    /* Body Content */
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInImage {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Body */
     .main-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 40px 40px 60px 40px;
+      margin: 40px;
       gap: 40px;
+      flex: 1;
+      padding: 0 20px;
     }
 
     .text-section {
       flex: 1;
-      background-color: #e6ccf3; /* lighter purple */
+      background-color: #e6ccf3;
       padding: 40px;
       border-radius: 10px;
       box-shadow: 10px 10px 20px #7a3f99;
@@ -98,6 +121,7 @@
       background-position: center;
       height: 400px;
       border-radius: 10px;
+      animation: fadeInImage 1s ease forwards;
     }
 
     /* Footer */
@@ -141,33 +165,72 @@
     }
 
     @keyframes scroll-left {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
     }
 
-    /* Responsive Design */
+    /* Mobile Styles */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #b36fd4;
+      width: 200px;
+      padding: 20px;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 10;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu.show {
+      display: flex;
+      transform: translateX(0%);
+    }
+
     @media (max-width: 768px) {
       .banner {
-        flex-direction: column;
+        flex-direction: row;
         height: auto;
-        padding: 20px;
-        text-align: center;
+        padding: 10px 20px;
       }
 
-      .banner-left,
-      .banner-center,
+      .banner-left {
+        justify-content: flex-start;
+      }
+
       .banner-right {
-        justify-content: center;
-        margin: 10px 0;
+        justify-content: flex-end;
+      }
+
+      .banner-buttons {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
       }
 
       .main-content {
         flex-direction: column;
         margin: 20px;
+        padding: 0 10px;
       }
 
       .image-section {
@@ -182,21 +245,35 @@
   <!-- Banner -->
   <header class="banner">
     <div class="banner-left">
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <div class="banner-buttons">
         <a href="home.html">Home</a>
         <a href="visit.html">Visit Us</a>
         <a href="parties.html">Parties</a>
       </div>
     </div>
+
     <div class="banner-center">
       <img src="https://via.placeholder.com/80" alt="Logo" class="logo" />
     </div>
+
     <div class="banner-right">
       <div class="slogan">Create. Decorate. Celebrate.</div>
     </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="home.html">Home</a>
+      <a href="visit.html">Visit Us</a>
+      <a href="parties.html">Parties</a>
+    </div>
   </header>
 
-  <!-- Body -->
+  <!-- Main Content -->
   <main class="main-content">
     <div class="text-section">
       <p>
@@ -215,7 +292,7 @@
           <img src="https://via.placeholder.com/200x150" alt="Item 2" />
           <img src="https://via.placeholder.com/200x150" alt="Item 3" />
           <img src="https://via.placeholder.com/200x150" alt="Item 4" />
-          <!-- Duplicate images for looping -->
+          <!-- Duplicate for looping -->
           <img src="https://via.placeholder.com/200x150" alt="Item 1" />
           <img src="https://via.placeholder.com/200x150" alt="Item 2" />
           <img src="https://via.placeholder.com/200x150" alt="Item 3" />
@@ -224,6 +301,28 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("show");
+    }
+
+    // Swipe detection for mobile
+    let startX = 0;
+    document.addEventListener("touchstart", function (e) {
+      startX = e.touches[0].clientX;
+    });
+
+    document.addEventListener("touchend", function (e) {
+      let endX = e.changedTouches[0].clientX;
+      const diff = endX - startX;
+      const menu = document.getElementById("mobileMenu");
+
+      if (diff < -50) menu.classList.add("show");
+      if (diff > 50) menu.classList.remove("show");
+    });
+  </script>
 
 </body>
 </html>
