@@ -276,3 +276,31 @@ html {
     .dot.active {
       background-color: black;
     }
+
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+
+  .logo {
+    position: static;
+    transform: none;
+    margin-bottom: 10px;
+    height: 100px;
+    width: 75%;
+  }
+
+  .slogan {
+    font-size: .6rem;
+    text-align: center;
+    -webkit-text-stroke: 0.8px transparent;
+  }
+
+  .banner-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}
