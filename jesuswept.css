@@ -303,4 +303,9 @@ html {
     justify-content: center;
     margin-bottom: 10px;
   }
+
+@media (max-width: 1366px)
+ .slogan {
+      font-size: .6rem;
+}
 }
