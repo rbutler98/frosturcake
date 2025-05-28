@@ -30,7 +30,7 @@ html {
       font-family: 'Pacifico', cursive;
       color: #ae88ff;
       text-align: center;
-      font-size: .64rem;
+      font-size: .58rem;
       margin: 40px auto;
       max-width: 800px;
       line-height: 1.6;
@@ -44,7 +44,7 @@ html {
       justify-content: space-between;
       align-items: center;
       height: 240px;
-      background: linear-gradient(to bottom, #8c52ff 20%, #ffffff 95%);
+      background-color: #8c52ff; /* linear-gradient(to bottom, #8c52ff 20%, #ffffff 95%); */
       position: relative;
       padding: 0 20px;
     }
