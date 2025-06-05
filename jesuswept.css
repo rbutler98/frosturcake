@@ -45,7 +45,7 @@ html {
       align-items: center;
       height: 240px;
       /* background-color: #8c52ff; */
-      background-color: (to bottom, #8c52ff 20%, #ffffff 95%);
+      background-color: linear-gradient(to bottom, #8c52ff 20%, #ffffff 95%);
       position: relative;
       padding: 0 20px;
     }
@@ -85,8 +85,8 @@ html {
     }
 
     .slogan {
-      font-size: 10.625rem;
-      font-family: 'Courgette';
+      font-size: 3.625rem;
+      font-family: 'Great Vibes' cursive;
       text-align: right;
       color: white;
       -webkit-text-stroke: 1.2px transparent;
@@ -337,7 +337,7 @@ html {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 40px;
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
             border-top: 4px solid white;
         }
