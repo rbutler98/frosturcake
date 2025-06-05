@@ -27,7 +27,7 @@ html {
     }
 
     .handwritten-message {
-      font-family: 'Pacifico', cursive;
+      font-family: 'Caveat';
       color: #ae88ff;
       text-align: center;
       font-size: 16px;
@@ -72,7 +72,7 @@ html {
       font-size: 1rem;
       border-radius: 8px;
       cursor: pointer;
-      font-family: 'Pacifico', cursive;
+      font-family: 'Zilla Slab';
       transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
@@ -85,14 +85,16 @@ html {
 
     .slogan {
       font-size: 3.625rem;
-      font-family: 'Great Vibes', cursive;
+      font-family: 'Courgette';
       text-align: right;
       color: white;
       -webkit-text-stroke: 1.2px transparent;
       background: linear-gradient(to top, #8c52ff, #ffffff);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: white;
       -webkit-mask-image: linear-gradient(to top, #d6b0e9, #ffffff);
+      mask-image: linear-gradient(to top, #d6b0e9, #ffffff);
       text-shadow: 0 0 2px #b38ac8;
     }
 
@@ -283,6 +285,7 @@ html {
     height: auto;
     padding: 20px;
   }
+}
 
   .logo {
     position: static;
@@ -304,8 +307,20 @@ html {
     margin-bottom: 10px;
   }
 
-@media (max-width: 1366px)
+@media (max-width: 1366px) {
  .slogan {
       font-size: .6rem;
 }
+}
+
+.metalinks-left {
+  text-align: left;
+}
+
+.metalinks-right {
+  text-align: right;
+}
+
+.metalinks {
+  background-color: #ffffff;
 }
