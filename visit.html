@@ -197,6 +197,92 @@
         flex: unset;
     }
     }
+
+    .footer {
+            background-color: #6a4c93;
+            color: white;
+            padding: 50px 20px 30px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-logo img {
+            max-width: 150px;
+            height: auto;
+            background-color: #8b5cf6;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-links h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+            border-bottom: 2px solid white;
+            padding-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #f3f4f6;
+            text-decoration: none;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            padding-left: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            border-left-color: white;
+            padding-left: 15px;
+        }
+        
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-contact h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+            border-bottom: 2px solid white;
+            padding-bottom: 8px;
+        }
+        
+        .contact-info {
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+        
+        .contact-info .address {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info .phone {
+            font-weight: bold;
+            color: #f3f4f6;
+        }
   </style>
 </head>
 
@@ -205,15 +291,12 @@
   <div class="banner">
     <div class="banner-buttons">
       <a href="index.html">Home</a>
-      <a href="visit.html">Visit Us</a>
       <a href="index.html#parties">Parties</a>
+      <a href="istudio.html">The Studio</a>
+      <a href="visit.html">Visit Us</a>
     </div>
     <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
     <div class="slogan">Create. Decorate. Celebrate.</div>
-  </div>
-
-  <div class="handwritten-message fade-in-top">
-    A unique DIY cookie, cake, and cupcake decorating studio. We’re not a bakery, we’re a creative experience.
   </div>
 
   <!-- Visit Us Section -->
@@ -237,5 +320,36 @@
   </iframe>
 </div>
 </body>
+
+<!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img class="fyc" src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png">
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#parties">Parties</a>
+                <a href="visit.html">Visit Us</a>
+                <a href="studio.html">The Studio</a>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <div class="contact-info">
+                    <div class="address">
+                        1008 E Oak St, Suite 105<br>
+                        Conway, AR 72032
+                    </div>
+                    <div class="phone">
+                        Phone: (501) 555-5555
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </html>

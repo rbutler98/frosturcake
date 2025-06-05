@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon - Sweet Dreams Bakery</title>
+    <title>The Studio</title>
     <style>
+        /* ==========================================================================
+           Reset & Base Styles
+           ========================================================================== */
         * {
             margin: 0;
             padding: 0;
@@ -17,9 +20,69 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            line-height: 1.6;
         }
         
-        /* Coming Soon Banner */
+        /* ==========================================================================
+           Animations
+           ========================================================================== */
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        /* ==========================================================================
+           Navigation Buttons
+           ========================================================================== */
+        .nav-buttons {
+            position: absolute;
+            left: 30px;
+            top: 15%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 10;
+            animation: slideInLeft 1s ease-out 0.5s both;
+        }
+        
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #6a4c93;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            min-width: 120px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn:hover {
+            background: white;
+            color: #6a4c93;
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* ==========================================================================
+           Coming Soon Banner
+           ========================================================================== */
+
         .coming-soon-banner {
             background: linear-gradient(135deg, #6a4c93 0%, #8b5cf6 100%);
             color: white;
@@ -40,16 +103,12 @@
             animation: sparkle 3s ease-in-out infinite;
         }
         
-        @keyframes sparkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-        
         .banner-content {
             position: relative;
             z-index: 2;
             max-width: 800px;
             margin: 0 auto;
+            animation: fadeIn 1s ease-out;
         }
         
         .bakery-icon {
@@ -65,6 +124,14 @@
             font-weight: bold;
         }
         
+        .fyc {
+            display: block;
+            margin: 0 auto;
+            height: 3.5rem;
+            width: auto;
+            margin-bottom: 15px;
+        }
+        
         .coming-soon-banner h2 {
             font-size: 1.8rem;
             margin-bottom: 25px;
@@ -74,20 +141,23 @@
         
         .coming-soon-banner p {
             font-size: 1.2rem;
-            line-height: 1.6;
             opacity: 0.9;
             max-width: 600px;
             margin: 0 auto;
         }
         
-        /* Image Slideshow */
+        /* ==========================================================================
+           Image Slideshow
+           ========================================================================== */
         .slideshow-container {
             flex: 1;
             position: relative;
             width: 100%;
-            height: 70vh;
+            height: auto;
+            min-height: 70vh;
             overflow: hidden;
             box-shadow: inset 0 0 50px rgba(106, 76, 147, 0.1);
+            margin: 5px 0;
         }
         
         .slide {
@@ -95,7 +165,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 0;
+            padding-bottom: 78.75%; /* 30% smaller than original 112.5% (16:9 aspect ratio) */
             opacity: 0;
             transition: opacity 2s ease-in-out;
             background-size: cover;
@@ -107,7 +178,6 @@
             opacity: 1;
         }
         
-        /* Slideshow overlay text */
         .slide-overlay {
             position: absolute;
             bottom: 30px;
@@ -117,11 +187,13 @@
             padding: 20px 30px;
             border-radius: 10px;
             backdrop-filter: blur(10px);
+            max-width: 300px;
         }
         
         .slide-overlay h3 {
             font-size: 1.5rem;
             margin-bottom: 8px;
+            font-weight: bold;
         }
         
         .slide-overlay p {
@@ -129,7 +201,6 @@
             opacity: 0.9;
         }
         
-        /* Slideshow indicators */
         .slideshow-indicators {
             position: absolute;
             bottom: 20px;
@@ -145,6 +216,11 @@
             background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
         }
         
         .indicator.active {
@@ -152,27 +228,30 @@
             transform: scale(1.2);
         }
         
-        /* Footer - using your existing styles with white background adjustment */
-        .metaLinks {
+        /* ==========================================================================
+           Footer
+           ========================================================================== */
+        .footer {
             background-color: #6a4c93;
             color: white;
             padding: 50px 20px 30px;
             margin-top: auto;
+        }
+        
+        .footer-content {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
-            border-top: 4px solid white;
-            width: 100%;
         }
         
-        .metaLogo {
+        .footer-logo {
             display: flex;
             align-items: flex-start;
         }
         
-        .metaLogo img {
+        .footer-logo img {
             max-width: 150px;
             height: auto;
             background-color: #8b5cf6;
@@ -180,12 +259,12 @@
             border-radius: 5px;
         }
         
-        .metalinks-left {
+        .footer-links {
             display: flex;
             flex-direction: column;
         }
         
-        .metalinks-left p {
+        .footer-links h3 {
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 20px;
@@ -194,7 +273,7 @@
             padding-bottom: 8px;
         }
         
-        .metalinks-left a {
+        .footer-links a {
             color: #f3f4f6;
             text-decoration: none;
             margin-bottom: 12px;
@@ -204,170 +283,323 @@
             padding-left: 10px;
         }
         
-        .metalinks-left a:hover {
+        .footer-links a:hover {
             color: white;
             border-left-color: white;
             padding-left: 15px;
         }
         
-        .metalinks-right {
+        .footer-contact {
             display: flex;
             flex-direction: column;
         }
         
-        .metalinks-right p {
-            line-height: 1.8;
-            color: #bdc3c7;
-            font-size: 14px;
-            white-space: pre-line;
+        .footer-contact h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+            border-bottom: 2px solid white;
+            padding-bottom: 8px;
         }
         
-        /* Responsive design */
+        .contact-info {
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+        
+        .contact-info .address {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info .phone {
+            font-weight: bold;
+            color: #f3f4f6;
+        }
+        
+        /* ==========================================================================
+           Media Queries
+           ========================================================================== */
         @media (max-width: 768px) {
+            .nav-buttons {
+                left: 15px;
+                gap: 10px;
+            }
+            
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 12px;
+                min-width: 100px;
+            }
+            
+            .coming-soon-banner {
+                padding: 40px 20px;
+            }
+            
             .coming-soon-banner h1 {
                 font-size: 2.5rem;
             }
             
+            .fyc {
+                height: 2.5rem;
+            }
+            
             .coming-soon-banner h2 {
                 font-size: 1.4rem;
+                letter-spacing: 1px;
+            }
+            
+            .bakery-icon {
+                font-size: 3rem;
             }
             
             .slideshow-container {
-                height: 50vh;
+                min-height: 56vh;
             }
             
             .slide-overlay {
                 bottom: 15px;
                 left: 15px;
                 padding: 15px 20px;
+                max-width: 250px;
             }
             
-            .metaLinks {
+            .slide-overlay h3 {
+                font-size: 1.3rem;
+            }
+            
+            .slideshow-indicators {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .footer-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
                 text-align: center;
-                padding: 30px 20px;
+                padding: 0;
             }
             
-            .metaLogo {
+            .footer-logo {
                 justify-content: center;
             }
             
-            .metalinks-left a {
+            .footer-links a {
                 border-left: none;
                 border-bottom: 2px solid transparent;
                 padding-left: 0;
             }
             
-            .metalinks-left a:hover {
+            .footer-links a:hover {
                 border-left: none;
                 border-bottom-color: white;
                 padding-left: 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-buttons {
+                left: 10px;
+                gap: 8px;
+            }
+            
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 11px;
+                min-width: 80px;
+            }
+            
+            .coming-soon-banner h1 {
+                font-size: 2rem;
+            }
+            
+            .fyc {
+                height: 2rem;
+            }
+            
+            .coming-soon-banner h2 {
+                font-size: 1.2rem;
+            }
+            
+            .slide-overlay {
+                left: 10px;
+                bottom: 10px;
+                padding: 10px 15px;
+                max-width: 200px;
+            }
+            
+            .slideshow-indicators {
+                right: 10px;
+                bottom: 10px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Coming Soon Banner -->
-    <div class="coming-soon-banner">
-        <div class="banner-content">
-            <span class="bakery-icon">🥖</span>
-            <h1>Coming Soon</h1>
-            <h2>Sweet Dreams Bakery</h2>
-            <p>We're putting the finishing touches on something special! Our artisan bakery will soon be serving fresh-baked goods, pastries, and treats made with love. Stay tuned for our grand opening!</p>
+    <header class="coming-soon-banner">
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="index.html#parties" class="nav-btn">Parties</a>
+            <a href="studio.html" class="nav-btn">The Studio</a>
+            <a href="visit.html" class="nav-btn">Visit Us</a>
         </div>
-    </div>
+        
+        <div class="banner-content">
+            <h1>Coming Soon</h1>
+            <img class="fyc" src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png">
+            <p>Your creative baking journey starts here. Get ready for an amazing DIY cake decorating experience!</p>
+        </div>
+    </header>
     
     <!-- Image Slideshow -->
-    <div class="slideshow-container">
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');">
+    <main class="slideshow-container" role="region" aria-label="Image slideshow">
+        <div class="slide active" style="background-image: url('https://i.ibb.co/zhNqgmmJ/Img-1.jpg')" role="img" aria-label="DIY Studio">
             <div class="slide-overlay">
-                <h3>Artisan Breads</h3>
-                <p>Fresh-baked daily with traditional techniques</p>
+                <h3>DIY Studio</h3>
+                <p>Cupcakes, Cakes, and Cookies Galore</p>
             </div>
         </div>
         
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2089&q=80');">
+        <div class="slide" style="background-image: url('https://i.ibb.co/zH5DMBfP/Img-2.jpg')" role="img" aria-label="Beginner Friendly">
             <div class="slide-overlay">
-                <h3>Decadent Desserts</h3>
-                <p>Handcrafted cakes and pastries</p>
+                <h3>Beginner Friendly</h3>
+                <p>Doesn't Matter if You're New or Experienced</p>
             </div>
         </div>
         
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1586985289906-406988974504?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <div class="slide" style="background-image: url('https://i.ibb.co/0RqcZfPc/Img-3.jpg')" role="img" aria-label="Coming Soon">
             <div class="slide-overlay">
-                <h3>Morning Delights</h3>
-                <p>Perfect pastries to start your day</p>
+                <h3>Opening Soon</h3>
+                <p>We Can't Wait to Welcome You</p>
             </div>
         </div>
         
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <div class="slide" style="background-image: url('https://i.ibb.co/0VMQYgpV/Img-4.jpg')" role="img" aria-label="Walk Ins Welcome">
             <div class="slide-overlay">
-                <h3>Specialty Treats</h3>
-                <p>Unique creations made with passion</p>
+                <h3>Walk-Ins Welcome</h3>
+                <p>No Reservation Needed</p>
+            </div>
+        </div>
+
+        <div class="slide" style="background-image: url('https://i.ibb.co/dsxjTXFS/Img-5.jpg')" role="img" aria-label="Events">
+            <div class="slide-overlay">
+                <h3>Special Events</h3>
+                <p>We're Planning Amazing Events for You</p>
             </div>
         </div>
         
         <!-- Slideshow Indicators -->
-        <div class="slideshow-indicators">
-            <div class="indicator active" onclick="currentSlide(1)"></div>
-            <div class="indicator" onclick="currentSlide(2)"></div>
-            <div class="indicator" onclick="currentSlide(3)"></div>
-            <div class="indicator" onclick="currentSlide(4)"></div>
+        <div class="slideshow-indicators" role="tablist" aria-label="Slideshow navigation">
+            <button class="indicator active" onclick="currentSlide(1)" role="tab" aria-label="Go to slide 1"></button>
+            <button class="indicator" onclick="currentSlide(2)" role="tab" aria-label="Go to slide 2"></button>
+            <button class="indicator" onclick="currentSlide(3)" role="tab" aria-label="Go to slide 3"></button>
+            <button class="indicator" onclick="currentSlide(4)" role="tab" aria-label="Go to slide 4"></button>
+            <button class="indicator" onclick="currentSlide(5)" role="tab" aria-label="Go to slide 5"></button>
         </div>
-    </div>
+    </main>
     
     <!-- Footer -->
-    <div class="metaLinks">
-        <div class="metaLogo">
-            <img src="https://via.placeholder.com/150x80/8b5cf6/ffffff?text=Your+Logo" alt="meta Logo">
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img class="fyc" src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png">
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#parties">Parties</a>
+                <a href="visit.html">Visit Us</a>
+                <a href="studio.html">The Studio</a>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <div class="contact-info">
+                    <div class="address">
+                        1008 E Oak St, Suite 105<br>
+                        Conway, AR 72032
+                    </div>
+                    <div class="phone">
+                        Phone: (501) 555-5555
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="metalinks-left">
-            <p>Quick Links</p>
-            <a href="index.html">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#parties">Parties</a>
-            <a href="visit.html">Visit Us</a>
-        </div>
-        <div class="metalinks-right">
-            <p>1008 E Oak St,
-Suite 105
-Conway, AR 72032
---------------------------------
-Phone: (501) 555-5555</p>
-        </div>
-    </div>
+    </footer>
     
     <script>
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const indicators = document.querySelectorAll('.indicator');
-        
-        function showSlide(index) {
-            // Remove active class from all slides and indicators
-            slides.forEach(slide => slide.classList.remove('active'));
-            indicators.forEach(indicator => indicator.classList.remove('active'));
+        class Slideshow {
+            constructor() {
+                this.currentSlideIndex = 0;
+                this.slides = document.querySelectorAll('.slide');
+                this.indicators = document.querySelectorAll('.indicator');
+                this.autoAdvanceInterval = null;
+                
+                this.init();
+            }
             
-            // Add active class to current slide and indicator
-            slides[index].classList.add('active');
-            indicators[index].classList.add('active');
+            init() {
+                this.showSlide(0);
+                this.startAutoAdvance();
+                
+                // Pause auto-advance when user hovers over slideshow
+                const container = document.querySelector('.slideshow-container');
+                container.addEventListener('mouseenter', () => this.stopAutoAdvance());
+                container.addEventListener('mouseleave', () => this.startAutoAdvance());
+            }
+            
+            showSlide(index) {
+                // Remove active class from all slides and indicators
+                this.slides.forEach(slide => slide.classList.remove('active'));
+                this.indicators.forEach(indicator => indicator.classList.remove('active'));
+                
+                // Add active class to current slide and indicator
+                this.slides[index].classList.add('active');
+                this.indicators[index].classList.add('active');
+                
+                this.currentSlideIndex = index;
+            }
+            
+            nextSlide() {
+                const nextIndex = (this.currentSlideIndex + 1) % this.slides.length;
+                this.showSlide(nextIndex);
+            }
+            
+            goToSlide(slideNumber) {
+                const index = slideNumber - 1;
+                if (index >= 0 && index < this.slides.length) {
+                    this.showSlide(index);
+                }
+            }
+            
+            startAutoAdvance() {
+                this.stopAutoAdvance(); // Clear any existing interval
+                this.autoAdvanceInterval = setInterval(() => this.nextSlide(), 5000);
+            }
+            
+            stopAutoAdvance() {
+                if (this.autoAdvanceInterval) {
+                    clearInterval(this.autoAdvanceInterval);
+                    this.autoAdvanceInterval = null;
+                }
+            }
         }
         
-        function nextSlide() {
-            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-            showSlide(currentSlideIndex);
+        // Initialize slideshow when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            window.slideshow = new Slideshow();
+        });
+        
+        // Global function for indicator clicks (keeping for backward compatibility)
+        function currentSlide(slideNumber) {
+            if (window.slideshow) {
+                window.slideshow.goToSlide(slideNumber);
+            }
         }
-        
-        function currentSlide(index) {
-            currentSlideIndex = index - 1;
-            showSlide(currentSlideIndex);
-        }
-        
-        // Auto-advance slides every 10 seconds
-        setInterval(nextSlide, 10000);
-        
-        // Initialize first slide
-        showSlide(0);
     </script>
 </body>
 </html>
