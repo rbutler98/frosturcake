@@ -44,7 +44,8 @@ html {
       justify-content: space-between;
       align-items: center;
       height: 240px;
-      background-color: #8c52ff; /* linear-gradient(to bottom, #8c52ff 20%, #ffffff 95%); */
+      /* background-color: #8c52ff; */
+      background-color: (to bottom, #8c52ff 20%, #ffffff 95%);
       position: relative;
       padding: 0 20px;
     }
@@ -84,7 +85,7 @@ html {
     }
 
     .slogan {
-      font-size: 3.625rem;
+      font-size: 10.625rem;
       font-family: 'Courgette';
       text-align: right;
       color: white;
@@ -313,14 +314,133 @@ html {
 }
 }
 
-.metalinks-left {
-  text-align: left;
-}
-
-.metalinks-right {
-  text-align: right;
-}
-
-.metalinks {
-  background-color: #ffffff;
-}
+/* Basic reset and body styling for demo */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        /* Main footer styling */
+        .metaLinks {
+            background-color: #6a4c93;
+            color: white;
+            padding: 50px 20px 30px;
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 4px solid white;
+        }
+        
+        /* Logo section */
+        .metaLogo {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .metaLogo img {
+            max-width: 150px;
+            height: auto;
+            background-color: #8b5cf6;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        /* Quick Links section */
+        .metalinks-left {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metalinks-left p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+            border-bottom: 2px solid white;
+            padding-bottom: 8px;
+        }
+        
+        .metalinks-left a {
+            color: #f3f4f6;
+            text-decoration: none;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            padding-left: 10px;
+        }
+        
+        .metalinks-left a:hover {
+            color: white;
+            border-left-color: white;
+            padding-left: 15px;
+        }
+        
+        /* Contact info section */
+        .metalinks-right {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metalinks-right p {
+            line-height: 1.8;
+            color: #bdc3c7;
+            font-size: 14px;
+            white-space: pre-line;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .metaLinks {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            
+            .metaLogo {
+                justify-content: center;
+            }
+            
+            .metalinks-left a {
+                border-left: none;
+                border-bottom: 2px solid transparent;
+                padding-left: 0;
+            }
+            
+            .metalinks-left a:hover {
+                border-left: none;
+                border-bottom-color: white;
+                padding-left: 0;
+            }
+        }
+        
+        /* Alternative styling options - uncomment to try different looks */
+        
+        /* Dark theme alternative 
+        .metaLinks {
+            background-color: #1a1a1a;
+            border-top-color: #e74c3c;
+        }
+        
+        .metalinks-left p {
+            color: #e74c3c;
+            border-bottom-color: #e74c3c;
+        }
+        
+        .metalinks-left a:hover {
+            color: #e74c3c;
+            border-left-color: #e74c3c;
+        }
+        */

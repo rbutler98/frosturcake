@@ -1,12 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-
-    </head>
-    <body>
-
-    </body>
-    <footer>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Sweet Dreams Bakery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-    </footer>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Coming Soon Banner */
+        .coming-soon-banner {
+            background: linear-gradient(135deg, #6a4c93 0%, #8b5cf6 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .coming-soon-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="60" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: sparkle 3s ease-in-out infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .bakery-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .coming-soon-banner h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: bold;
+        }
+        
+        .coming-soon-banner h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .coming-soon-banner p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Image Slideshow */
+        .slideshow-container {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            overflow: hidden;
+            box-shadow: inset 0 0 50px rgba(106, 76, 147, 0.1);
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        /* Slideshow overlay text */
+        .slide-overlay {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(106, 76, 147, 0.9);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .slide-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .slide-overlay p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Slideshow indicators */
+        .slideshow-indicators {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        /* Footer - using your existing styles with white background adjustment */
+        .metaLinks {
+            background-color: #6a4c93;
+            color: white;
+            padding: 50px 20px 30px;
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 4px solid white;
+            width: 100%;
+        }
+        
+        .metaLogo {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .metaLogo img {
+            max-width: 150px;
+            height: auto;
+            background-color: #8b5cf6;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .metalinks-left {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metalinks-left p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+            border-bottom: 2px solid white;
+            padding-bottom: 8px;
+        }
+        
+        .metalinks-left a {
+            color: #f3f4f6;
+            text-decoration: none;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            padding-left: 10px;
+        }
+        
+        .metalinks-left a:hover {
+            color: white;
+            border-left-color: white;
+            padding-left: 15px;
+        }
+        
+        .metalinks-right {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metalinks-right p {
+            line-height: 1.8;
+            color: #bdc3c7;
+            font-size: 14px;
+            white-space: pre-line;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .coming-soon-banner h1 {
+                font-size: 2.5rem;
+            }
+            
+            .coming-soon-banner h2 {
+                font-size: 1.4rem;
+            }
+            
+            .slideshow-container {
+                height: 50vh;
+            }
+            
+            .slide-overlay {
+                bottom: 15px;
+                left: 15px;
+                padding: 15px 20px;
+            }
+            
+            .metaLinks {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            
+            .metaLogo {
+                justify-content: center;
+            }
+            
+            .metalinks-left a {
+                border-left: none;
+                border-bottom: 2px solid transparent;
+                padding-left: 0;
+            }
+            
+            .metalinks-left a:hover {
+                border-left: none;
+                border-bottom-color: white;
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Coming Soon Banner -->
+    <div class="coming-soon-banner">
+        <div class="banner-content">
+            <span class="bakery-icon">🥖</span>
+            <h1>Coming Soon</h1>
+            <h2>Sweet Dreams Bakery</h2>
+            <p>We're putting the finishing touches on something special! Our artisan bakery will soon be serving fresh-baked goods, pastries, and treats made with love. Stay tuned for our grand opening!</p>
+        </div>
+    </div>
+    
+    <!-- Image Slideshow -->
+    <div class="slideshow-container">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');">
+            <div class="slide-overlay">
+                <h3>Artisan Breads</h3>
+                <p>Fresh-baked daily with traditional techniques</p>
+            </div>
+        </div>
+        
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2089&q=80');">
+            <div class="slide-overlay">
+                <h3>Decadent Desserts</h3>
+                <p>Handcrafted cakes and pastries</p>
+            </div>
+        </div>
+        
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1586985289906-406988974504?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+            <div class="slide-overlay">
+                <h3>Morning Delights</h3>
+                <p>Perfect pastries to start your day</p>
+            </div>
+        </div>
+        
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+            <div class="slide-overlay">
+                <h3>Specialty Treats</h3>
+                <p>Unique creations made with passion</p>
+            </div>
+        </div>
+        
+        <!-- Slideshow Indicators -->
+        <div class="slideshow-indicators">
+            <div class="indicator active" onclick="currentSlide(1)"></div>
+            <div class="indicator" onclick="currentSlide(2)"></div>
+            <div class="indicator" onclick="currentSlide(3)"></div>
+            <div class="indicator" onclick="currentSlide(4)"></div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="metaLinks">
+        <div class="metaLogo">
+            <img src="https://via.placeholder.com/150x80/8b5cf6/ffffff?text=Your+Logo" alt="meta Logo">
+        </div>
+        <div class="metalinks-left">
+            <p>Quick Links</p>
+            <a href="index.html">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#parties">Parties</a>
+            <a href="visit.html">Visit Us</a>
+        </div>
+        <div class="metalinks-right">
+            <p>1008 E Oak St,
+Suite 105
+Conway, AR 72032
+--------------------------------
+Phone: (501) 555-5555</p>
+        </div>
+    </div>
+    
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        
+        function showSlide(index) {
+            // Remove active class from all slides and indicators
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            // Add active class to current slide and indicator
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+        }
+        
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            showSlide(currentSlideIndex);
+        }
+        
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+        
+        // Auto-advance slides every 10 seconds
+        setInterval(nextSlide, 10000);
+        
+        // Initialize first slide
+        showSlide(0);
+    </script>
+</body>
 </html>
