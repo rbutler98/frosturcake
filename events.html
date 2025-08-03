@@ -7,6 +7,7 @@
     
     <!-- Google Calendar API -->
     <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
     
     <style>
         /* Basic styles optimized for 1920x1080 */
@@ -633,12 +634,6 @@
             <p>View our upcoming cake decorating classes, workshops, and special events</p>
         </div>
 
-        <!-- Visitor Notice (shown to non-admin users) -->
-        <div id="visitor-notice" class="visitor-notice">
-            <h3>🎂 Welcome to Our Events Calendar!</h3>
-            <p>Browse our upcoming cake decorating classes and studio events. Contact us to book your spot!</p>
-        </div>
-
         <!-- Admin Section (only visible to authorized admin) -->
         <div id="admin-section" class="admin-section">
             <div class="admin-header">
@@ -646,8 +641,8 @@
                 <span class="admin-badge">Event Manager</span>
             </div>
             <div id="admin-status-message" class="status-message status-info" style="display: none;"></div>
-            <button id="authorize-button" class="btn" style="display: none;">Connect Admin Account</button>
-            <button id="signout-button" class="btn btn-secondary" style="display: none;">Sign Out</button>
+            <button id="authorize-button" class="btn" onclick="handleAuthClick()">Connect Admin Account</button>
+            <button id="signout-button" class="btn btn-secondary" onclick="handleSignoutClick()" style="display: none;">Sign Out</button>
         </div>
 
         <!-- Event Management (only visible to admin) -->
@@ -655,7 +650,7 @@
             <!-- Event Form -->
             <div class="event-form">
                 <h3>Add New Event</h3>
-                <form id="event-form">
+                <form id="event-form" onsubmit="addEvent(event)">
                     <div class="form-group">
                         <label for="event-title">Event Title:</label>
                         <input type="text" id="event-title" required placeholder="e.g., Beginner Cake Decorating Class">
@@ -707,37 +702,13 @@
             <h3>Upcoming Classes & Events</h3>
             <div id="calendar-embed">
                 <!-- Public calendar embed or placeholder -->
-                <div id="public-calendar-placeholder" style="height: 400px; border: 2px dashed #ddd; display: flex; align-items: center; justify-content: center; color: #666; border-radius: 10px; background: #f9f9f9;">
-                    Loading events calendar...
-                </div>
+                <iframe src="https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=America%2FChicago&src=ryancbutler98%40gmail.com&color=%23039BE5&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=AGENDA" 
+                        style="border: 0; width: 100%; height: 400px; border-radius: 10px;" 
+                        frameborder="0" 
+                        scrolling="no">
+                </iframe>
             </div>
         </div>
-
-        <!-- Events List -->
-        <div class="events-list">
-            <h3>Upcoming Events</h3>
-            <div id="events-container">
-                <div class="event-item">
-                    <div class="event-title">Beginner Cake Decorating Workshop</div>
-                    <div class="event-details">
-                        <strong>Date:</strong> Coming Soon<br>
-                        <strong>Time:</strong> 2:00 PM - 4:00 PM<br>
-                        <strong>Description:</strong> Learn the basics of cake decorating with buttercream flowers and piping techniques<br>
-                        <strong>Location:</strong> Frost Your Cake Studios
-                    </div>
-                </div>
-                <div class="event-item">
-                    <div class="event-title">Advanced Fondant Techniques</div>
-                    <div class="event-details">
-                        <strong>Date:</strong> Coming Soon<br>
-                        <strong>Time:</strong> 6:00 PM - 8:00 PM<br>
-                        <strong>Description:</strong> Master advanced fondant work including figure modeling and texture techniques<br>
-                        <strong>Location:</strong> Frost Your Cake Studios
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <footer>
         <div class="footervisit">
@@ -787,37 +758,111 @@
         let gis_inited = false;
         let isAdmin = false;
 
-        // Initialize Google APIs
-        function gapiLoaded() {
-            gapi.load('client', initializeGapiClient);
+        // Show admin message
+        function showAdminMessage(message, type) {
+            const messageDiv = document.getElementById('admin-status-message');
+            messageDiv.textContent = message;
+            messageDiv.className = `status-message status-${type}`;
+            messageDiv.style.display = 'block';
+            
+            // Hide message after 5 seconds for non-error messages
+            if (type !== 'error') {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
         }
 
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            console.log('Page loaded, initializing...');
+            // Load Google APIs
+            if (typeof gapi !== 'undefined') {
+                gapi.load('client', initializeGapiClient);
+            } else {
+                console.error('Google API library not loaded');
+                document.getElementById('events-container').innerHTML = `
+                    <div class="event-item">
+                        <div class="event-title">Calendar Unavailable</div>
+                        <div class="event-details">
+                            <strong>Unable to load Google Calendar integration.</strong><br>
+                            Please contact us at (501) 555-5555 for event information.
+                        </div>
+                    </div>
+                `;
+            }
+            
+            if (typeof google !== 'undefined' && google.accounts) {
+                gisLoaded();
+            } else {
+                console.error('Google Identity Services not loaded');
+            }
+        });
+
+        // Initialize Google APIs
         async function initializeGapiClient() {
-            await gapi.client.init({
-                apiKey: API_KEY,
-                discoveryDocs: [DISCOVERY_DOC],
-            });
-            gapi_inited = true;
-            maybeEnableButtons();
+            try {
+                await gapi.client.init({
+                    apiKey: API_KEY,
+                    discoveryDocs: [DISCOVERY_DOC],
+                });
+                gapi_inited = true;
+                console.log('GAPI initialized');
+                maybeEnableButtons();
+            } catch (error) {
+                console.error('Error initializing GAPI:', error);
+                showFallbackContent();
+            }
         }
 
         function gisLoaded() {
-            tokenClient = google.accounts.oauth2.initTokenClient({
-                client_id: CLIENT_ID,
-                scope: SCOPES,
-                callback: '', // defined later
-            });
-            gis_inited = true;
-            maybeEnableButtons();
+            try {
+                tokenClient = google.accounts.oauth2.initTokenClient({
+                    client_id: CLIENT_ID,
+                    scope: SCOPES,
+                    callback: '', // defined later
+                });
+                gis_inited = true;
+                console.log('GIS initialized');
+                maybeEnableButtons();
+            } catch (error) {
+                console.error('Error initializing GIS:', error);
+            }
         }
 
         function maybeEnableButtons() {
             if (gapi_inited && gis_inited) {
-                document.getElementById('authorize-button').style.display = 'inline-block';
-                showAdminMessage('Admin login available', 'info');
+                document.getElementById('admin-section').classList.add('visible');
+                showAdminMessage('Admin login ready', 'info');
                 // Load public events immediately when APIs are ready
                 setTimeout(loadPublicEvents, 500);
+            } else if (gapi_inited) {
+                // At least load public events if GAPI is working
+                setTimeout(loadPublicEvents, 500);
             }
+        }
+
+        function showFallbackContent() {
+            document.getElementById('events-container').innerHTML = `
+                <div class="event-item">
+                    <div class="event-title">Beginner Cake Decorating Workshop</div>
+                    <div class="event-details">
+                        <strong>Date:</strong> Contact us for schedule<br>
+                        <strong>Time:</strong> 2:00 PM - 4:00 PM<br>
+                        <strong>Description:</strong> Learn the basics of cake decorating with buttercream flowers and piping techniques<br>
+                        <strong>Location:</strong> Frost Your Cake Studios
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-title">Advanced Fondant Techniques</div>
+                    <div class="event-details">
+                        <strong>Date:</strong> Contact us for schedule<br>
+                        <strong>Time:</strong> 6:00 PM - 8:00 PM<br>
+                        <strong>Description:</strong> Master advanced fondant work including figure modeling and texture techniques<br>
+                        <strong>Location:</strong> Frost Your Cake Studios
+                    </div>
+                </div>
+            `;
         }
 
         async function checkAdminStatus() {
@@ -834,216 +879,3 @@
                     showAdminInterface();
                     showAdminMessage(`Welcome Admin! Signed in as ${userEmail}`, 'success');
                     await loadEvents();
-                } else {
-                    showAdminMessage(`Access denied. Admin access required. (Signed in as ${userEmail})`, 'error');
-                    handleSignoutClick();
-                }
-            } catch (error) {
-                showAdminMessage('Error checking admin status: ' + error.message, 'error');
-            }
-        }
-
-        function showAdminInterface() {
-            document.getElementById('admin-section').classList.add('visible');
-            document.getElementById('event-management').style.display = 'grid';
-            document.getElementById('visitor-notice').style.display = 'none';
-            document.getElementById('signout-button').style.display = 'inline-block';
-            document.getElementById('authorize-button').style.display = 'none';
-        }
-
-        function hideAdminInterface() {
-            document.getElementById('admin-section').classList.remove('visible');
-            document.getElementById('event-management').style.display = 'none';
-            document.getElementById('visitor-notice').style.display = 'block';
-            document.getElementById('signout-button').style.display = 'none';
-            document.getElementById('authorize-button').style.display = 'inline-block';
-        }
-
-        function handleAuthClick() {
-            tokenClient.callback = async (resp) => {
-                if (resp.error !== undefined) {
-                    throw (resp);
-                }
-                await checkAdminStatus();
-            };
-
-            if (gapi.client.getToken() === null) {
-                tokenClient.requestAccessToken({prompt: 'consent'});
-            } else {
-                tokenClient.requestAccessToken({prompt: ''});
-            }
-        }
-
-        function handleSignoutClick() {
-            const token = gapi.client.getToken();
-            if (token !== null) {
-                google.accounts.oauth2.revoke(token.access_token);
-                gapi.client.setToken('');
-                isAdmin = false;
-                hideAdminInterface();
-                showAdminMessage('Signed out successfully', 'info');
-                // Reload public events after signout
-                setTimeout(loadPublicEvents, 500);
-            }
-        }
-
-        // Load public events (visible to all visitors)
-        async function loadPublicEvents() {
-            try {
-                // Use your specific calendar ID
-                const request = {
-                    'calendarId': CALENDAR_ID,
-                    'timeMin': (new Date()).toISOString(),
-                    'showDeleted': false,
-                    'singleEvents': true,
-                    'maxResults': 10,
-                    'orderBy': 'startTime',
-                };
-
-                const response = await gapi.client.calendar.events.list(request);
-                const events = response.result.items;
-
-                if (!events || events.length === 0) {
-                    document.getElementById('events-container').innerHTML = `
-                        <div class="event-item">
-                            <div class="event-title">No upcoming events scheduled</div>
-                            <div class="event-details">
-                                <strong>Check back soon!</strong><br>
-                                We're always planning new cake decorating classes and workshops.<br>
-                                Contact us at (501) 555-5555 for more information about upcoming events.
-                            </div>
-                        </div>
-                    `;
-                    return;
-                }
-
-                // Display events from calendar
-                let eventsHtml = '';
-                events.forEach((event) => {
-                    const start = event.start.dateTime || event.start.date;
-                    const end = event.end.dateTime || event.end.date;
-                    const eventDate = new Date(start);
-                    const endDate = new Date(end);
-                    
-                    // Format date and time
-                    const dateOptions = { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                    };
-                    const timeOptions = { 
-                        hour: 'numeric', 
-                        minute: '2-digit',
-                        hour12: true 
-                    };
-                    
-                    const formattedDate = eventDate.toLocaleDateString('en-US', dateOptions);
-                    const startTime = event.start.dateTime ? eventDate.toLocaleTimeString('en-US', timeOptions) : 'All Day';
-                    const endTime = event.end.dateTime ? endDate.toLocaleTimeString('en-US', timeOptions) : '';
-                    
-                    const timeDisplay = startTime === 'All Day' ? 'All Day Event' : 
-                                       endTime ? `${startTime} - ${endTime}` : startTime;
-
-                    eventsHtml += `
-                        <div class="event-item">
-                            <div class="event-title">${event.summary || 'Untitled Event'}</div>
-                            <div class="event-details">
-                                <strong>Date:</strong> ${formattedDate}<br>
-                                <strong>Time:</strong> ${timeDisplay}<br>
-                                ${event.description ? '<strong>Description:</strong> ' + event.description + '<br>' : ''}
-                                ${event.location ? '<strong>Location:</strong> ' + event.location : '<strong>Location:</strong> Frost Your Cake Studios'}
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                document.getElementById('events-container').innerHTML = eventsHtml;
-                
-            } catch (err) {
-                console.log('Could not load public calendar events:', err);
-                // Fallback to placeholder content
-                document.getElementById('events-container').innerHTML = `
-                    <div class="event-item">
-                        <div class="event-title">Events Loading...</div>
-                        <div class="event-details">
-                            <strong>Please wait while we load upcoming events.</strong><br>
-                            If events don't appear, please contact us at (501) 555-5555 for the latest class schedule.
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        // Load events from Google Calendar (admin only)
-        async function loadEvents() {
-            if (!isAdmin) return;
-            
-            let response;
-            try {
-                const request = {
-                    'calendarId': CALENDAR_ID,
-                    'timeMin': (new Date()).toISOString(),
-                    'showDeleted': false,
-                    'singleEvents': true,
-                    'maxResults': 20,
-                    'orderBy': 'startTime',
-                };
-                response = await gapi.client.calendar.events.list(request);
-            } catch (err) {
-                showAdminMessage('Error loading events: ' + err.message, 'error');
-                return;
-            }
-
-            const events = response.result.items;
-            if (!events || events.length == 0) {
-                document.getElementById('events-container').innerHTML = '<p>No upcoming events found in admin calendar.</p>';
-                return;
-            }
-
-            // Display events for admin view
-            let eventsHtml = '';
-            events.forEach((event) => {
-                const start = event.start.dateTime || event.start.date;
-                const end = event.end.dateTime || event.end.date;
-                const eventDate = new Date(start);
-                const endDate = new Date(end);
-                
-                // Format date and time
-                const dateOptions = { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                };
-                const timeOptions = { 
-                    hour: 'numeric', 
-                    minute: '2-digit',
-                    hour12: true 
-                };
-                
-                const formattedDate = eventDate.toLocaleDateString('en-US', dateOptions);
-                const startTime = event.start.dateTime ? eventDate.toLocaleTimeString('en-US', timeOptions) : 'All Day';
-                const endTime = event.end.dateTime ? endDate.toLocaleTimeString('en-US', timeOptions) : '';
-                
-                const timeDisplay = startTime === 'All Day' ? 'All Day Event' : 
-                                   endTime ? `${startTime} - ${endTime}` : startTime;
-
-                eventsHtml += `
-                    <div class="event-item">
-                        <div class="event-title">${event.summary || 'No Title'} <span style="color: #8c52ff; font-size: 0.9rem;">(Admin View)</span></div>
-                        <div class="event-details">
-                            <strong>Date:</strong> ${formattedDate}<br>
-                            <strong>Time:</strong> ${timeDisplay}<br>
-                            ${event.description ? '<strong>Description:</strong> ' + event.description + '<br>' : ''}
-                            ${event.location ? '<strong>Location:</strong> ' + event.location : '<strong>Location:</strong> Frost Your Cake Studios'}<br>
-                            <strong>Event ID:</strong> <code style="font-size: 0.8rem; background: #f0f0f0; padding: 2px 4px; border-radius: 3px;">${event.id}</code>
-                        </div>
-                    </div>
-                `;
-            });
-            document.getElementById('events-container').innerHTML = eventsHtml;
-            
-            // Also refresh the public view
-            loadPublicEvents();
-        }
