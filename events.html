@@ -19,36 +19,31 @@
         }
 
         .banner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 280px;
-            background: linear-gradient(to bottom, #8c52ff 20%, #ffffff 95%);
-            position: relative;
-            padding: 0 60px;
-            box-shadow: 0 4px 15px rgba(140, 82, 255, 0.2);
+            background: linear-gradient(to bottom, #ffffff 0%, #f9f9ff 100%);
+            box-shadow: 0 4px 15px rgba(140, 82, 255, 0.1);
         }
 
-        .logo {
-            height: 140px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        .banner-nav {
+            background-color: #8c52ff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(140, 82, 255, 0.3);
         }
 
         .banner-buttons {
             display: flex;
-            gap: 15px;
+            justify-content: center;
+            gap: 20px;
             flex-wrap: wrap;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .banner-buttons a {
             background-color: white;
             color: #8557f3;
-            border: 2px solid #8c52ff;
-            padding: 15px 30px;
+            border: 2px solid white;
+            padding: 12px 25px;
             font-size: 1.1rem;
             border-radius: 10px;
             cursor: pointer;
@@ -57,24 +52,40 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 2px 8px rgba(140, 82, 255, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            text-align: center;
         }
 
         .banner-buttons a:hover {
-            background-color: #8557f3;
+            background-color: transparent;
             color: white;
+            border-color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(140, 82, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner-content {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .logo {
+            height: 140px;
+            max-width: 400px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            margin-bottom: 20px;
         }
 
         .slogan {
             font-size: 4.2rem;
             font-family: cursive;
-            text-align: right;
-            color: white;
-            text-shadow: 0 0 2px #b38ac8;
+            color: #8c52ff;
+            text-shadow: 0 2px 4px rgba(140, 82, 255, 0.2);
             font-weight: 300;
             letter-spacing: 2px;
+            margin: 0;
         }
 
         /* Main container optimized for 1920x1080 */
@@ -413,35 +424,34 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .banner {
-                flex-direction: column;
-                height: auto;
-                padding: 20px;
-                text-align: center;
+            .banner-nav {
+                padding: 12px 0;
+            }
+
+            .banner-buttons {
+                gap: 10px;
+                padding: 0 15px;
+            }
+
+            .banner-buttons a {
+                padding: 10px 18px;
+                font-size: 1rem;
+                min-width: 100px;
+            }
+
+            .banner-content {
+                padding: 40px 20px;
             }
 
             .logo {
-                position: static;
-                transform: none;
-                margin: 20px 0;
                 height: 100px;
+                max-width: 250px;
+                margin-bottom: 15px;
             }
 
             .slogan {
                 font-size: 2.5rem;
-                text-align: center;
-                margin: 20px 0;
                 letter-spacing: 1px;
-            }
-
-            .banner-buttons {
-                justify-content: center;
-                gap: 10px;
-            }
-
-            .banner-buttons a {
-                padding: 12px 20px;
-                font-size: 1rem;
             }
 
             .calendar-container {
@@ -535,21 +545,32 @@
 
         /* Extra small screens */
         @media (max-width: 480px) {
-            .banner {
-                padding: 15px;
+            .banner-nav {
+                padding: 10px 0;
             }
 
-            .slogan {
-                font-size: 2rem;
+            .banner-buttons {
+                gap: 8px;
+                padding: 0 10px;
+            }
+
+            .banner-buttons a {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+                min-width: 90px;
+            }
+
+            .banner-content {
+                padding: 30px 15px;
             }
 
             .logo {
                 height: 80px;
+                max-width: 200px;
             }
 
-            .banner-buttons a {
-                padding: 10px 16px;
-                font-size: 0.9rem;
+            .slogan {
+                font-size: 2rem;
             }
 
             .calendar-container {
@@ -587,14 +608,22 @@
 <body>
     <!-- Banner -->
     <div class="banner">
-        <div class="banner-buttons">
-            <a href="index.html">Home</a>
-            <a href="index.html#parties">Parties</a>
-            <a href="istudio.html">The Studio</a>
-            <a href="visit.html">Visit Us</a>
+        <!-- Navigation Bar with Purple Background -->
+        <div class="banner-nav">
+            <div class="banner-buttons">
+                <a href="index.html">Home</a>
+                <a href="index.html#parties">Parties</a>
+                <a href="events.html">Events</a>
+                <a href="studio.html">The Studio</a>
+                <a href="visit.html">Visit Us</a>
+            </div>
         </div>
-        <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
-        <div class="slogan">Create. Decorate. Celebrate.</div>
+        
+        <!-- Logo and Slogan Section -->
+        <div class="banner-content">
+            <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
+            <div class="slogan">Create. Decorate. Celebrate.</div>
+        </div>
     </div>
 
     <!-- Calendar Container -->
