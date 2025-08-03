@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Calendar - Frost Your Cake Studios</title>
+    
+    <!-- Google Calendar API -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    
+    <style>
+        /* Basic styles optimized for 1920x1080 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 280px;
+            background: linear-gradient(to bottom, #8c52ff 20%, #ffffff 95%);
+            position: relative;
+            padding: 0 60px;
+            box-shadow: 0 4px 15px rgba(140, 82, 255, 0.2);
+        }
+
+        .logo {
+            height: 140px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
+        .banner-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .banner-buttons a {
+            background-color: white;
+            color: #8557f3;
+            border: 2px solid #8c52ff;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(140, 82, 255, 0.2);
+        }
+
+        .banner-buttons a:hover {
+            background-color: #8557f3;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(140, 82, 255, 0.3);
+        }
+
+        .slogan {
+            font-size: 4.2rem;
+            font-family: cursive;
+            text-align: right;
+            color: white;
+            text-shadow: 0 0 2px #b38ac8;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Main container optimized for 1920x1080 */
+        .calendar-container {
+            max-width: 1600px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: #f9f9ff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(140, 82, 255, 0.15);
+        }
+
+        .calendar-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .calendar-header h1 {
+            color: #8c52ff;
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(140, 82, 255, 0.1);
+        }
+
+        .calendar-header p {
+            color: #666;
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Admin section - only visible to authorized admin */
+        .admin-section {
+            display: none;
+            background: linear-gradient(135deg, #8c52ff, #9d64ff);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(140, 82, 255, 0.3);
+        }
+
+        .admin-section.visible {
+            display: block;
+        }
+
+        .admin-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .admin-header h3 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .admin-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Event Management Section */
+        .event-management {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .event-form {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8ff;
+        }
+
+        .event-form h3 {
+            color: #8c52ff;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #8c52ff;
+            box-shadow: 0 0 0 3px rgba(140, 82, 255, 0.1);
+        }
+
+        .btn {
+            background-color: #8c52ff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+            box-shadow: 0 4px 12px rgba(140, 82, 255, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #7a47e6;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(140, 82, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        /* Public Calendar Display */
+        .public-calendar {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8ff;
+        }
+
+        .public-calendar h3 {
+            color: #8c52ff;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        #calendar-embed {
+            min-height: 400px;
+        }
+
+        /* Events List */
+        .events-list {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8ff;
+            margin-top: 40px;
+        }
+
+        .events-list h3 {
+            color: #8c52ff;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .event-item {
+            padding: 25px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f8f9ff, #ffffff);
+            border-left: 5px solid #8c52ff;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .event-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(140, 82, 255, 0.15);
+        }
+
+        .event-title {
+            font-weight: 700;
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .event-details {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .auth-section {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            border: 1px solid #e8e8ff;
+        }
+
+        .status-message {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .visitor-notice {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            border: 2px solid #e1bee7;
+        }
+
+        .visitor-notice h3 {
+            color: #8c52ff;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .visitor-notice p {
+            color: #666;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        /* Footer Styles */
+        .footervisit {
+            background-color: #6a4c93;
+            color: white;
+            padding: 80px 60px 50px;
+            margin-top: 80px;
+        }
+        
+        .footervisit-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 60px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .footervisit-logo img {
+            max-width: 200px;
+            height: auto;
+            background-color: #8b5cf6;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .footervisit-links h3,
+        .footervisit-contact h3 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: white;
+            border-bottom: 3px solid white;
+            padding-bottom: 12px;
+        }
+        
+        .footervisit-links a {
+            color: #f3f4f6;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 15px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footervisit-links a:hover {
+            color: white;
+            padding-left: 15px;
+        }
+        
+        .contact-info {
+            color: #bdc3c7;
+            font-size: 1.05rem;
+        }
+        
+        .contact-info .phone {
+            font-weight: bold;
+            color: #f3f4f6;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .banner {
+                flex-direction: column;
+                height: auto;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .logo {
+                position: static;
+                transform: none;
+                margin: 20px 0;
+                height: 100px;
+            }
+
+            .slogan {
+                font-size: 2.5rem;
+                text-align: center;
+                margin: 20px 0;
+                letter-spacing: 1px;
+            }
+
+            .banner-buttons {
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .banner-buttons a {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+
+            .calendar-container {
+                margin: 20px 15px;
+                padding: 20px;
+            }
+
+            .calendar-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .calendar-header p {
+                font-size: 1.1rem;
+            }
+
+            .event-management {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .event-form,
+            .public-calendar,
+            .events-list {
+                padding: 25px;
+            }
+
+            .event-form h3,
+            .public-calendar h3,
+            .events-list h3 {
+                font-size: 1.5rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+                margin-bottom: 10px;
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .event-item {
+                padding: 20px;
+            }
+
+            .event-title {
+                font-size: 1.2rem;
+            }
+
+            .footervisit {
+                padding: 40px 20px 30px;
+            }
+
+            .footervisit-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .footervisit-logo img {
+                max-width: 150px;
+            }
+
+            .admin-section {
+                padding: 25px;
+            }
+
+            .admin-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .admin-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .visitor-notice {
+                padding: 25px;
+            }
+
+            .visitor-notice h3 {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .banner {
+                padding: 15px;
+            }
+
+            .slogan {
+                font-size: 2rem;
+            }
+
+            .logo {
+                height: 80px;
+            }
+
+            .banner-buttons a {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            .calendar-container {
+                margin: 15px 10px;
+                padding: 15px;
+            }
+
+            .calendar-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .event-form,
+            .public-calendar,
+            .events-list {
+                padding: 20px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 10px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+            }
+
+            .footervisit {
+                padding: 30px 15px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Banner -->
+    <div class="banner">
+        <div class="banner-buttons">
+            <a href="index.html">Home</a>
+            <a href="index.html#parties">Parties</a>
+            <a href="istudio.html">The Studio</a>
+            <a href="visit.html">Visit Us</a>
+        </div>
+        <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
+        <div class="slogan">Create. Decorate. Celebrate.</div>
+    </div>
+
+    <!-- Calendar Container -->
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <h1>Studio Events Calendar</h1>
+            <p>View our upcoming cake decorating classes, workshops, and special events</p>
+        </div>
+
+        <!-- Visitor Notice (shown to non-admin users) -->
+        <div id="visitor-notice" class="visitor-notice">
+            <h3>🎂 Welcome to Our Events Calendar!</h3>
+            <p>Browse our upcoming cake decorating classes and studio events. Contact us to book your spot!</p>
+        </div>
+
+        <!-- Admin Section (only visible to authorized admin) -->
+        <div id="admin-section" class="admin-section">
+            <div class="admin-header">
+                <h3>Admin Dashboard</h3>
+                <span class="admin-badge">Event Manager</span>
+            </div>
+            <div id="admin-status-message" class="status-message status-info" style="display: none;"></div>
+            <button id="authorize-button" class="btn" style="display: none;">Connect Admin Account</button>
+            <button id="signout-button" class="btn btn-secondary" style="display: none;">Sign Out</button>
+        </div>
+
+        <!-- Event Management (only visible to admin) -->
+        <div id="event-management" class="event-management" style="display: none;">
+            <!-- Event Form -->
+            <div class="event-form">
+                <h3>Add New Event</h3>
+                <form id="event-form">
+                    <div class="form-group">
+                        <label for="event-title">Event Title:</label>
+                        <input type="text" id="event-title" required placeholder="e.g., Beginner Cake Decorating Class">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-description">Description:</label>
+                        <textarea id="event-description" rows="4" placeholder="Describe the event, what participants will learn, etc."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-date">Date:</label>
+                        <input type="date" id="event-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-start-time">Start Time:</label>
+                        <input type="time" id="event-start-time" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-end-time">End Time:</label>
+                        <input type="time" id="event-end-time" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="event-location">Location:</label>
+                        <input type="text" id="event-location" value="Frost Your Cake Studios, 1008 E Oak St, Suite 105, Conway, AR 72032">
+                    </div>
+                    
+                    <button type="submit" class="btn">Add Event</button>
+                    <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+                </form>
+            </div>
+
+            <!-- Admin Calendar View -->
+            <div class="public-calendar">
+                <h3>Admin Calendar View</h3>
+                <div id="admin-calendar-embed">
+                    <div id="admin-calendar-placeholder" style="height: 400px; border: 2px dashed #ddd; display: flex; align-items: center; justify-content: center; color: #666; border-radius: 10px; background: #f9f9f9;">
+                        Admin calendar view will appear here
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Public Calendar Display -->
+        <div class="public-calendar">
+            <h3>Upcoming Classes & Events</h3>
+            <div id="calendar-embed">
+                <!-- Public calendar embed or placeholder -->
+                <div id="public-calendar-placeholder" style="height: 400px; border: 2px dashed #ddd; display: flex; align-items: center; justify-content: center; color: #666; border-radius: 10px; background: #f9f9f9;">
+                    Loading events calendar...
+                </div>
+            </div>
+        </div>
+
+        <!-- Events List -->
+        <div class="events-list">
+            <h3>Upcoming Events</h3>
+            <div id="events-container">
+                <div class="event-item">
+                    <div class="event-title">Beginner Cake Decorating Workshop</div>
+                    <div class="event-details">
+                        <strong>Date:</strong> Coming Soon<br>
+                        <strong>Time:</strong> 2:00 PM - 4:00 PM<br>
+                        <strong>Description:</strong> Learn the basics of cake decorating with buttercream flowers and piping techniques<br>
+                        <strong>Location:</strong> Frost Your Cake Studios
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-title">Advanced Fondant Techniques</div>
+                    <div class="event-details">
+                        <strong>Date:</strong> Coming Soon<br>
+                        <strong>Time:</strong> 6:00 PM - 8:00 PM<br>
+                        <strong>Description:</strong> Master advanced fondant work including figure modeling and texture techniques<br>
+                        <strong>Location:</strong> Frost Your Cake Studios
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footervisit">
+            <div class="footervisit-content">
+                <div class="footervisit-logo">
+                    <img class="fyc" src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png" alt="Footer Logo">
+                </div>
+                
+                <div class="footervisit-links">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About Us</a>
+                    <a href="index.html#parties">Parties</a>
+                    <a href="visit.html">Visit Us</a>
+                    <a href="studio.html">The Studio</a>
+                </div>
+                
+                <div class="footervisit-contact">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <div class="address">
+                            1008 E Oak St, Suite 105<br>
+                            Conway, AR 72032
+                        </div>
+                        <div class="phone">
+                            Phone: (501) 555-5555
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Google Calendar API Configuration
+        const CLIENT_ID = 'YOUR_CLIENT_ID_HERE'; // Replace with your actual Client ID
+        const API_KEY = 'YOUR_API_KEY_HERE'; // Replace with your actual API Key
+        const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+        const SCOPES = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email';
+        
+        // Replace with your actual Google account email
+        const ADMIN_EMAIL = 'your-admin-email@gmail.com'; // CHANGE THIS TO YOUR EMAIL
+
+        let tokenClient;
+        let gapi_inited = false;
+        let gis_inited = false;
+        let isAdmin = false;
+
+        // Initialize Google APIs
+        function gapiLoaded() {
+            gapi.load('client', initializeGapiClient);
+        }
+
+        async function initializeGapiClient() {
+            await gapi.client.init({
+                apiKey: API_KEY,
+                discoveryDocs: [DISCOVERY_DOC],
+            });
+            gapi_inited = true;
+            maybeEnableButtons();
+        }
+
+        function gisLoaded() {
+            tokenClient = google.accounts.oauth2.initTokenClient({
+                client_id: CLIENT_ID,
+                scope: SCOPES,
+                callback: '', // defined later
+            });
+            gis_inited = true;
+            maybeEnableButtons();
+        }
+
+        function maybeEnableButtons() {
+            if (gapi_inited && gis_inited) {
+                document.getElementById('authorize-button').style.display = 'inline-block';
+                showAdminMessage('Admin login available', 'info');
+                // Load public events immediately when APIs are ready
+                setTimeout(loadPublicEvents, 500);
+            }
+        }
+
+        async function checkAdminStatus() {
+            try {
+                // Get user info to check email
+                const response = await gapi.client.request({
+                    'path': 'https://www.googleapis.com/oauth2/v2/userinfo',
+                });
+                
+                const userEmail = response.result.email;
+                isAdmin = userEmail === ADMIN_EMAIL;
+                
+                if (isAdmin) {
+                    showAdminInterface();
+                    showAdminMessage(`Welcome Admin! Signed in as ${userEmail}`, 'success');
+                    await loadEvents();
+                } else {
+                    showAdminMessage(`Access denied. Admin access required. (Signed in as ${userEmail})`, 'error');
+                    handleSignoutClick();
+                }
+            } catch (error) {
+                showAdminMessage('Error checking admin status: ' + error.message, 'error');
+            }
+        }
+
+        function showAdminInterface() {
+            document.getElementById('admin-section').classList.add('visible');
+            document.getElementById('event-management').style.display = 'grid';
+            document.getElementById('visitor-notice').style.display = 'none';
+            document.getElementById('signout-button').style.display = 'inline-block';
+            document.getElementById('authorize-button').style.display = 'none';
+        }
+
+        function hideAdminInterface() {
+            document.getElementById('admin-section').classList.remove('visible');
+            document.getElementById('event-management').style.display = 'none';
+            document.getElementById('visitor-notice').style.display = 'block';
+            document.getElementById('signout-button').style.display = 'none';
+            document.getElementById('authorize-button').style.display = 'inline-block';
+        }
+
+        function handleAuthClick() {
+            tokenClient.callback = async (resp) => {
+                if (resp.error !== undefined) {
+                    throw (resp);
+                }
+                await checkAdminStatus();
+            };
+
+            if (gapi.client.getToken() === null) {
+                tokenClient.requestAccessToken({prompt: 'consent'});
+            } else {
+                tokenClient.requestAccessToken({prompt: ''});
+            }
+        }
+
+        function handleSignoutClick() {
+            const token = gapi.client.getToken();
+            if (token !== null) {
+                google.accounts.oauth2.revoke(token.access_token);
+                gapi.client.setToken('');
+                isAdmin = false;
+                hideAdminInterface();
+                showAdminMessage('Signed out successfully', 'info');
+                // Reload public events after signout
+                setTimeout(loadPublicEvents, 500);
+            }
+        }
+
+        // Load public events (visible to all visitors)
+        async function loadPublicEvents() {
+            try {
+                // Try to load events from your public calendar
+                // You can use a public Google Calendar ID here
+                const PUBLIC_CALENDAR_ID = 'primary'; // Replace with your public calendar ID if different
+                
+                const request = {
+                    'calendarId': PUBLIC_CALENDAR_ID,
+                    'timeMin': (new Date()).toISOString(),
+                    'showDeleted': false,
+                    'singleEvents': true,
+                    'maxResults': 10,
+                    'orderBy': 'startTime',
+                };
+
+                const response = await gapi.client.calendar.events.list(request);
+                const events = response.result.items;
+
+                if (!events || events.length === 0) {
+                    document.getElementById('events-container').innerHTML = `
+                        <div class="event-item">
+                            <div class="event-title">No upcoming events scheduled</div>
+                            <div class="event-details">
+                                <strong>Check back soon!</strong><br>
+                                We're always planning new cake decorating classes and workshops.<br>
+                                Contact us at (501) 555-5555 for more information about upcoming events.
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Display events from calendar
+                let eventsHtml = '';
+                events.forEach((event) => {
+                    const start = event.start.dateTime || event.start.date;
+                    const end = event.end.dateTime || event.end.date;
+                    const eventDate = new Date(start);
+                    const endDate = new Date(end);
+                    
+                    // Format date and time
+                    const dateOptions = { 
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    };
+                    const timeOptions = { 
+                        hour: 'numeric', 
+                        minute: '2-digit',
+                        hour12: true 
+                    };
+                    
+                    const formattedDate = eventDate.toLocaleDateString('en-US', dateOptions);
+                    const startTime = event.start.dateTime ? eventDate.toLocaleTimeString('en-US', timeOptions) : 'All Day';
+                    const endTime = event.end.dateTime ? endDate.toLocaleTimeString('en-US', timeOptions) : '';
+                    
+                    const timeDisplay = startTime === 'All Day' ? 'All Day Event' : 
+                                       endTime ? `${startTime} - ${endTime}` : startTime;
+
+                    eventsHtml += `
+                        <div class="event-item">
+                            <div class="event-title">${event.summary || 'Untitled Event'}</div>
+                            <div class="event-details">
+                                <strong>Date:</strong> ${formattedDate}<br>
+                                <strong>Time:</strong> ${timeDisplay}<br>
+                                ${event.description ? '<strong>Description:</strong> ' + event.description + '<br>' : ''}
+                                ${event.location ? '<strong>Location:</strong> ' + event.location : '<strong>Location:</strong> Frost Your Cake Studios'}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                document.getElementById('events-container').innerHTML = eventsHtml;
+                
+            } catch (err) {
+                console.log('Could not load public calendar events:', err);
+                // Fallback to placeholder content
+                document.getElementById('events-container').innerHTML = `
+                    <div class="event-item">
+                        <div class="event-title">Events Loading...</div>
+                        <div class="event-details">
+                            <strong>Please wait while we load upcoming events.</strong><br>
+                            If events don't appear, please contact us at (501) 555-5555 for the latest class schedule.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Load events from Google Calendar (admin only)
+        async function loadEvents() {
+            if (!isAdmin) return;
+            
+            let response;
+            try {
+                const request = {
+                    'calendarId': 'primary',
+                    'timeMin': (new Date()).toISOString(),
+                    'showDeleted': false,
+                    'singleEvents': true,
+                    'maxResults': 20,
+                    'orderBy': 'startTime',
+                };
+                response = await gapi.client.calendar.events.list(request);
+            } catch (err) {
+                showAdminMessage('Error loading events: ' + err.message, 'error');
+                return;
+            }
+
+            const events = response.result.items;
+            if (!events || events.length == 0) {
+                document.getElementById('events-container').innerHTML = '<p>No upcoming events found in admin calendar.</p>';
+                return;
+            }
+
+            // Display events for admin view
+            let eventsHtml = '';
+            events.forEach((event) => {
+                const start = event.start.dateTime || event.start.date;
+                const end = event.end.dateTime || event.end.date;
+                const eventDate = new Date(start);
+                const endDate = new Date(end);
+                
+                // Format date and time
+                const dateOptions = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                };
+                const timeOptions = { 
+                    hour: 'numeric', 
+                    minute: '2-digit',
+                    hour12: true 
+                };
+                
+                const formattedDate = eventDate.toLocaleDateString('en-US', dateOptions);
+                const startTime = event.start.dateTime ? eventDate.toLocaleTimeString('en-US', timeOptions) : 'All Day';
+                const endTime = event.end.dateTime ? endDate.toLocaleTimeString('en-US', timeOptions) : '';
+                
+                const timeDisplay = startTime === 'All Day' ? 'All Day Event' : 
+                                   endTime ? `${startTime} - ${endTime}` : startTime;
+
+                eventsHtml += `
+                    <div class="event-item">
+                        <div class="event-title">${event.summary || 'No Title'} <span style="color: #8c52ff; font-size: 0.9rem;">(Admin View)</span></div>
+                        <div class="event-details">
+                            <strong>Date:</strong> ${formattedDate}<br>
+                            <strong>Time:</strong> ${timeDisplay}<br>
+                            ${event.description ? '<strong>Description:</strong> ' + event.description + '<br>' : ''}
+                            ${event.location ? '<strong>Location:</strong> ' + event.location : '<strong>Location:</strong> Frost Your Cake Studios'}<br>
+                            <strong>Event ID:</strong> <code style="font-size: 0.8rem; background: #f0f0f0; padding: 2px 4px; border-radius: 3px;">${event.id}</code>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('events-container').innerHTML = eventsHtml;
+            
+            // Also refresh the public view
+            loadPublicEvents();
+        }
