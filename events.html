@@ -744,13 +744,14 @@
 
     <script>
         // Google Calendar API Configuration
-        const CLIENT_ID = 'YOUR_CLIENT_ID_HERE'; // Replace with your actual Client ID
-        const API_KEY = 'YOUR_API_KEY_HERE'; // Replace with your actual API Key
+        const CLIENT_ID = '772362512567-3l2c7rr2rll4i3rjmjlh7clp9o1qcpr3.apps.googleusercontent.com';
+        const API_KEY = 'AIzaSyCGb_-DEuq9WwPHQydfACGCSRChvdkeb2w';
         const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
         const SCOPES = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email';
         
-        // Replace with your actual Google account email
-        const ADMIN_EMAIL = 'your-admin-email@gmail.com'; // CHANGE THIS TO YOUR EMAIL
+        // Your Google account email for admin access
+        const ADMIN_EMAIL = 'ryancbutler98@gmail.com';
+        const CALENDAR_ID = 'ryancbutler98@gmail.com'; // Your calendar ID
 
         let tokenClient;
         let gapi_inited = false;
@@ -860,12 +861,9 @@
         // Load public events (visible to all visitors)
         async function loadPublicEvents() {
             try {
-                // Try to load events from your public calendar
-                // You can use a public Google Calendar ID here
-                const PUBLIC_CALENDAR_ID = 'primary'; // Replace with your public calendar ID if different
-                
+                // Use your specific calendar ID
                 const request = {
-                    'calendarId': PUBLIC_CALENDAR_ID,
+                    'calendarId': CALENDAR_ID,
                     'timeMin': (new Date()).toISOString(),
                     'showDeleted': false,
                     'singleEvents': true,
@@ -955,7 +953,7 @@
             let response;
             try {
                 const request = {
-                    'calendarId': 'primary',
+                    'calendarId': CALENDAR_ID,
                     'timeMin': (new Date()).toISOString(),
                     'showDeleted': false,
                     'singleEvents': true,
