@@ -5,19 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Frost Your Cake - Home</title>
   
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="jesuswept.css">
   
-  <!-- Google Fonts - Consolidated -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&family=Great+Vibes&family=Caveat:wght@400..700&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Courgette&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <!-- Banner -->
     <div class="banner">
-        <!-- Navigation Bar with Purple Background -->
         <div class="banner-nav">
             <div class="banner-buttons">
                 <a href="index.html">Home</a>
@@ -27,22 +23,18 @@
                 <a href="visit.html">Visit Us</a>
             </div>
         </div>
-        
-        <!-- Logo and Slogan Section -->
+
         <div class="banner-content">
             <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
             <div class="slogan">Create. Decorate. Celebrate.</div>
         </div>
     </div>
 
-  <!-- Main Content -->
   <main>
-    <!-- Hero Message -->
     <section class="handwritten-message fade-in-top">
       <p>A unique DIY cookie, cake and cupcake decorating studio. We're not a bakery; we're a creative experience for the entire family.</p>
     </section>
 
-    <!-- About Section -->
     <section class="main-content" id="about">
       <img class="main-image" src="https://i.postimg.cc/fy08RKtw/Firefly-Cupcakes-being-frosted-by-a-professional-95871.jpg" alt="Decorating at Frost Your Cake">
       
@@ -59,7 +51,6 @@
       </div>
     </section>
 
-    <!-- Parties Section -->
     <section id="parties" class="parties-section">
       <div class="parties-container">
         <div class="parties-text-box">
@@ -77,7 +68,6 @@
     </section>
   </main>
 
-  <!-- Decorative Divider -->
   <div class="gooey-divider">
     <svg id="dripSvg" viewBox="0 0 1440 150" preserveAspectRatio="none">
       <defs>
@@ -90,7 +80,6 @@
     </svg>
   </div>
 
-  <!-- Image Slideshow Section -->
   <section class="slide">
     <div class="slideshow-container">
       <div class="slideshow" id="slideshow">
@@ -115,7 +104,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
@@ -147,9 +135,7 @@
         </div>
     </footer>
 
-  <!-- JavaScript -->
   <script>
-    // Party image scroll animation
     const partyImage = document.getElementById('partyImage');
     
     function handleScroll() {
@@ -163,7 +149,6 @@
     window.addEventListener('scroll', handleScroll);
     handleScroll();
 
-    // Animated drip SVG
     const dripPath = document.getElementById("dripPath");
     const baseY = 80;
     const amplitude = 20;
@@ -199,7 +184,6 @@
     
     requestAnimationFrame(animateDrip);
 
-    // Image slideshow functionality
     const slideshow = document.getElementById("slideshow");
     const images = slideshow.querySelectorAll("img");
     const dots = document.querySelectorAll(".dot");
@@ -226,7 +210,6 @@
       interval = setInterval(autoScroll, 4000);
     }
 
-    // Event listeners for slideshow
     slideshow.addEventListener("mouseenter", () => clearInterval(interval));
     slideshow.addEventListener("mouseleave", startSlideshow);
 
@@ -238,7 +221,6 @@
       });
     });
 
-    // Initialize slideshow
     updateSlide(0);
     startSlideshow();
   </script>

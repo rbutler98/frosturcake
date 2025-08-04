@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Calendar - Frost Your Cake Studios</title>
     
-    <!-- Google Calendar API -->
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://accounts.google.com/gsi/client"></script>
     
     <style>
-        /* Basic styles optimized for 1920x1080 */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -89,7 +87,6 @@
             margin: 0;
         }
 
-        /* Main container optimized for 1920x1080 */
         .calendar-container {
             max-width: 1600px;
             margin: 60px auto;
@@ -119,7 +116,6 @@
             margin: 0 auto;
         }
 
-        /* Admin section - only visible to authorized admin */
         .admin-section {
             display: none;
             background: linear-gradient(135deg, #8c52ff, #9d64ff);
@@ -154,7 +150,6 @@
             font-weight: bold;
         }
 
-        /* Event Management Section */
         .event-management {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
@@ -239,7 +234,6 @@
             background-color: #5a6268;
         }
 
-        /* Public Calendar Display */
         .public-calendar {
             background: white;
             padding: 35px;
@@ -259,7 +253,6 @@
             min-height: 400px;
         }
 
-        /* Events List */
         .events-list {
             background: white;
             padding: 35px;
@@ -362,54 +355,91 @@
             margin: 0;
         }
 
-        /* Footer Styles */
-        .footervisit {
-            background-color: #6a4c93;
-            color: white;
-            padding: 80px 60px 50px;
-            margin-top: 80px;
-        }
-        
-        .footervisit-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 60px;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-        
-        .footervisit-logo img {
-            max-width: 200px;
-            height: auto;
-            background-color: #8b5cf6;
-            padding: 15px;
-            border-radius: 10px;
-        }
-        
-        .footervisit-links h3,
-        .footervisit-contact h3 {
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin-bottom: 25px;
-            color: white;
-            border-bottom: 3px solid white;
-            padding-bottom: 12px;
-        }
-        
-        .footervisit-links a {
-            color: #f3f4f6;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 15px;
-            padding: 12px 0;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .footervisit-links a:hover {
-            color: white;
-            padding-left: 15px;
-        }
+        .footer {
+      background-color: #6a4c93;
+      color: white;
+      padding: 50px 20px 30px;
+      margin-top: 40px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .footer-logo img {
+      max-width: 150px;
+      height: auto;
+      background-color: #8b5cf6;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .footer-links h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: white;
+      border-bottom: 2px solid white;
+      padding-bottom: 8px;
+    }
+    
+    .footer-links a {
+      color: #f3f4f6;
+      text-decoration: none;
+      margin-bottom: 12px;
+      padding: 8px 0;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      padding-left: 10px;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      border-left-color: white;
+      padding-left: 15px;
+    }
+    
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .footer-contact h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: white;
+      border-bottom: 2px solid white;
+      padding-bottom: 8px;
+    }
+    
+    .contact-info {
+      color: #bdc3c7;
+      font-size: 14px;
+    }
+    
+    .contact-info .address {
+      margin-bottom: 15px;
+    }
+    
+    .contact-info .phone {
+      font-weight: bold;
+      color: #f3f4f6;
+    }
         
         .contact-info {
             color: #bdc3c7;
@@ -423,7 +453,6 @@
             font-size: 1.1rem;
         }
 
-        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .banner-nav {
                 padding: 12px 0;
@@ -544,7 +573,6 @@
             }
         }
 
-        /* Extra small screens */
         @media (max-width: 480px) {
             .banner-nav {
                 padding: 10px 0;
@@ -607,9 +635,7 @@
 </head>
 
 <body>
-    <!-- Banner -->
     <div class="banner">
-        <!-- Navigation Bar with Purple Background -->
         <div class="banner-nav">
             <div class="banner-buttons">
                 <a href="index.html">Home</a>
@@ -620,21 +646,12 @@
             </div>
         </div>
         
-        <!-- Logo and Slogan Section -->
-        <!-- <div class="banner-content">
-            <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
-            <div class="slogan">Create. Decorate. Celebrate.</div>
-        </div>
-    </div> -->
-
-    <!-- Calendar Container -->
     <div class="calendar-container">
         <div class="calendar-header">
             <h1>Studio Events Calendar</h1>
             <p>View our upcoming cake decorating classes, workshops, and special events</p>
         </div>
 
-        <!-- Admin Section (only visible to authorized admin) -->
         <div id="admin-section" class="admin-section">
             <div class="admin-header">
                 <h3>Admin Dashboard</h3>
@@ -645,7 +662,6 @@
             <button id="signout-button" class="btn btn-secondary" onclick="handleSignoutClick()" style="display: none;">Sign Out</button>
         </div>
 
-        <!-- Event Management (only visible to admin) -->
         <div id="event-management" class="event-management" style="display: none;">
             <!-- Event Form -->
             <div class="event-form">
@@ -686,7 +702,6 @@
                 </form>
             </div>
 
-            <!-- Admin Calendar View -->
             <div class="public-calendar">
                 <h3>Admin Calendar View</h3>
                 <div id="admin-calendar-embed">
@@ -697,11 +712,9 @@
             </div>
         </div>
 
-        <!-- Public Calendar Display -->
         <div class="public-calendar">
             <h3>Upcoming Classes & Events</h3>
             <div id="calendar-embed">
-                <!-- Public calendar embed or placeholder -->
                 <iframe src="https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=America%2FChicago&src=ryancbutler98%40gmail.com&color=%23039BE5&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=AGENDA" 
                         style="border: 0; width: 100%; height: 400px; border-radius: 10px;" 
                         frameborder="0" 
@@ -710,14 +723,13 @@
             </div>
         </div>
 
-    <footer>
-        <div class="footervisit">
-            <div class="footervisit-content">
-                <div class="footervisit-logo">
-                    <img class="fyc" src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png" alt="Footer Logo">
-                </div>
-                
-                <div class="footer-links">
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img class="fyc" src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png">
+            </div>
+            
+            <div class="footer-links">
                 <h3>Quick Links</h3>
                 <a href="#home">Home</a>
                 <a href="#about">About Us</a>
@@ -726,17 +738,16 @@
                 <a href="#visit">Visit Us</a>
                 <a href="#studio">The Studio</a>
             </div>
-                
-                <div class="footervisit-contact">
-                    <h3>Contact Info</h3>
-                    <div class="contact-info">
-                        <div class="address">
-                            1008 E Oak St, Suite 105<br>
-                            Conway, AR 72032
-                        </div>
-                        <div class="phone">
-                            Phone: Phone: (501) 358-6245
-                        </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <div class="contact-info">
+                    <div class="address">
+                        1008 E Oak St, Suite 105<br>
+                        Conway, AR 72032
+                    </div>
+                    <div class="phone">
+                        Phone: (501) 358-6245
                     </div>
                 </div>
             </div>
@@ -744,13 +755,11 @@
     </footer>
 
     <script>
-        // Google Calendar API Configuration
         const CLIENT_ID = '772362512567-3l2c7rr2rll4i3rjmjlh7clp9o1qcpr3.apps.googleusercontent.com';
         const API_KEY = 'AIzaSyCGb_-DEuq9WwPHQydfACGCSRChvdkeb2w';
         const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
         const SCOPES = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email';
         
-        // Your Google account email for admin access
         const ADMIN_EMAIL = 'ryancbutler98@gmail.com';
         const CALENDAR_ID = 'ryancbutler98@gmail.com'; // Your calendar ID
 
@@ -766,7 +775,6 @@
             messageDiv.className = `status-message status-${type}`;
             messageDiv.style.display = 'block';
             
-            // Hide message after 5 seconds for non-error messages
             if (type !== 'error') {
                 setTimeout(() => {
                     messageDiv.style.display = 'none';
@@ -774,7 +782,6 @@
             }
         }
 
-        // Initialize when page loads
         window.addEventListener('load', () => {
             console.log('Page loaded, initializing...');
             // Load Google APIs
@@ -800,7 +807,6 @@
             }
         });
 
-        // Initialize Google APIs
         async function initializeGapiClient() {
             try {
                 await gapi.client.init({
@@ -821,7 +827,7 @@
                 tokenClient = google.accounts.oauth2.initTokenClient({
                     client_id: CLIENT_ID,
                     scope: SCOPES,
-                    callback: '', // defined later
+                    callback: '',
                 });
                 gis_inited = true;
                 console.log('GIS initialized');
@@ -835,10 +841,8 @@
             if (gapi_inited && gis_inited) {
                 document.getElementById('admin-section').classList.add('visible');
                 showAdminMessage('Admin login ready', 'info');
-                // Load public events immediately when APIs are ready
                 setTimeout(loadPublicEvents, 500);
             } else if (gapi_inited) {
-                // At least load public events if GAPI is working
                 setTimeout(loadPublicEvents, 500);
             }
         }
@@ -868,7 +872,6 @@
 
         async function checkAdminStatus() {
             try {
-                // Get user info to check email
                 const response = await gapi.client.request({
                     'path': 'https://www.googleapis.com/oauth2/v2/userinfo',
                 });
@@ -880,3 +883,4 @@
                     showAdminInterface();
                     showAdminMessage(`Welcome Admin! Signed in as ${userEmail}`, 'success');
                     await loadEvents();
+                }

@@ -1,7 +1,3 @@
-/* ==========================================================================
-   Base Styles
-   ========================================================================== */
-
 html {
   scroll-behavior: smooth;
 }
@@ -20,10 +16,6 @@ html, body {
             width: auto;
             margin-bottom: 15px;
         }
-
-/* ==========================================================================
-   Animations
-   ========================================================================== */
 
 @keyframes fadeIn {
   from { 
@@ -51,10 +43,6 @@ html, body {
     transform: scale(1.1); 
   }
 }
-
-/* ==========================================================================
-   Header/Banner Section
-   ========================================================================== */
 
 .banner {
             background: linear-gradient(to bottom, #ffffff 0%, #f9f9ff 100%);
@@ -126,10 +114,6 @@ html, body {
             margin: 0;
         }
 
-/* ==========================================================================
-   Main Content Section
-   ========================================================================== */
-
 .handwritten-message {
   font-family: 'Caveat';
   color: #ae88ff;
@@ -173,10 +157,6 @@ html, body {
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
-
-/* ==========================================================================
-   Parties Section
-   ========================================================================== */
 
 .gooey-divider {
   width: 100%;
@@ -248,10 +228,6 @@ html, body {
   transform: translateY(0);
 }
 
-/* ==========================================================================
-   Slideshow Section
-   ========================================================================== */
-
 .slide {
   background: linear-gradient(to right, #ffb6c1, #d98eff);
   padding: 80px 0;
@@ -314,98 +290,91 @@ html, body {
   background-color: black;
 }
 
-/* ==========================================================================
-           Footer
-           ========================================================================== */
         .footer {
-            background-color: #a64dff;
-            color: white;
-            padding: 50px 20px 30px;
-            margin-top: 5px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .footer-logo img {
-            max-width: 150px;
-            height: auto;
-            background-color: #8b5cf6;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .footer-links h3 {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: white;
-            border-bottom: 2px solid white;
-            padding-bottom: 8px;
-        }
-        
-        .footer-links a {
-            color: #f3f4f6;
-            text-decoration: none;
-            margin-bottom: 12px;
-            padding: 8px 0;
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
-            padding-left: 10px;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            border-left-color: white;
-            padding-left: 15px;
-        }
-        
-        .footer-contact {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .footer-contact h3 {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: white;
-            border-bottom: 2px solid white;
-            padding-bottom: 8px;
-        }
-        
-        .contact-info {
-            color: #bdc3c7;
-            font-size: 14px;
-        }
-        
-        .contact-info .address {
-            margin-bottom: 15px;
-        }
-        
-        .contact-info .phone {
-            font-weight: bold;
-            color: #f3f4f6;
-        }
-
-/* ==========================================================================
-   Meta Links
-   ========================================================================== */
+      background-color: #6a4c93;
+      color: white;
+      padding: 50px 20px 30px;
+      margin-top: 0px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .footer-logo img {
+      max-width: 150px;
+      height: auto;
+      background-color: #8b5cf6;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .footer-links h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: white;
+      border-bottom: 2px solid white;
+      padding-bottom: 8px;
+    }
+    
+    .footer-links a {
+      color: #f3f4f6;
+      text-decoration: none;
+      margin-bottom: 12px;
+      padding: 8px 0;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      padding-left: 10px;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      border-left-color: white;
+      padding-left: 15px;
+    }
+    
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .footer-contact h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: white;
+      border-bottom: 2px solid white;
+      padding-bottom: 8px;
+    }
+    
+    .contact-info {
+      color: #bdc3c7;
+      font-size: 14px;
+    }
+    
+    .contact-info .address {
+      margin-bottom: 15px;
+    }
+    
+    .contact-info .phone {
+      font-weight: bold;
+      color: #f3f4f6;
+    }
 
 .metaLinks {
   background-color: #8c52ff;
@@ -475,18 +444,12 @@ html, body {
   white-space: pre-line;
 }
 
-/* ==========================================================================
-   Media Queries
-   ========================================================================== */
-
-/* Tablet and large screen adjustments */
 @media (max-width: 1366px) {
   .slogan {
     font-size: 2.2rem;
   }
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
   /* Banner adjustments */
   .banner {
@@ -524,7 +487,6 @@ html, body {
     -webkit-text-stroke: 0.8px transparent;
   }
 
-  /* Main content adjustments */
   .main-content {
     flex-direction: column;
     padding: 30px 20px;
@@ -535,7 +497,6 @@ html, body {
     height: auto;
   }
 
-  /* Parties section adjustments */
   .parties-container {
     flex-direction: column;
   }
@@ -554,7 +515,6 @@ html, body {
     text-align: center;
   }
 
-  /* Footer adjustments */
   .metaLinks {
     grid-template-columns: 1fr;
     gap: 30px;
