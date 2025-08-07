@@ -1,45 +1,707 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frost Your Cake - Home</title>
-    <link rel="stylesheet" href="jesuswept.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Parties - Frost Your Cake Studios</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
 
-<!-- Banner -->
-  <div class="banner">
-    <div class="banner-buttons">
-      <a href="index.html">Home</a>
-      <a href="parties.html">Parties</a>
-      <a href="studio.html">The Studio</a>
-      <a href="visit.html">Visit Us</a>
-    </div>
-    <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
-    <div class="slogan">Create. Decorate. Celebrate.</div>
-  </div>
+        .banner {
+            background: linear-gradient(to bottom, #ffffff 0%, #f9f9ff 100%);
+            box-shadow: 0 4px 15px rgba(140, 82, 255, 0.1);
+            margin: 0;
+        }
 
-  <div class="handwritten-message fade-in-top">
-    <p>A unique DIY cookie, cake and cupcake decorating studio. We're not a bakery; we're a creative experience for the entire family.</p>
-  </div>
+        .banner-nav {
+            background-color: #8c52ff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(140, 82, 255, 0.3);
+        }
+
+        .banner-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .banner-buttons a {
+            background-color: white;
+            color: #8557f3;
+            border: 2px solid white;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .banner-buttons a:hover {
+            background-color: transparent;
+            color: white;
+            border-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner-content {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .logo {
+            height: 140px;
+            max-width: 400px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            margin-bottom: 20px;
+        }
+
+        .slogan {
+            font-size: 4.2rem;
+            font-family: cursive;
+            color: #8c52ff;
+            text-shadow: 0 2px 4px rgba(140, 82, 255, 0.2);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 20px 60px;
+        }
+
+        .hero-section {
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9ff, #ffffff);
+            padding: 40px 40px 35px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(140, 82, 255, 0.1);
+            margin-bottom: 60px;
+            border: 1px solid #e8e8ff;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            color: #8c52ff;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(140, 82, 255, 0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #8c52ff, #b084ff);
+            margin: 0 auto 30px;
+            border-radius: 2px;
+        }
+
+        .party-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+
+        .party-info {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(140, 82, 255, 0.12);
+            border: 1px solid #e8e8ff;
+            position: relative;
+        }
+
+        .party-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #8c52ff, #b084ff);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .pricing-header {
+            color: #8c52ff;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .price-highlight {
+            background: linear-gradient(135deg, #8c52ff, #a66cff);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(140, 82, 255, 0.3);
+        }
+
+        .price-amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .price-period {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .rental-includes {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e8e8ff;
+        }
+
+        .includes-title {
+            color: #8c52ff;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .includes-list {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 2;
+            text-align: center;
+        }
+
+        .includes-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .includes-item::before {
+            content: "✨";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .pricing-details {
+            background: linear-gradient(135deg, #f0f4ff, #faf9ff);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #8c52ff;
+        }
+
+        .capacity-info {
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .party-description {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #8c52ff, #a66cff);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(140, 82, 255, 0.3);
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .contact-phone {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .party-form-link {
+            display: inline-block;
+            background: white;
+            color: #8c52ff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .party-form-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            background: #f8f9ff;
+        }
+
+        .party-image-container {
+            position: relative;
+        }
+
+        .party-picture {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(140, 82, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .party-picture:hover {
+            transform: scale(1.02);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .overlay-text {
+            color: #8c52ff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-align: center;
+            margin: 0;
+        }
+
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(140, 82, 255, 0.08);
+            border: 1px solid #e8e8ff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(140, 82, 255, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            color: #8c52ff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background-color: #6a4c93;
+            color: white;
+            padding: 50px 20px 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-logo img {
+            max-width: 150px;
+            height: auto;
+            background-color: #8b5cf6;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-links h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+            border-bottom: 2px solid white;
+            padding-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #f3f4f6;
+            text-decoration: none;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            padding-left: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            border-left-color: white;
+            padding-left: 15px;
+        }
+        
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-contact h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+            border-bottom: 2px solid white;
+            padding-bottom: 8px;
+        }
+        
+        .contact-info {
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+        
+        .contact-info .address {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info .phone {
+            font-weight: bold;
+            color: #f3f4f6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .banner-buttons {
+                gap: 10px;
+                padding: 0 15px;
+            }
+
+            .banner-buttons a {
+                padding: 10px 18px;
+                font-size: 1rem;
+                min-width: 100px;
+            }
+
+            .main-content {
+                padding: 15px 15px 40px;
+            }
+
+            .hero-section {
+                padding: 25px 25px 20px;
+                margin-bottom: 40px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.15rem;
+            }
+
+            .party-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .party-info {
+                padding: 35px 25px;
+            }
+
+            .pricing-header {
+                font-size: 2rem;
+            }
+
+            .party-picture {
+                height: 350px;
+            }
+
+            .features-section {
+                grid-template-columns: 1fr;
+                margin-top: 40px;
+            }
+
+            .feature-card {
+                padding: 30px 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-buttons a {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+                min-width: 90px;
+            }
+
+            .hero-section {
+                padding: 20px 20px 15px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .party-info {
+                padding: 25px 20px;
+            }
+
+            .pricing-header {
+                font-size: 1.8rem;
+            }
+
+            .party-picture {
+                height: 300px;
+            }
+
+            .contact-phone {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
-<body>
-  <!-- Parties Section -->
-  <section id="parties" style="padding: 60px 20px; background-color: #fff;">
-    <div class="parties-container">
-      <div class="parties-text-box">
-        <div class="parties-header">Parties and Celebrations</div>
-        <p class="parties-description">We love celebrating! Bring your friends or family and celebrate special days with private parties. We’re the perfect spot for birthdays, bridal showers, baby showers, holidays, and special events. Reserve our private party room that holds up to 20 guests. </p>
-      </div>
-      <div class="parties-image-container">
-        <img src="https://i.ibb.co/PsF9TXzr/Firefly-Many-adults-decorating-cookies-at-a-party-786202.jpg" alt="Party Celebration" class="parties-image" id="partyImage" />
-      </div>
-    </div>
-  </section>
-</body>
-<footer>
 
-</footer>
+<body>
+    <div class="banner">
+        <div class="banner-nav">
+            <div class="banner-buttons">
+                <a href="index.html">Home</a>
+                <a href="parties.html">Parties</a>
+                <a href="events.html">Events</a>
+                <a href="studio.html">The Studio</a>
+                <a href="visit.html">Visit Us</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="hero-section">
+            <h1 class="hero-title">Private Party Experiences</h1>
+            <div class="decorative-line"></div>
+            <p class="hero-subtitle">
+                Create unforgettable memories with friends and family in our exclusive private party room. 
+                Perfect for birthdays, celebrations, girls' nights out, and any special occasion!
+            </p>
+        </div>
+
+        <div class="party-container">
+            <div class="party-info">
+                <h2 class="pricing-header">Party Pricing</h2>
+                
+                <div class="price-highlight">
+                    <div class="price-amount">$150 per hour</div>
+                </div>
+
+                <div class="rental-includes">
+                    <div class="includes-title">Rental Includes:</div>
+                    <div class="includes-list">
+                        <div class="includes-item">Full Room Access</div>
+                        <div class="includes-item">Product Included in Price</div>
+                        <div class="includes-item">Drinks for Everyone</div>
+                        <div class="includes-item">Unlimited Fun!</div>
+                    </div>
+                </div>
+                
+                <div class="capacity-info">
+                    🎉 Accommodates up to 25 guests
+                </div>
+
+                <div class="pricing-details">
+                    <p class="party-description">
+                        Our private party room offers an intimate setting for your special celebration. 
+                        Whether you're planning a birthday party, family gathering, bachelorette party, 
+                        or girls' night out, we provide everything you need for a sweet and memorable experience!
+                    </p>
+                </div>
+
+                <div class="contact-section">
+                    <p class="contact-text">
+                        Ready to plan your perfect cake decorating party?
+                    </p>
+                    <div class="contact-phone">
+                        📞 (501) 358-6245
+                    </div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd9pvCZE6X6IsV7_8nDfMxYIy_y6m0RIpCYqrMOk7IJbkRF6g/viewform?usp=header" 
+                       class="party-form-link" target="_blank">
+                        Book Your Party 🎂
+                    </a>
+                </div>
+            </div>
+
+            <div class="party-image-container">
+                <img class="party-picture" src="https://i.ibb.co/YFnzTqKR/party-room.jpg" alt="Private Party Room at Frost Your Cake Studios">
+                <div class="image-overlay">
+                    <p class="overlay-text">Your Private Celebration Space</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 class="feature-title">Guided Instruction</h3>
+                <p class="feature-description">
+                    Professional cake decorating instruction tailored to your group's skill level and interests.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏠</div>
+                <h3 class="feature-title">Private Space</h3>
+                <p class="feature-description">
+                    Exclusive use of our beautifully designed party room for your group's enjoyment and privacy.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🛠️</div>
+                <h3 class="feature-title">All Supplies Included</h3>
+                <p class="feature-description">
+                    We provide all the tools, ingredients, and decorating supplies needed for your creative session.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎂</div>
+                <h3 class="feature-title">Take Home Treats</h3>
+                <p class="feature-description">
+                    Everyone leaves with their beautifully decorated creation and sweet memories to last a lifetime.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3 class="feature-title">Flexible Scheduling</h3>
+                <p class="feature-description">
+                    We work with your schedule to find the perfect time for your celebration.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎉</div>
+                <h3 class="feature-title">Special Occasions</h3>
+                <p class="feature-description">
+                    Perfect for birthdays, bridal parties, team building, or any reason to celebrate together!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img class="fyc" src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png" alt="Frost Your Cake Studios Logo">
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About Us</a>
+                <a href="parties.html">Parties</a>
+                <a href="events.html">Events</a>
+                <a href="visit.html">Visit Us</a>
+                <a href="studio.html">The Studio</a>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <div class="contact-info">
+                    <div class="address">
+                        1008 E Oak St, Suite 105<br>
+                        Conway, AR 72032
+                    </div>
+                    <div class="phone">
+                        Phone: (501) 358-6245
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
 </html>

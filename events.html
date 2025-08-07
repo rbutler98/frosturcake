@@ -249,7 +249,7 @@
             font-weight: 600;
         }
 
-        #calendar-embed {
+        #calendar-embed, #api-events-container {
             min-height: 400px;
         }
 
@@ -355,92 +355,108 @@
             margin: 0;
         }
 
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #8c52ff;
+            font-size: 1.2rem;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 40px;
+            color: #721c24;
+            background-color: #f8d7da;
+            border-radius: 12px;
+            border: 1px solid #f5c6cb;
+        }
+
         .footer {
-      background-color: #6a4c93;
-      color: white;
-      padding: 50px 20px 30px;
-      margin-top: 40px;
-    }
-    
-    .footer-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .footer-logo {
-      display: flex;
-      align-items: flex-start;
-    }
-    
-    .footer-logo img {
-      max-width: 150px;
-      height: auto;
-      background-color: #8b5cf6;
-      padding: 10px;
-      border-radius: 5px;
-    }
-    
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .footer-links h3 {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      color: white;
-      border-bottom: 2px solid white;
-      padding-bottom: 8px;
-    }
-    
-    .footer-links a {
-      color: #f3f4f6;
-      text-decoration: none;
-      margin-bottom: 12px;
-      padding: 8px 0;
-      transition: all 0.3s ease;
-      border-left: 3px solid transparent;
-      padding-left: 10px;
-    }
-    
-    .footer-links a:hover {
-      color: white;
-      border-left-color: white;
-      padding-left: 15px;
-    }
-    
-    .footer-contact {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .footer-contact h3 {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      color: white;
-      border-bottom: 2px solid white;
-      padding-bottom: 8px;
-    }
-    
-    .contact-info {
-      color: #bdc3c7;
-      font-size: 14px;
-    }
-    
-    .contact-info .address {
-      margin-bottom: 15px;
-    }
-    
-    .contact-info .phone {
-      font-weight: bold;
-      color: #f3f4f6;
-    }
+            background-color: #6a4c93;
+            color: white;
+            padding: 50px 20px 30px;
+            margin-top: 40px;
+        }
         
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .footer-logo img {
+            max-width: 150px;
+            height: auto;
+            background-color: #8b5cf6;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-links h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+            border-bottom: 2px solid white;
+            padding-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #f3f4f6;
+            text-decoration: none;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            padding-left: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            border-left-color: white;
+            padding-left: 15px;
+        }
+        
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-contact h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+            border-bottom: 2px solid white;
+            padding-bottom: 8px;
+        }
+        
+        .contact-info {
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+        
+        .contact-info .address {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info .phone {
+            font-weight: bold;
+            color: #f3f4f6;
+        }
+            
         .contact-info {
             color: #bdc3c7;
             font-size: 1.05rem;
@@ -536,17 +552,17 @@
                 font-size: 1.2rem;
             }
 
-            .footervisit {
+            .footer {
                 padding: 40px 20px 30px;
             }
 
-            .footervisit-content {
+            .footer-content {
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 30px;
             }
 
-            .footervisit-logo img {
+            .footer-logo img {
                 max-width: 150px;
             }
 
@@ -627,7 +643,7 @@
                 font-size: 0.95rem;
             }
 
-            .footervisit {
+            .footer {
                 padding: 30px 15px 25px;
             }
         }
@@ -639,7 +655,7 @@
         <div class="banner-nav">
             <div class="banner-buttons">
                 <a href="index.html">Home</a>
-                <a href="index.html#parties">Parties</a>
+                <a href="parties.html">Parties</a>
                 <a href="events.html">Events</a>
                 <a href="studio.html">The Studio</a>
                 <a href="visit.html">Visit Us</a>
@@ -712,16 +728,29 @@
             </div>
         </div>
 
+        <!-- Enhanced Public Calendar with both iframe and API events -->
         <div class="public-calendar">
             <h3>Upcoming Classes & Events</h3>
-            <div id="calendar-embed">
-                <iframe src="https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=America%2FChicago&src=ryancbutler98%40gmail.com&color=%23039BE5&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=AGENDA" 
+            
+            <!-- Calendar iframe for visual calendar view -->
+            <div id="calendar-embed" style="margin-bottom: 30px;">
+                <iframe src="https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=America%2FChicago&src=ryancbutler98%40gmail.com&color=%23039BE5&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH" 
                         style="border: 0; width: 100%; height: 400px; border-radius: 10px;" 
                         frameborder="0" 
                         scrolling="no">
                 </iframe>
             </div>
+
+            <!-- API-powered events list -->
+            <div id="api-events-container">
+                <h4 style="color: #8c52ff; margin-bottom: 20px; font-size: 1.4rem;">Event Details</h4>
+                <div id="events-list">
+                    <div class="loading">Loading upcoming events...</div>
+                </div>
+            </div>
         </div>
+
+    </div>
 
     <footer class="footer">
         <div class="footer-content">
@@ -731,12 +760,12 @@
             
             <div class="footer-links">
                 <h3>Quick Links</h3>
-                <a href="#home">Home</a>
-                <a href="#about">About Us</a>
-                <a href="#parties">Parties</a>
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About Us</a>
+                <a href="parties.html">Parties</a>
                 <a href="events.html">Events</a>
-                <a href="#visit">Visit Us</a>
-                <a href="#studio">The Studio</a>
+                <a href="visit.html">Visit Us</a>
+                <a href="studio.html">The Studio</a>
             </div>
             
             <div class="footer-contact">
@@ -782,105 +811,151 @@
             }
         }
 
-        window.addEventListener('load', () => {
-            console.log('Page loaded, initializing...');
-            // Load Google APIs
-            if (typeof gapi !== 'undefined') {
-                gapi.load('client', initializeGapiClient);
-            } else {
-                console.error('Google API library not loaded');
-                document.getElementById('events-container').innerHTML = `
+        // Format date for display
+        function formatDate(dateString) {
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // Format time for display
+        function formatTime(dateTimeString) {
+            const options = { 
+                hour: 'numeric', 
+                minute: '2-digit',
+                hour12: true 
+            };
+            return new Date(dateTimeString).toLocaleTimeString('en-US', options);
+        }
+
+        // Load public events using the API (no authentication required for public calendar)
+        async function loadPublicEvents() {
+            const eventsContainer = document.getElementById('events-list');
+            
+            if (!gapi_inited) {
+                console.log('GAPI not initialized yet, showing fallback events');
+                showFallbackEvents();
+                return;
+            }
+
+            try {
+                eventsContainer.innerHTML = '<div class="loading">Loading upcoming events...</div>';
+                
+                const now = new Date();
+                const timeMin = now.toISOString();
+                
+                console.log('Attempting to load events from calendar:', CALENDAR_ID);
+                
+                // Get events from public calendar
+                const response = await gapi.client.calendar.events.list({
+                    'calendarId': CALENDAR_ID,
+                    'timeMin': timeMin,
+                    'showDeleted': false,
+                    'singleEvents': true,
+                    'maxResults': 10,
+                    'orderBy': 'startTime'
+                });
+
+                console.log('API Response:', response);
+                const events = response.result.items;
+                displayPublicEvents(events);
+
+            } catch (error) {
+                console.error('Error loading public events:', error);
+                console.error('Error details:', error.result);
+                
+                // Check if it's a calendar access issue
+                if (error.result && error.result.error && error.result.error.code === 404) {
+                    eventsContainer.innerHTML = `
+                        <div class="error-message">
+                            <h4>Calendar Not Found</h4>
+                            <p>The calendar may be private or the ID may be incorrect. Showing sample events below.</p>
+                        </div>
+                    `;
+                } else if (error.result && error.result.error && error.result.error.code === 403) {
+                    eventsContainer.innerHTML = `
+                        <div class="error-message">
+                            <h4>Calendar Access Restricted</h4>
+                            <p>The calendar is not public. Showing sample events below.</p>
+                        </div>
+                    `;
+                } else {
+                    eventsContainer.innerHTML = `
+                        <div class="error-message">
+                            <h4>Unable to Load Events</h4>
+                            <p>There was an error connecting to the calendar. Showing sample events below.</p>
+                        </div>
+                    `;
+                }
+                
+                // Always show fallback events after error message
+                setTimeout(showFallbackEvents, 1000);
+            }
+        }
+
+        // Display public events
+        function displayPublicEvents(events) {
+            const eventsContainer = document.getElementById('events-list');
+            
+            if (!events || events.length === 0) {
+                eventsContainer.innerHTML = `
                     <div class="event-item">
-                        <div class="event-title">Calendar Unavailable</div>
+                        <div class="event-title">No Upcoming Events</div>
                         <div class="event-details">
-                            <strong>Unable to load Google Calendar integration.</strong><br>
-                            Please contact us at (501) 555-5555 for event information.
+                            Check back soon for new classes and workshops! 
+                            Call us at (501) 358-6245 to inquire about private sessions.
                         </div>
                     </div>
                 `;
+                return;
             }
-            
-            if (typeof google !== 'undefined' && google.accounts) {
-                gisLoaded();
-            } else {
-                console.error('Google Identity Services not loaded');
-            }
-        });
 
-        async function initializeGapiClient() {
-            try {
-                await gapi.client.init({
-                    apiKey: API_KEY,
-                    discoveryDocs: [DISCOVERY_DOC],
-                });
-                gapi_inited = true;
-                console.log('GAPI initialized');
-                maybeEnableButtons();
-            } catch (error) {
-                console.error('Error initializing GAPI:', error);
-                showFallbackContent();
-            }
+            eventsContainer.innerHTML = events.map(event => {
+                const startDate = event.start.dateTime || event.start.date;
+                const endDate = event.end.dateTime || event.end.date;
+                
+                let timeDisplay;
+                if (event.start.dateTime && event.end.dateTime) {
+                    // Time-specific event
+                    timeDisplay = `${formatTime(startDate)} - ${formatTime(endDate)}`;
+                } else {
+                    // All-day event
+                    timeDisplay = 'All Day';
+                }
+
+                return `
+                    <div class="event-item">
+                        <div class="event-title">${event.summary || 'Untitled Event'}</div>
+                        <div class="event-details">
+                            <strong>Date:</strong> ${formatDate(startDate)}<br>
+                            <strong>Time:</strong> ${timeDisplay}<br>
+                            ${event.description ? `<strong>Description:</strong> ${event.description}<br>` : ''}
+                            ${event.location ? `<strong>Location:</strong> ${event.location}` : '<strong>Location:</strong> Frost Your Cake Studios'}
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
 
-        function gisLoaded() {
-            try {
-                tokenClient = google.accounts.oauth2.initTokenClient({
-                    client_id: CLIENT_ID,
-                    scope: SCOPES,
-                    callback: '',
-                });
-                gis_inited = true;
-                console.log('GIS initialized');
-                maybeEnableButtons();
-            } catch (error) {
-                console.error('Error initializing GIS:', error);
-            }
-        }
-
-        function maybeEnableButtons() {
-            if (gapi_inited && gis_inited) {
-                document.getElementById('admin-section').classList.add('visible');
-                showAdminMessage('Admin login ready', 'info');
-                setTimeout(loadPublicEvents, 500);
-            } else if (gapi_inited) {
-                setTimeout(loadPublicEvents, 500);
-            }
-        }
-
-        function showFallbackContent() {
-            document.getElementById('events-container').innerHTML = `
+        // Show fallback events if API fails
+        function showFallbackEvents() {
+            const eventsContainer = document.getElementById('events-list');
+            eventsContainer.innerHTML = `
+                <div class="error-message">
+                    <h4>Unable to load events from Google Calendar</h4>
+                    <p>Please view the calendar above or contact us at (501) 358-6245 for event information.</p>
+                </div>
                 <div class="event-item">
                     <div class="event-title">Beginner Cake Decorating Workshop</div>
                     <div class="event-details">
-                        <strong>Date:</strong> Contact us for schedule<br>
-                        <strong>Time:</strong> 2:00 PM - 4:00 PM<br>
+                        <strong>Schedule:</strong> Contact us for available dates<br>
+                        <strong>Duration:</strong> 2 hours<br>
                         <strong>Description:</strong> Learn the basics of cake decorating with buttercream flowers and piping techniques<br>
                         <strong>Location:</strong> Frost Your Cake Studios
                     </div>
                 </div>
-                <div class="event-item">
-                    <div class="event-title">Advanced Fondant Techniques</div>
-                    <div class="event-details">
-                        <strong>Date:</strong> Contact us for schedule<br>
-                        <strong>Time:</strong> 6:00 PM - 8:00 PM<br>
-                        <strong>Description:</strong> Master advanced fondant work including figure modeling and texture techniques<br>
-                        <strong>Location:</strong> Frost Your Cake Studios
-                    </div>
-                </div>
-            `;
-        }
-
-        async function checkAdminStatus() {
-            try {
-                const response = await gapi.client.request({
-                    'path': 'https://www.googleapis.com/oauth2/v2/userinfo',
-                });
-                
-                const userEmail = response.result.email;
-                isAdmin = userEmail === ADMIN_EMAIL;
-                
-                if (isAdmin) {
-                    showAdminInterface();
-                    showAdminMessage(`Welcome Admin! Signed in as ${userEmail}`, 'success');
-                    await loadEvents();
-                }
+                <div class="event
