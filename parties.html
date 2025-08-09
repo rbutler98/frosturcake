@@ -629,6 +629,71 @@
     .close-menu:hover {
       color: #8c52ff;
     }
+
+    /* New decorating options styles */
+        .decorating-options {
+            background: linear-gradient(135deg, #f0f4ff, #faf9ff);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #8c52ff;
+        }
+
+        .decorating-title {
+            color: #8c52ff;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .option-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e8e8ff;
+            text-align: center;
+        }
+
+        .option-name {
+            color: #8c52ff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .option-price {
+            color: #555;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .pricing-note {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #e8e8ff;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .pricing-details {
+            background: linear-gradient(135deg, #f0f4ff, #faf9ff);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #8c52ff;
+        }
     </style>
 </head>
 
@@ -674,6 +739,31 @@
                     </div>
                 </div>
                 
+                <div class="decorating-options">
+                    <div class="decorating-title">🎨 Choose Your Decorating Project:</div>
+                    <div class="options-grid">
+                        <div class="option-item">
+                            <div class="option-name">Cupcakes</div>
+                            <div class="option-price">$60 for 24</div>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-name">Cookies</div>
+                            <div class="option-price">$64 for 24</div>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-name">5" Round Cake</div>
+                            <div class="option-price">$32 each</div>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-name">8" Round Cake</div>
+                            <div class="option-price">$38 each</div>
+                        </div>
+                    </div>
+                    <div class="pricing-note">
+                        Decorating supplies and instruction included with all options
+                    </div>
+                </div>
+                
                 <div class="capacity-info">
                     🎉 Accommodates up to 25 guests
                 </div>
@@ -701,9 +791,25 @@
             </div>
 
             <div class="party-image-container">
-                <img class="party-picture" src="https://i.ibb.co/YFnzTqKR/party-room.jpg" alt="Private Party Room at Frost Your Cake Studios">
+                <img class="party-picture" src="https://i.ibb.co/99vZz6fv/pr-1.jpg" alt="pr_1">
                 <div class="image-overlay">
                     <p class="overlay-text">Your Private Celebration Space</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="party-image-container">
+                <img class="party-picture" src="https://i.ibb.co/dsHK0bNz/pr-2.jpg" alt="pr_2">
+                <div class="image-overlay">
+                    <p class="overlay-text">Decorate to You</p>
+                </div>
+            </div>
+        </div>
+
+            <div class="party-image-container">
+                <img class="party-picture" src="https://i.ibb.co/YFnzTqKR/party-room.jpg" alt="pr_3">
+                <div class="image-overlay">
+                    <p class="overlay-text">Plenty of Decorating Space</p>
                 </div>
             </div>
         </div>
@@ -776,17 +882,28 @@
             </div>
             
             <div class="footer-contact">
-                <h3>Contact Info</h3>
-                <div class="contact-info">
-                    <div class="address">
-                        1008 E Oak St, Suite 105<br>
-                        Conway, AR 72032
-                    </div>
-                    <div class="phone">
-                        Phone: (501) 358-6245
-                    </div>
-                </div>
-            </div>
+        <h3>Contact Info</h3>
+        <div class="contact-info">
+          <div class="address">
+            1008 E Oak St, Suite 105<br>
+            Conway, AR 72032
+          </div>
+          <div class="phone">
+            Phone: (501) 358-6245
+            <br>
+            Hours: <br>
+            --------------- <br>
+            Mon:    11am - 7pm <br>
+            Tues:   Closed <br>
+            Weds:   Closed <br>
+            Thurs:  11am - 7pm <br>
+            Fri:    11am - 8pm <br>
+            Sat:    10am - 8pm <br>
+            Sun:    12pm - 8pm
+          </div>
+        </div>
+      </div>
+    </div>
         </div>
     </footer>
 
