@@ -373,6 +373,91 @@
                 bottom: 10px;
             }
         }
+        /* Fullscreen Modal Styles */
+    .fullscreen-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .fullscreen-modal.show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .fullscreen-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .close-modal:hover {
+      color: #ffb6c1;
+    }
+
+    /* Menu Overlay Styles */
+    .menu-overlay {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+    }
+
+    .menu-overlay.show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .menu-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-menu {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+    }
+
+    .close-menu:hover {
+      color: #8c52ff;
+    }
     </style>
 
     <div class="banner">
@@ -384,6 +469,7 @@
                 <a href="events.html">Events</a>
                 <a href="studio.html">The Studio</a>
                 <a href="visit.html">Visit Us</a>
+                <a href="#" class="menu" id="menuButton">Menu</a>
             </div>
         </div>
 
@@ -478,6 +564,18 @@
                 </div>
             </div>
         </div>
+
+        <!-- Fullscreen Modal -->
+  <div class="fullscreen-modal" id="fullscreenModal">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <img id="fullscreenImage" src="" alt="">
+  </div>
+
+  <!-- Menu Overlay -->
+  <div class="menu-overlay" id="menuOverlay">
+    <span class="close-menu" id="closeMenu">&times;</span>
+    <img src="https://i.ibb.co/4ZmtFGH8/original-fyc-menu-design.png" alt="Frost Your Cake Menu">
+  </div>
     </footer>
     
     <script>
@@ -595,6 +693,87 @@
                 window.slideshow.goToSlide(slideNumber);
             }
         }
+        // Menu overlay functionality
+    const menuButton = document.getElementById("menuButton");
+    const menuOverlay = document.getElementById("menuOverlay");
+    const closeMenu = document.getElementById("closeMenu");
+
+    function showMenu() {
+      menuOverlay.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function hideMenu() {
+      menuOverlay.classList.remove("show");
+      document.body.style.overflow = "auto";
+    }
+
+    // Menu button click event
+    menuButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      showMenu();
+    });
+
+    // Close menu events
+    closeMenu.addEventListener("click", hideMenu);
+    menuOverlay.addEventListener("click", (e) => {
+      if (e.target === menuOverlay) {
+        hideMenu();
+      }
+    });
+
+    // Close menu with escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menuOverlay.classList.contains("show")) {
+        hideMenu();
+      }
+    });
+
+    // Slideshow functionality
+    const slideshow = document.getElementById("slideshow");
+    const images = slideshow.querySelectorAll("img");
+    const dots = document.querySelectorAll(".dot");
+    let index = 0;
+    let interval;
+
+    // Fullscreen modal functionality
+    const fullscreenModal = document.getElementById("fullscreenModal");
+    const fullscreenImage = document.getElementById("fullscreenImage");
+    const closeModal = document.getElementById("closeModal");
+
+    function showFullscreen(imageSrc, imageAlt) {
+      fullscreenImage.src = imageSrc;
+      fullscreenImage.alt = imageAlt;
+      fullscreenModal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function hideFullscreen() {
+      fullscreenModal.classList.remove("show");
+      document.body.style.overflow = "auto";
+    }
+
+    // Add click listeners to slideshow images
+    images.forEach((img, i) => {
+      img.addEventListener("click", () => {
+        showFullscreen(img.src, img.alt);
+      });
+    });
+
+    // Close modal events
+    closeModal.addEventListener("click", hideFullscreen);
+    fullscreenModal.addEventListener("click", (e) => {
+      if (e.target === fullscreenModal) {
+        hideFullscreen();
+      }
+    });
+
+    // Close with escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && fullscreenModal.classList.contains("show")) {
+        hideFullscreen();
+      }
+    });
     </script>
 </body>
 </html>
