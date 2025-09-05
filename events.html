@@ -395,7 +395,7 @@
     <!-- Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay">
         <span class="close-menu" id="closeMenu">&times;</span>
-        <img src="https://i.ibb.co/4ZmtFGH8/original-fyc-menu-design.png" alt="Frost Your Cake Menu" />
+        <img src="https://i.ibb.co/4RWyf9dN/menu.png" alt="Frost Your Cake Menu" />
     </div>
 
     <footer class="footer">
@@ -635,43 +635,6 @@
             }
         });
 
-        // Show fallback events if API fails
-        function showFallbackEvents() {
-            const eventsContainer = document.getElementById('events-list');
-            eventsContainer.innerHTML = `
-                <div class="error-message">
-                    <h4>Unable to load events from Google Calendar</h4>
-                    <p>Please view the calendar above or contact us at (501) 358-6245 for event information.</p>
-                </div>
-                <div class="event-item">
-                    <div class="event-title">Beginner Cake Decorating Workshop</div>
-                    <div class="event-details">
-                        <strong>Schedule:</strong> Contact us for available dates<br>
-                        <strong>Duration:</strong> 2 hours<br>
-                        <strong>Description:</strong> Learn the basics of cake decorating with buttercream flowers and piping techniques<br>
-                        <strong>Location:</strong> Frost Your Cake Studios
-                    </div>
-                </div>
-                <div class="event-item">
-                    <div class="event-title">Advanced Fondant Techniques</div>
-                    <div class="event-details">
-                        <strong>Schedule:</strong> Contact us for available dates<br>
-                        <strong>Duration:</strong> 3 hours<br>
-                        <strong>Description:</strong> Master advanced fondant work including sculpting and detailed decorations<br>
-                        <strong>Location:</strong> Frost Your Cake Studios
-                    </div>
-                </div>
-                <div class="event-item">
-                    <div class="event-title">Kids Birthday Party Decorating</div>
-                    <div class="event-details">
-                        <strong>Schedule:</strong> Weekends available<br>
-                        <strong>Duration:</strong> 1.5 hours<br>
-                        <strong>Description:</strong> Fun cake decorating party for kids ages 6-12<br>
-                        <strong>Location:</strong> Frost Your Cake Studios
-                    </div>
-                </div>
-            `;
-        }
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
