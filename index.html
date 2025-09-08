@@ -3,10 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="jesusdabbed.css">
   <title>Frost Your Cake - Home</title>
+  <link rel="stylesheet" href="universal.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&family=Great+Vibes&family=Caveat:wght@400..700&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Courgette&display=swap" rel="stylesheet">
+
   <style>
+    /* Reset and Base Styles */
+
+    /* Animations */
     @keyframes fadeIn {
       from { 
         opacity: 0; 
@@ -19,94 +25,631 @@
     }
 
     @keyframes fadeInTop {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
-    @keyframes scroll-enlarge {
-      0%, 100% { 
-        transform: scale(1); 
-      }
-      50% { 
-        transform: scale(1.1); 
-      }
+    /* Main Content Section */
+    .handwritten-message {
+      font-family: 'Caveat';
+      color: #ae88ff;
+      text-align: center;
+      font-size: 2rem;
+      margin: 40px auto;
+      max-width: 800px;
+      padding: 0 20px;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeInTop 1.5s ease-out 0.5s forwards;
     }
 
-    .text-columns {
+    /* About Section - Fixed Layout */
+    .about-section {
+      background: linear-gradient(to bottom, #ffffff 0%, #fff4fb 30%, #fff4fb 70%, #ffffff 100%);
+      padding: 80px 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, opacity 1s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .about-image.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about-image:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    .text-content {
       display: flex;
       flex-direction: column;
-      gap: 30px;
-      flex: 1;
+      gap: 40px;
     }
 
     .text-box {
-      background: #fff;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(140, 82, 255, 0.1);
+    }
+
+    .text-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .text-box h2 {
+      color: #8c52ff;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      font-family: 'Caveat', cursive;
+      font-weight: 600;
+    }
+
+    .text-box p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    /* Parties Section */
+    .parties-section {
+      background: white;
+      padding: 80px 0;
+    }
+
+    .parties-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .parties-text {
+      background: white;
+      border: 4px dashed #a64dff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      background-image: url('https://www.transparenttextures.com/patterns/sprinkles.png');
+      background-size: contain;
+      background-repeat: repeat;
+      position: relative;
+    }
+
+    .parties-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+    }
+
+    .parties-text > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .parties-header {
+      font-family: 'Caveat';
+      font-size: 3rem;
+      text-align: center;
+      color: #a64dff;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .parties-description {
+      font-size: 1.2rem;
+      color: #333;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .parties-description a {
+      color: #8c52ff;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .parties-description a:hover {
+      border-bottom-color: #8c52ff;
+    }
+
+    .parties-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .parties-image.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Gooey Divider */
+    .gooey-divider {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .gooey-divider svg {
+      display: block;
+      width: 100%;
+      height: 100px;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      background: linear-gradient(135deg, #ffb6c1, #d98eff);
+      padding: 80px 0;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .slideshow-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 400px;
+    }
+
+    .slideshow {
+      display: flex;
+      transition: transform 1s ease;
+      justify-content: center;
+      gap: 40px;
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .slideshow img {
+      height: 150px;
+      width: auto;
+      flex-shrink: 0;
       border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      transition: transform 1s ease;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .slideshow img.active {
+      transform: scale(2.5);
+      z-index: 2;
+    }
+
+    .dots-container {
+      margin-top: 120px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .dot.active {
+      background-color: white;
+      transform: scale(1.2);
+    }
+
+    /* Fullscreen Modal */
+    .fullscreen-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .fullscreen-modal.show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .fullscreen-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+      transition: color 0.3s ease;
+    }
+
+    .close-modal:hover {
+      color: #ffb6c1;
+    }
+
+    /* Menu Overlay */
+    .menu-overlay {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+    }
+
+    .menu-overlay.show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .menu-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-menu {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+      transition: color 0.3s ease;
+    }
+
+    .close-menu:hover {
+      color: #8c52ff;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .about-content,
+      .parties-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-content {
+        margin-bottom: 60px;
+      }
+
+      .about-image,
+      .parties-image {
+        height: 300px;
+      }
+
+      .text-box {
+        padding: 30px;
+      }
+
+      .parties-text {
+        padding: 30px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        padding: 50px 30px 30px;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .banner-buttons {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .banner-content {
+        padding: 40px 20px;
+      }
+
+      .logo {
+        height: 100px;
+        max-width: 250px;
+      }
+
+      .slogan {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+      }
+
+      .handwritten-message {
+        font-size: 1.8rem;
+        margin: 30px auto;
+      }
+
+      .about-section,
+      .parties-section {
+        padding: 60px 0;
+      }
+
+      .about-image,
+      .parties-image {
+        height: 250px;
+      }
+
+      .text-box {
+        padding: 25px;
+      }
+
+      .text-box h2 {
+        font-size: 1.8rem;
+      }
+
+      .parties-text {
+        padding: 25px;
+      }
+
+      .parties-header {
+        font-size: 2.2rem;
+      }
+
+      .parties-description {
+        font-size: 1.1rem;
+      }
+
+      .gallery-section {
+        padding: 60px 0;
+      }
+
+      .slideshow img {
+        height: 120px;
+      }
+
+      .slideshow img.active {
+        transform: scale(2);
+      }
+
+      .dots-container {
+        margin-top: 100px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        text-align: center;
+        padding: 40px 20px 30px;
+      }
+
+      .footer-brand {
+        margin-bottom: 30px;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      .day-hours {
+        flex-direction: column;
+        gap: 2px;
+        text-align: center;
+      }
+
+      .footer-nav a {
+        padding-left: 0;
+      }
+
+      .footer-nav a:hover {
+        padding-left: 5px;
+      }
+
+      .footer-nav a::before {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        height: 80px;
+        max-width: 200px;
+      }
+
+      .slogan {
+        font-size: 2rem;
+      }
+
+      .handwritten-message {
+        font-size: 1.5rem;
+      }
+
+      .text-box h2 {
+        font-size: 1.6rem;
+      }
+
+      .text-box p,
+      .parties-description {
+        font-size: 1rem;
+      }
+
+      .parties-header {
+        font-size: 1.8rem;
+      }
+
+      .slideshow img {
+        height: 100px;
+      }
+
+      .mobile-nav a {
+        font-size: 1.5rem;
+        min-width: 180px;
+        padding: 12px 25px;
+      }
+
+      .footer-content {
+        padding: 30px 15px 20px;
+        gap: 30px;
+      }
+
+      .footer-logo {
+        height: 60px;
+      }
+
+      .social-link {
+        width: 45px;
+        height: 45px;
+      }
+
+      .social-icon {
+        width: 20px;
+        height: 20px;
+      }
     }
   </style>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&family=Great+Vibes&family=Caveat:wght@400..700&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Courgette&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
-    <div class="banner">
-        <div class="banner-nav">
-            <div class="banner-buttons">
-                <a href="index.html">Home</a>
-                <a href="parties.html">Parties</a>
-                <a href="events.html">Events</a>
-                <a href="studio.html">The Studio</a>
-                <a href="visit.html">Visit Us</a>
-                <a href="#" class="menu" id="menuButton">Menu</a>
-            </div>
-        </div>
-
-        <div class="banner-content">
-            <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
-            <div class="slogan">Create. Decorate. Celebrate.</div>
-        </div>
+  <div class="banner">
+    <div class="banner-nav">
+      <div class="banner-buttons">
+        <a href="index.html">Home</a>
+        <a href="parties.html">Parties</a>
+        <a href="events.html">Events</a>
+        <a href="visit.html">Visit Us</a>
+        <a href="#" class="menu" id="menuButton">Menu</a>
+      </div>
+      
+      <div class="hamburger" id="hamburgerButton">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
 
+    <div class="banner-content">
+      <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
+      <div class="slogan">Create. Decorate. Celebrate.</div>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="parties.html">Parties</a>
+    <a href="events.html">Events</a>
+    <a href="visit.html">Visit Us</a>
+    <a href="#" id="mobileMenuButton">Menu</a>
+  </div>
+
   <main>
-    <section class="handwritten-message fade-in-top">
+    <section class="handwritten-message">
       <p>A unique DIY cookie, cake and cupcake decorating studio. We're not a bakery; we're a creative experience for the entire family.</p>
     </section>
 
-    <section class="index-content" id="about">
-      <img class="index-image" src="https://i.postimg.cc/fy08RKtw/Firefly-Cupcakes-being-frosted-by-a-professional-95871.jpg" alt="Decorating at Frost Your Cake">
-      
-      <div class="text-columns">
-        <div class="text-box">
-          <h2>About Us</h2>
-          <p>Proud to be local, we're a studio focused on icing your own desserts. Our decorating studio is open and waiting for you! We hope you'll join us to experience the fun of decorating your own cakes, cupcakes, and cookies using all the same tools the pros use in a fun, family-friendly environment that's great for any age! Hope to see you soon!</p>
-        </div>
-        
-        <div class="text-box">
-          <h2>How it Works</h2>
-          <p>If you've always wanted to try cake, cupcake, or cookie decorating but didn't know where to start, or didn't want the mess or expense, at Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an "unlimited decorating experience." Decorate cookies, cakes, or cupcakes however you desire. Use as many colors, frosting tips, and sprinkles as you need to bring your creation from idea to reality! All levels of experience and ages are welcome! Even if you've never decorated baked goods before, we're happy to help provide some inspiration or useful tips and tricks.</p>
+    <section class="about-section">
+      <div class="container">
+        <div class="about-content">
+          <img class="about-image" src="https://i.postimg.cc/fy08RKtw/Firefly-Cupcakes-being-frosted-by-a-professional-95871.jpg" alt="Decorating at Frost Your Cake" id="aboutImage">
+          
+          <div class="text-content">
+            <div class="text-box">
+              <h2>About Us</h2>
+              <p>Proud to be local, we're a studio focused on icing your own desserts. Our decorating studio is open and waiting for you! We hope you'll join us to experience the fun of decorating your own cakes, cupcakes, and cookies using all the same tools the pros use in a fun, family-friendly environment that's great for any age! Hope to see you soon!</p>
+            </div>
+            
+            <div class="text-box">
+              <h2>How it Works</h2>
+              <p>If you've always wanted to try cake, cupcake, or cookie decorating but didn't know where to start, or didn't want the mess or expense, at Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an "unlimited decorating experience." Decorate cookies, cakes, or cupcakes however you desire. Use as many colors, frosting tips, and sprinkles as you need to bring your creation from idea to reality! All levels of experience and ages are welcome! Even if you've never decorated baked goods before, we're happy to help provide some inspiration or useful tips and tricks.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="partesindex" class="partesindex-section">
-      <div class="partesindex-container">
-        <div class="partesindex-text-box">
-          <h2 class="partesindex-header">Parties and Celebrations</h2>
-          <p class="partesindex-description">We love celebrating! Bring your friends or family and celebrate special days with private parties. We're the perfect spot for birthdays, bridal showers, baby showers, holidays, and special events. Reserve our private party room that holds up to 20 guests.
-            Call now: (501) 358-6245. Check out our parties page for more info and pricing!
-            Or <a href="https://docs.google.com/forms/d/e/1FAIpQLSd9pvCZE6X6IsV7_8nDfMxYIy_y6m0RIpCYqrMOk7IJbkRF6g/viewform?usp=sharing&ouid=114403284817281729951"> Book Now </a>
-          </p>
-        </div>
-        
-        <div class="partesindex-image-container">
-          <img src="https://i.ibb.co/PsF9TXzr/Firefly-Many-adults-decorating-cookies-at-a-party-786202.jpg" alt="Party Celebration" class="partesindex-image" id="partyImage">
+    <section class="parties-section">
+      <div class="container">
+        <div class="parties-content">
+          <div class="parties-text">
+            <h2 class="parties-header">Parties and Celebrations</h2>
+            <p class="parties-description">We love celebrating! Bring your friends or family and celebrate special days with private parties. We're the perfect spot for birthdays, bridal showers, baby showers, holidays, and special events. Reserve our private party room that holds up to 20 guests.
+              Call now: (501) 358-6245. Check out our parties page for more info and pricing!
+              Or <a href="https://docs.google.com/forms/d/e/1FAIpQLSd9pvCZE6X6IsV7_8nDfMxYIy_y6m0RIpCYqrMOk7IJbkRF6g/viewform?usp=sharing&ouid=114403284817281729951">Book Now</a>
+            </p>
+          </div>
+          
+          <img src="https://i.ibb.co/PsF9TXzr/Firefly-Many-adults-decorating-cookies-at-a-party-786202.jpg" alt="Party Celebration" class="parties-image" id="partyImage">
         </div>
       </div>
     </section>
@@ -124,9 +667,9 @@
     </svg>
   </div>
 
-  <section class="slide">
-    <div class="sshowindex-container">
-      <div class="sshowindex" id="sshowindex">
+  <section class="gallery-section">
+    <div class="slideshow-container">
+      <div class="slideshow" id="slideshow">
         <img src="https://i.ibb.co/fddyGHNY/img-cropped-2.png" alt="Decorated Cake 1">
         <img src="https://i.ibb.co/cXt5mHTJ/img-1.png" alt="Decorated Cake 2">
         <img src="https://i.ibb.co/7xJLdP9H/img-cropped-3.png" alt="Decorated Cake 3">
@@ -136,25 +679,23 @@
         <img src="https://i.ibb.co/ycPNT0mc/img-cropped-7.png" alt="Decorated Cookie 3">
       </div>
       
-      <div class="dotsindex-container" id="dotsindexContainer">
-        <span class="dotindex active" aria-label="Image 1"></span>
-        <span class="dotindex" aria-label="Image 2"></span>
-        <span class="dotindex" aria-label="Image 3"></span>
-        <span class="dotindex" aria-label="Image 4"></span>
-        <span class="dotindex" aria-label="Image 5"></span>
-        <span class="dotindex" aria-label="Image 6"></span>
-        <span class="dotindex" aria-label="Image 7"></span>
+      <div class="dots-container" id="dotsContainer">
+        <span class="dot active" data-slide="0" aria-label="Image 1"></span>
+        <span class="dot" data-slide="1" aria-label="Image 2"></span>
+        <span class="dot" data-slide="2" aria-label="Image 3"></span>
+        <span class="dot" data-slide="3" aria-label="Image 4"></span>
+        <span class="dot" data-slide="4" aria-label="Image 5"></span>
+        <span class="dot" data-slide="5" aria-label="Image 6"></span>
+        <span class="dot" data-slide="6" aria-label="Image 7"></span>
       </div>
     </div>
   </section>
 
-  <!-- Fullscreen Modal -->
-  <div class="index-fullscreen" id="fullscreenModal">
-    <span class="index-close" id="closeModal">&times;</span>
+  <div class="fullscreen-modal" id="fullscreenModal">
+    <span class="close-modal" id="closeModal">&times;</span>
     <img id="fullscreenImage" src="" alt="">
   </div>
 
-  <!-- Menu Overlay -->
   <div class="menu-overlay" id="menuOverlay">
     <span class="close-menu" id="closeMenu">&times;</span>
     <img src="https://i.ibb.co/4RWyf9dN/menu.png" alt="Frost Your Cake Menu">
@@ -162,59 +703,113 @@
 
   <footer class="footer">
     <div class="footer-content">
-        <div class="footer-logo">
-            <img class="fyc" src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png">
-        </div>
+      <div class="footer-brand">
+        <img src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png" alt="Frost Your Cake Logo" class="footer-logo">
+        <p class="footer-tagline">"Create. Decorate. Celebrate."</p>
+        <p class="footer-description">
+          A unique DIY cookie, cake and cupcake decorating studio where families create sweet memories together.
+        </p>
         
-        <div class="footer-links">
-            <h3>Quick Links</h3>
-            <a href="index.html">Home</a>
-            <a href="index.html#about">About Us</a>
-            <a href="parties.html">Parties</a>
-            <a href="events.html">Events</a>
-            <a href="visit.html">Visit Us</a>
-            <a href="studio.html">The Studio</a>
-        </div>
-        
-        <div class="footer-contact">
-        <h3>Contact Info</h3>
-        <div class="contact-info">
-          <div class="address">
-            1008 E Oak St, Suite 105<br>
-            Conway, AR 72032
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61566441696347" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Follow us on Facebook">
+              <div class="social-icon facebook-icon"></div>
+            </a>
+            <a href="https://www.instagram.com/frostyourcakestudio" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Follow us on Instagram">
+              <div class="social-icon instagram-icon"></div>
+            </a>
           </div>
-          <div class="phone">
-            Phone: (501) 358-6245
-            <br>
-            Hours: <br>
-            --------------- <br>
-            Mon:    11am - 7pm <br>
-            Tues:   Closed <br>
-            Weds:   Closed <br>
-            Thurs:  11am - 7pm <br>
-            Fri:    11am - 8pm <br>
-            Sat:    10am - 8pm <br>
-            Sun:    12pm - 8pm
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <nav class="footer-nav">
+          <a href="index.html">Home</a>
+          <a href="#about">About Us</a>
+          <a href="parties.html">Parties</a>
+          <a href="events.html">Events</a>
+          <a href="visit.html">Visit Us</a>
+        </nav>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <div class="contact-details">
+          <div class="contact-item">
+            <strong>Address</strong>
+            <p>
+              1008 E Oak St, Suite 105<br>
+              Conway, AR 72032
+            </p>
+          </div>
+          <div class="contact-item">
+            <strong>Phone</strong>
+            <p>
+              <a href="tel:+15013586245">(501) 358-6245</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-hours">
+        <h4>Hours</h4>
+        <div class="hours-grid">
+          <div class="day-hours">
+            <span class="day">Monday</span>
+            <span class="hours">11am - 7pm</span>
+          </div>
+          <div class="day-hours closed">
+            <span class="day">Tuesday</span>
+            <span class="hours">Closed</span>
+          </div>
+          <div class="day-hours closed">
+            <span class="day">Wednesday</span>
+            <span class="hours">Closed</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Thursday</span>
+            <span class="hours">11am - 7pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Friday</span>
+            <span class="hours">11am - 8pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Saturday</span>
+            <span class="hours">10am - 8pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Sunday</span>
+            <span class="hours">12pm - 8pm</span>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Frost Your Cake Studio. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
-    const partyImage = document.getElementById('partyImage');
-    
-    function handleScroll() {
-      const rect = partyImage.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) {
-        partyImage.classList.add('visible');
-        window.removeEventListener('scroll', handleScroll);
-      }
+    function handleImageVisibility() {
+      const aboutImage = document.getElementById('aboutImage');
+      const partyImage = document.getElementById('partyImage');
+      
+      [aboutImage, partyImage].forEach(img => {
+        if (img) {
+          const rect = img.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100 && rect.bottom > 0) {
+            img.classList.add('visible');
+          }
+        }
+      });
     }
     
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
+    window.addEventListener('scroll', handleImageVisibility);
+    window.addEventListener('load', handleImageVisibility);
 
     const dripPath = document.getElementById("dripPath");
     const baseY = 80;
@@ -245,131 +840,190 @@
     }
 
     function animateDrip(time) {
-      dripPath.setAttribute("d", generateDripPath(time));
+      if (dripPath) {
+        dripPath.setAttribute("d", generateDripPath(time));
+      }
       requestAnimationFrame(animateDrip);
     }
     
     requestAnimationFrame(animateDrip);
 
-    // Menu overlay functionality
+    const hamburgerButton = document.getElementById("hamburgerButton");
+    const mobileNav = document.getElementById("mobileNav");
+    const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+    function toggleMobileNav() {
+      hamburgerButton.classList.toggle("active");
+      mobileNav.classList.toggle("show");
+      document.body.style.overflow = mobileNav.classList.contains("show") ? "hidden" : "auto";
+    }
+
+    function closeMobileNav() {
+      hamburgerButton.classList.remove("active");
+      mobileNav.classList.remove("show");
+      document.body.style.overflow = "auto";
+    }
+
+    if (hamburgerButton) {
+      hamburgerButton.addEventListener("click", toggleMobileNav);
+    }
+
+    const mobileNavLinks = mobileNav.querySelectorAll('a:not(#mobileMenuButton)');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', closeMobileNav);
+    });
+
     const menuButton = document.getElementById("menuButton");
     const menuOverlay = document.getElementById("menuOverlay");
     const closeMenu = document.getElementById("closeMenu");
 
     function showMenu() {
-      menuOverlay.classList.add("show");
-      document.body.style.overflow = "hidden";
+      if (menuOverlay) {
+        menuOverlay.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
     }
 
     function hideMenu() {
-      menuOverlay.classList.remove("show");
-      document.body.style.overflow = "auto";
+      if (menuOverlay) {
+        menuOverlay.classList.remove("show");
+        document.body.style.overflow = "auto";
+      }
     }
 
-    // Menu button click event
-    menuButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      showMenu();
-    });
+    if (menuButton) {
+      menuButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        showMenu();
+      });
+    }
 
-    // Close menu events
-    closeMenu.addEventListener("click", hideMenu);
-    menuOverlay.addEventListener("click", (e) => {
-      if (e.target === menuOverlay) {
-        hideMenu();
-      }
-    });
+    if (mobileMenuButton) {
+      mobileMenuButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeMobileNav();
+        setTimeout(showMenu, 300);
+      });
+    }
 
-    // Close menu with escape key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && menuOverlay.classList.contains("show")) {
-        hideMenu();
-      }
-    });
+    if (closeMenu) {
+      closeMenu.addEventListener("click", hideMenu);
+    }
+    
+    if (menuOverlay) {
+      menuOverlay.addEventListener("click", (e) => {
+        if (e.target === menuOverlay) {
+          hideMenu();
+        }
+      });
+    }
 
-    // sshowindex functionality
-    const sshowindex = document.getElementById("sshowindex");
-    const images = sshowindex.querySelectorAll("img");
-    const dotsindex = document.querySelectorAll(".dotindex");
-    let index = 0;
-    let interval;
+    const slideshow = document.getElementById("slideshow");
+    const images = slideshow.querySelectorAll("img");
+    const dots = document.querySelectorAll(".dot");
+    let currentIndex = 0;
+    let slideInterval;
 
-    // Fullscreen modal functionality
     const fullscreenModal = document.getElementById("fullscreenModal");
     const fullscreenImage = document.getElementById("fullscreenImage");
     const closeModal = document.getElementById("closeModal");
 
     function showFullscreen(imageSrc, imageAlt) {
-      fullscreenImage.src = imageSrc;
-      fullscreenImage.alt = imageAlt;
-      fullscreenModal.classList.add("show");
-      document.body.style.overflow = "hidden";
+      if (fullscreenModal && fullscreenImage) {
+        fullscreenImage.src = imageSrc;
+        fullscreenImage.alt = imageAlt;
+        fullscreenModal.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
     }
 
     function hideFullscreen() {
-      fullscreenModal.classList.remove("show");
-      document.body.style.overflow = "auto";
+      if (fullscreenModal) {
+        fullscreenModal.classList.remove("show");
+        document.body.style.overflow = "auto";
+      }
     }
 
-    // Add click listeners to sshowindex images
-    images.forEach((img, i) => {
+    images.forEach((img) => {
       img.addEventListener("click", () => {
         showFullscreen(img.src, img.alt);
       });
     });
 
-    // Close modal events
-    closeModal.addEventListener("click", hideFullscreen);
-    fullscreenModal.addEventListener("click", (e) => {
-      if (e.target === fullscreenModal) {
-        hideFullscreen();
-      }
-    });
-
-    // Close with escape key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && fullscreenModal.classList.contains("show")) {
-        hideFullscreen();
-      }
-    });
-
-    function updateSlide(i) {
-      images.forEach(img => img.classList.remove("active"));
-      dotsindex.forEach(dotindex => dotindex.classList.remove("active"));
-      images[i].classList.add("active");
-      dotsindex[i].classList.add("active");
-      
-      const containerWidth = sshowindex.parentElement.offsetWidth;
-      const imageWidth = 150 + 40; // image width + gap
-      const totalWidth = images.length * imageWidth;
-      const offset = (containerWidth / 2) - (imageWidth / 2) - (i * imageWidth);
-      
-      sshowindex.style.transform = `translateX(${Math.min(Math.max(offset, containerWidth - totalWidth - 20), 20)}px)`;
-      index = i;
+    if (closeModal) {
+      closeModal.addEventListener("click", hideFullscreen);
+    }
+    
+    if (fullscreenModal) {
+      fullscreenModal.addEventListener("click", (e) => {
+        if (e.target === fullscreenModal) {
+          hideFullscreen();
+        }
+      });
     }
 
-    function autoScroll() {
-      const nextIndex = (index + 1) % images.length;
+    function updateSlide(index) {
+      images.forEach(img => img.classList.remove("active"));
+      dots.forEach(dot => dot.classList.remove("active"));
+      
+      if (images[index]) images[index].classList.add("active");
+      if (dots[index]) dots[index].classList.add("active");
+      
+      const containerWidth = slideshow.parentElement.offsetWidth;
+      const imageWidth = 190;
+      const totalWidth = images.length * imageWidth;
+      const offset = (containerWidth / 2) - (imageWidth / 2) - (index * imageWidth);
+      
+      slideshow.style.transform = `translateX(${Math.min(Math.max(offset, containerWidth - totalWidth - 20), 20)}px)`;
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      const nextIndex = (currentIndex + 1) % images.length;
       updateSlide(nextIndex);
     }
 
-    function startsshowindex() {
-      interval = setInterval(autoScroll, 4000);
+    function startSlideshow() {
+      slideInterval = setInterval(nextSlide, 4000);
     }
 
-    sshowindex.addEventListener("mouseenter", () => clearInterval(interval));
-    sshowindex.addEventListener("mouseleave", startsshowindex);
+    function stopSlideshow() {
+      if (slideInterval) {
+        clearInterval(slideInterval);
+      }
+    }
 
-    dotsindex.forEach((dotindex, i) => {
-      dotindex.addEventListener("click", () => {
-        updateSlide(i);
-        clearInterval(interval);
-        startsshowindex();
+    if (slideshow) {
+      slideshow.addEventListener("mouseenter", stopSlideshow);
+      slideshow.addEventListener("mouseleave", startSlideshow);
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        updateSlide(index);
+        stopSlideshow();
+        startSlideshow();
       });
     });
 
-    updateSlide(0);
-    startsshowindex();
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (fullscreenModal && fullscreenModal.classList.contains("show")) {
+          hideFullscreen();
+        }
+        if (menuOverlay && menuOverlay.classList.contains("show")) {
+          hideMenu();
+        }
+        if (mobileNav && mobileNav.classList.contains("show")) {
+          closeMobileNav();
+        }
+      }
+    });
+
+    if (images.length > 0) {
+      updateSlide(0);
+      startSlideshow();
+    }
   </script>
 </body>
 </html>

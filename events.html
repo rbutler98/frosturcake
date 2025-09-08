@@ -6,9 +6,101 @@
     <title>Event Calendar - Frost Your Cake Studios</title>
     
     <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://accounts.google.com/gsi/client"></script>
-    <link rel="stylesheet" href="jesusdabbed.css">
+    <link rel="stylesheet" href="universal.css">
     <style>
+        .calendar-container {
+            max-width: 1600px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: #f9f9ff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(140, 82, 255, 0.15);
+        }
+
+        .calendar-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .calendar-header h1 {
+            color: #8c52ff;
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(140, 82, 255, 0.1);
+        }
+
+        .calendar-header p {
+            color: #666;
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .public-calendar {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8ff;
+        }
+
+        .public-calendar h3 {
+            color: #8c52ff;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        #calendar-embed, #api-events-container {
+            min-height: 400px;
+        }
+
+        .event-item {
+            padding: 25px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f8f9ff, #ffffff);
+            border-left: 5px solid #8c52ff;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .event-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(140, 82, 255, 0.15);
+        }
+
+        .event-title {
+            font-weight: 700;
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .event-details {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #8c52ff;
+            font-size: 1.2rem;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 40px;
+            color: #721c24;
+            background-color: #f8d7da;
+            border-radius: 12px;
+            border: 1px solid #f5c6cb;
+            margin-bottom: 20px;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -61,35 +153,12 @@
                 font-size: 1.1rem;
             }
 
-            .event-management {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .event-form,
-            .public-calendar,
-            .events-list {
+            .public-calendar {
                 padding: 25px;
             }
 
-            .event-form h3,
-            .public-calendar h3,
-            .events-list h3 {
+            .public-calendar h3 {
                 font-size: 1.5rem;
-            }
-
-            .form-group input,
-            .form-group textarea {
-                padding: 12px;
-                font-size: 1rem;
-            }
-
-            .btn {
-                padding: 12px 25px;
-                font-size: 1rem;
-                margin-bottom: 10px;
-                width: 100%;
-                margin-right: 0;
             }
 
             .event-item {
@@ -112,28 +181,6 @@
 
             .footer-logo img {
                 max-width: 150px;
-            }
-
-            .admin-section {
-                padding: 25px;
-            }
-
-            .admin-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-
-            .admin-header h3 {
-                font-size: 1.5rem;
-            }
-
-            .visitor-notice {
-                padding: 25px;
-            }
-
-            .visitor-notice h3 {
-                font-size: 1.4rem;
             }
         }
 
@@ -175,20 +222,8 @@
                 font-size: 1.8rem;
             }
 
-            .event-form,
-            .public-calendar,
-            .events-list {
+            .public-calendar {
                 padding: 20px;
-            }
-
-            .form-group input,
-            .form-group textarea {
-                padding: 10px;
-            }
-
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.95rem;
             }
 
             .footer {
@@ -196,49 +231,6 @@
             }
         }
         
-        /* Fullscreen Modal Styles */
-        .fullscreen-modal {
-          display: none;
-          position: fixed;
-          z-index: 1000;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.9);
-          backdrop-filter: blur(10px);
-        }
-
-        .fullscreen-modal.show {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          animation: fadeIn 0.3s ease;
-        }
-
-        .fullscreen-modal img {
-          max-width: 90%;
-          max-height: 90%;
-          object-fit: contain;
-          border-radius: 15px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .close-modal {
-          position: absolute;
-          top: 20px;
-          right: 35px;
-          color: white;
-          font-size: 40px;
-          font-weight: bold;
-          cursor: pointer;
-          z-index: 1001;
-        }
-
-        .close-modal:hover {
-          color: #ffb6c1;
-        }
-
         /* Menu Overlay Styles */
         .menu-overlay {
           display: none;
@@ -291,16 +283,35 @@
 
 <body>
     <div class="banner">
-        <div class="banner-nav">
-            <div class="banner-buttons">
-                <a href="index.html">Home</a>
-                <a href="parties.html">Parties</a>
-                <a href="events.html">Events</a>
-                <a href="studio.html">The Studio</a>
-                <a href="visit.html">Visit Us</a>
-                <a href="#" class="menu" id="menuButton">Menu</a>
-            </div>
-        </div>
+    <div class="banner-nav">
+      <div class="banner-buttons">
+        <a href="index.html">Home</a>
+        <a href="parties.html">Parties</a>
+        <a href="events.html">Events</a>
+        <a href="visit.html">Visit Us</a>
+        <a href="#" class="menu" id="menuButton">Menu</a>
+      </div>
+      
+      <div class="hamburger" id="hamburgerButton">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="banner-content">
+      <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
+      <div class="slogan">Create. Decorate. Celebrate.</div>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="parties.html">Parties</a>
+    <a href="events.html">Events</a>
+    <a href="visit.html">Visit Us</a>
+    <a href="#" id="mobileMenuButton">Menu</a>
+  </div>
         
     <div class="calendar-container">
         <div class="calendar-header">
@@ -308,67 +319,7 @@
             <p>View our upcoming cake decorating classes, workshops, and special events</p>
         </div>
 
-        <div id="admin-section" class="admin-section">
-            <div class="admin-header">
-                <h3>Admin Dashboard</h3>
-                <span class="admin-badge">Event Manager</span>
-            </div>
-            <div id="admin-status-message" class="status-message status-info" style="display: none;"></div>
-            <button id="authorize-button" class="btn" onclick="handleAuthClick()">Connect Admin Account</button>
-            <button id="signout-button" class="btn btn-secondary" onclick="handleSignoutClick()" style="display: none;">Sign Out</button>
-        </div>
-
-        <div id="event-management" class="event-management" style="display: none;">
-            <!-- Event Form -->
-            <div class="event-form">
-                <h3>Add New Event</h3>
-                <form id="event-form" onsubmit="addEvent(event)">
-                    <div class="form-group">
-                        <label for="event-title">Event Title:</label>
-                        <input type="text" id="event-title" required placeholder="e.g., Beginner Cake Decorating Class">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="event-description">Description:</label>
-                        <textarea id="event-description" rows="4" placeholder="Describe the event, what participants will learn, etc."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="event-date">Date:</label>
-                        <input type="date" id="event-date" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="event-start-time">Start Time:</label>
-                        <input type="time" id="event-start-time" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="event-end-time">End Time:</label>
-                        <input type="time" id="event-end-time" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="event-location">Location:</label>
-                        <input type="text" id="event-location" value="Frost Your Cake Studios, 1008 E Oak St, Suite 105, Conway, AR 72032">
-                    </div>
-                    
-                    <button type="submit" class="btn">Add Event</button>
-                    <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
-                </form>
-            </div>
-
-            <div class="public-calendar">
-                <h3>Admin Calendar View</h3>
-                <div id="admin-calendar-embed">
-                    <div id="admin-calendar-placeholder" style="height: 400px; border: 2px dashed #ddd; display: flex; align-items: center; justify-content: center; color: #666; border-radius: 10px; background: #f9f9f9;">
-                        Admin calendar view will appear here
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Enhanced Public Calendar with both iframe and API events -->
+        <!-- Public Calendar with both iframe and API events -->
         <div class="public-calendar">
             <h3>Upcoming Classes & Events</h3>
             
@@ -399,75 +350,100 @@
     </div>
 
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img class="fyc" src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png">
-            </div>
-            
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="index.html#about">About Us</a>
-                <a href="parties.html">Parties</a>
-                <a href="events.html">Events</a>
-                <a href="visit.html">Visit Us</a>
-                <a href="studio.html">The Studio</a>
-            </div>
-            
-            <div class="footer-contact">
-        <h3>Contact Info</h3>
-        <div class="contact-info">
-          <div class="address">
-            1008 E Oak St, Suite 105<br>
-            Conway, AR 72032
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png" alt="Frost Your Cake Logo" class="footer-logo">
+        <p class="footer-tagline">"Create. Decorate. Celebrate."</p>
+        <p class="footer-description">
+          A unique DIY cookie, cake and cupcake decorating studio where families create sweet memories together.
+        </p>
+        
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61566441696347" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Follow us on Facebook">
+              <div class="social-icon facebook-icon"></div>
+            </a>
+            <a href="https://www.instagram.com/frostyourcakestudio" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Follow us on Instagram">
+              <div class="social-icon instagram-icon"></div>
+            </a>
           </div>
-          <div class="phone">
-            Phone: (501) 358-6245
-            <br>
-            Hours: <br>
-            --------------- <br>
-            Mon:    11am - 7pm <br>
-            Tues:   Closed <br>
-            Weds:   Closed <br>
-            Thurs:  11am - 7pm <br>
-            Fri:    11am - 8pm <br>
-            Sat:    10am - 8pm <br>
-            Sun:    12pm - 8pm
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <nav class="footer-nav">
+          <a href="index.html">Home</a>
+          <a href="#about">About Us</a>
+          <a href="parties.html">Parties</a>
+          <a href="events.html">Events</a>
+          <a href="visit.html">Visit Us</a>
+        </nav>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <div class="contact-details">
+          <div class="contact-item">
+            <strong>Address</strong>
+            <p>
+              1008 E Oak St, Suite 105<br>
+              Conway, AR 72032
+            </p>
+          </div>
+          <div class="contact-item">
+            <strong>Phone</strong>
+            <p>
+              <a href="tel:+15013586245">(501) 358-6245</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-hours">
+        <h4>Hours</h4>
+        <div class="hours-grid">
+          <div class="day-hours">
+            <span class="day">Monday</span>
+            <span class="hours">11am - 7pm</span>
+          </div>
+          <div class="day-hours closed">
+            <span class="day">Tuesday</span>
+            <span class="hours">Closed</span>
+          </div>
+          <div class="day-hours closed">
+            <span class="day">Wednesday</span>
+            <span class="hours">Closed</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Thursday</span>
+            <span class="hours">11am - 7pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Friday</span>
+            <span class="hours">11am - 8pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Saturday</span>
+            <span class="hours">10am - 8pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Sunday</span>
+            <span class="hours">12pm - 8pm</span>
           </div>
         </div>
       </div>
     </div>
-        </div>
-    </footer>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Frost Your Cake Studio. All rights reserved.</p>
+    </div>
+  </footer>
 
     <script>
-    
-        const CLIENT_ID = '772362512567-3l2c7rr2rll4i3rjmjlh7clp9o1qcpr3.apps.googleusercontent.com';
         const API_KEY = 'AIzaSyCGb_-DEuq9WwPHQydfACGCSRChvdkeb2w';
-        const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
-        const SCOPES = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.email';
-        
-        const ADMIN_EMAIL = 'ryancbutler98@gmail.com';
-        const CALENDAR_ID = 'ryancbutler98@gmail.com'; // Your calendar ID
-
-        let tokenClient;
-        let gapi_inited = false;
-        let gis_inited = false;
-        let isAdmin = false;
-
-        // Show admin message
-        function showAdminMessage(message, type) {
-            const messageDiv = document.getElementById('admin-status-message');
-            messageDiv.textContent = message;
-            messageDiv.className = `status-message status-${type}`;
-            messageDiv.style.display = 'block';
-            
-            if (type !== 'error') {
-                setTimeout(() => {
-                    messageDiv.style.display = 'none';
-                }, 5000);
-            }
-        }
+        const CALENDAR_ID = 'ryancbutler98@gmail.com';
 
         // Format date for display
         function formatDate(dateString) {
@@ -490,82 +466,101 @@
             return new Date(dateTimeString).toLocaleTimeString('en-US', options);
         }
 
-        // Load public events using the API (no authentication required for public calendar)
-        async function loadPublicEvents() {
+        // Show fallback events when API fails
+        function showFallbackEvents() {
+            const eventsContainer = document.getElementById('events-list');
+            const currentDate = new Date();
+            
+            // Sample upcoming events
+            const sampleEvents = [
+                {
+                    title: "Beginner Cake Decorating Class",
+                    date: new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000), // Next week
+                    time: "2:00 PM - 4:00 PM",
+                    description: "Learn the basics of cake decorating with buttercream frosting techniques."
+                },
+                {
+                    title: "Advanced Fondant Workshop",
+                    date: new Date(currentDate.getTime() + 14 * 24 * 60 * 60 * 1000), // Two weeks
+                    time: "10:00 AM - 2:00 PM",
+                    description: "Master fondant techniques and create beautiful edible decorations."
+                },
+                {
+                    title: "Kids Birthday Party Package",
+                    date: new Date(currentDate.getTime() + 21 * 24 * 60 * 60 * 1000), // Three weeks
+                    time: "1:00 PM - 3:00 PM",
+                    description: "Fun cake decorating party for kids ages 6-12."
+                }
+            ];
+
+            eventsContainer.innerHTML = sampleEvents.map(event => `
+                <div class="event-item">
+                    <div class="event-title">${event.title}</div>
+                    <div class="event-details">
+                        <strong>Date:</strong> ${formatDate(event.date)}<br>
+                        <strong>Time:</strong> ${event.time}<br>
+                        <strong>Description:</strong> ${event.description}<br>
+                        <strong>Location:</strong> Frost Your Cake Studios
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Load events using Google Calendar API
+        async function loadCalendarEvents() {
             const eventsContainer = document.getElementById('events-list');
             
-            if (!gapi_inited) {
-                console.log('GAPI not initialized yet, showing fallback events');
-                showFallbackEvents();
-                return;
-            }
-
             try {
                 eventsContainer.innerHTML = '<div class="loading">Loading upcoming events...</div>';
                 
                 const now = new Date();
                 const timeMin = now.toISOString();
                 
-                console.log('Attempting to load events from calendar:', CALENDAR_ID);
+                // Build the API URL for public calendar access
+                const apiUrl = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events?key=${API_KEY}&timeMin=${timeMin}&singleEvents=true&orderBy=startTime&maxResults=10`;
                 
-                // Get events from public calendar
-                const response = await gapi.client.calendar.events.list({
-                    'calendarId': CALENDAR_ID,
-                    'timeMin': timeMin,
-                    'showDeleted': false,
-                    'singleEvents': true,
-                    'maxResults': 10,
-                    'orderBy': 'startTime'
-                });
-
-                console.log('API Response:', response);
-                const events = response.result.items;
-                displayPublicEvents(events);
-
-            } catch (error) {
-                console.error('Error loading public events:', error);
-                console.error('Error details:', error.result);
+                console.log('Fetching events from:', apiUrl);
                 
-                // Check if it's a calendar access issue
-                if (error.result && error.result.error && error.result.error.code === 404) {
-                    eventsContainer.innerHTML = `
-                        <div class="error-message">
-                            <h4>Calendar Not Found</h4>
-                            <p>The calendar may be private or the ID may be incorrect. Showing sample events below.</p>
-                        </div>
-                    `;
-                } else if (error.result && error.result.error && error.result.error.code === 403) {
-                    eventsContainer.innerHTML = `
-                        <div class="error-message">
-                            <h4>Calendar Access Restricted</h4>
-                            <p>The calendar is not public. Showing sample events below.</p>
-                        </div>
-                    `;
-                } else {
-                    eventsContainer.innerHTML = `
-                        <div class="error-message">
-                            <h4>Unable to Load Events</h4>
-                            <p>There was an error connecting to the calendar. Showing sample events below.</p>
-                        </div>
-                    `;
+                const response = await fetch(apiUrl);
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                // Always show fallback events after error message
-                setTimeout(showFallbackEvents, 1000);
+                const data = await response.json();
+                console.log('API Response:', data);
+                
+                const events = data.items || [];
+                displayEvents(events);
+
+            } catch (error) {
+                console.error('Error loading events:', error);
+                
+                // Show error message and fallback events
+                eventsContainer.innerHTML = `
+                    <div class="error-message">
+                        <h4>Unable to Load Live Events</h4>
+                        <p>Showing sample upcoming events. Please call us at (501) 358-6245 for current class schedules.</p>
+                    </div>
+                `;
+                
+                // Show fallback events after a brief delay
+                setTimeout(showFallbackEvents, 500);
             }
         }
 
-        // Display public events
-        function displayPublicEvents(events) {
+        // Display events from API response
+        function displayEvents(events) {
             const eventsContainer = document.getElementById('events-list');
             
             if (!events || events.length === 0) {
                 eventsContainer.innerHTML = `
                     <div class="event-item">
-                        <div class="event-title">No Upcoming Events</div>
+                        <div class="event-title">No Upcoming Events Scheduled</div>
                         <div class="event-details">
                             Check back soon for new classes and workshops! 
-                            Call us at (501) 358-6245 to inquire about private sessions.
+                            Call us at (501) 358-6245 to inquire about private sessions or upcoming classes.
                         </div>
                     </div>
                 `;
@@ -592,7 +587,7 @@
                             <strong>Date:</strong> ${formatDate(startDate)}<br>
                             <strong>Time:</strong> ${timeDisplay}<br>
                             ${event.description ? `<strong>Description:</strong> ${event.description}<br>` : ''}
-                            ${event.location ? `<strong>Location:</strong> ${event.location}` : '<strong>Location:</strong> Frost Your Cake Studios'}
+                            ${event.location ? `<strong>Location:</strong> ${event.location}` : '<strong>Location:</strong> Frost Your Cake Studios, 1008 E Oak St, Suite 105, Conway, AR 72032'}
                         </div>
                     </div>
                 `;
@@ -615,30 +610,37 @@
         }
 
         // Menu button click event
-        menuButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            showMenu();
-        });
+        if (menuButton) {
+            menuButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                showMenu();
+            });
+        }
 
         // Close menu events
-        closeMenu.addEventListener("click", hideMenu);
-        menuOverlay.addEventListener("click", (e) => {
-            if (e.target === menuOverlay) {
-                hideMenu();
-            }
-        });
+        if (closeMenu) {
+            closeMenu.addEventListener("click", hideMenu);
+        }
+        
+        if (menuOverlay) {
+            menuOverlay.addEventListener("click", (e) => {
+                if (e.target === menuOverlay) {
+                    hideMenu();
+                }
+            });
+        }
 
         // Close menu with escape key
         document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && menuOverlay.classList.contains("show")) {
+            if (e.key === "Escape" && menuOverlay && menuOverlay.classList.contains("show")) {
                 hideMenu();
             }
         });
 
-
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            showFallbackEvents();
+            // Try to load live events first, fallback if it fails
+            loadCalendarEvents();
         });
     </script>
 </body>

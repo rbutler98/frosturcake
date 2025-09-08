@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="jesusdabbed.css">
+    <link rel="stylesheet" href="universal.css">
     <title>Private Parties - Frost Your Cake Studios</title>
     <style>
         body {
@@ -54,17 +54,35 @@
 
 <body>
     <div class="banner">
-        <div class="banner-nav">
-            <div class="banner-buttons">
-                <a href="index.html">Home</a>
-                <a href="parties.html">Parties</a>
-                <a href="events.html">Events</a>
-                <a href="studio.html">The Studio</a>
-                <a href="visit.html">Visit Us</a>
-                <a href="#" class="menu" id="menuButton">Menu</a>
-            </div>
-        </div>
+    <div class="banner-nav">
+      <div class="banner-buttons">
+        <a href="index.html">Home</a>
+        <a href="parties.html">Parties</a>
+        <a href="events.html">Events</a>
+        <a href="visit.html">Visit Us</a>
+        <a href="#" class="menu" id="menuButton">Menu</a>
+      </div>
+      
+      <div class="hamburger" id="hamburgerButton">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
+
+    <div class="banner-content">
+      <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
+      <div class="slogan">Create. Decorate. Celebrate.</div>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="parties.html">Parties</a>
+    <a href="events.html">Events</a>
+    <a href="visit.html">Visit Us</a>
+    <a href="#" id="mobileMenuButton">Menu</a>
+  </div>
 
     <div class="main-content">
         <div class="phero-section">
@@ -221,34 +239,96 @@
     </div>
 
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img class="fyc" src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png" alt="Frost Your Cake Studios Logo">
-            </div>
-            
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="index.html#about">About Us</a>
-                <a href="parties.html">Parties</a>
-                <a href="events.html">Events</a>
-                <a href="visit.html">Visit Us</a>
-                <a href="studio.html">The Studio</a>
-            </div>
-            
-            <div class="footer-pcontact">
-                <h3>pcontact Info</h3>
-                <div class="pcontact-info">
-                    <div class="address">
-                        1008 E Oak St, Suite 105<br>
-                        Conway, AR 72032
-                    </div>
-                    <div class="phone">
-                        Phone: (501) 358-6245
-                    </div>
-                </div>
-            </div>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png" alt="Frost Your Cake Logo" class="footer-logo">
+        <p class="footer-tagline">"Create. Decorate. Celebrate."</p>
+        <p class="footer-description">
+          A unique DIY cookie, cake and cupcake decorating studio where families create sweet memories together.
+        </p>
+        
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61566441696347" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Follow us on Facebook">
+              <div class="social-icon facebook-icon"></div>
+            </a>
+            <a href="https://www.instagram.com/frostyourcakestudio" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Follow us on Instagram">
+              <div class="social-icon instagram-icon"></div>
+            </a>
+          </div>
         </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <nav class="footer-nav">
+          <a href="index.html">Home</a>
+          <a href="#about">About Us</a>
+          <a href="parties.html">Parties</a>
+          <a href="events.html">Events</a>
+          <a href="visit.html">Visit Us</a>
+        </nav>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <div class="contact-details">
+          <div class="contact-item">
+            <strong>Address</strong>
+            <p>
+              1008 E Oak St, Suite 105<br>
+              Conway, AR 72032
+            </p>
+          </div>
+          <div class="contact-item">
+            <strong>Phone</strong>
+            <p>
+              <a href="tel:+15013586245">(501) 358-6245</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-hours">
+        <h4>Hours</h4>
+        <div class="hours-grid">
+          <div class="day-hours">
+            <span class="day">Monday</span>
+            <span class="hours">11am - 7pm</span>
+          </div>
+          <div class="day-hours closed">
+            <span class="day">Tuesday</span>
+            <span class="hours">Closed</span>
+          </div>
+          <div class="day-hours closed">
+            <span class="day">Wednesday</span>
+            <span class="hours">Closed</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Thursday</span>
+            <span class="hours">11am - 7pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Friday</span>
+            <span class="hours">11am - 8pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Saturday</span>
+            <span class="hours">10am - 8pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Sunday</span>
+            <span class="hours">12pm - 8pm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Frost Your Cake Studio. All rights reserved.</p>
+    </div>
+  </footer>
 
         <!-- Fullscreen Modal -->
   <div class="fullscreen-modal" id="fullscreenModal">

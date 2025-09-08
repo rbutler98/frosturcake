@@ -4,24 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="jesusdabbed.css">
+  <link rel="stylesheet" href="universal.css">
   <title>Visit Us</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #ffffff;
-    }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -238,21 +227,325 @@
         height: 140px;
       }
     }
+
+    /* Footer Styles */
+    .footer {
+      background: linear-gradient(135deg, #6a4c93 0%, #8c52ff 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="sprinkles" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="15" cy="8" r="1" fill="rgba(255,182,193,0.2)"/><circle cx="8" cy="15" r="1" fill="rgba(217,142,255,0.15)"/></pattern></defs><rect width="100" height="100" fill="url(%23sprinkles)"/></svg>') repeat;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 40px 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      height: 80px;
+      width: auto;
+      filter: brightness(1.2) drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+      transition: transform 0.3s ease;
+    }
+
+    .footer-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .footer-tagline {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .footer-description {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .footer-social h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-social h4::before {
+      content: '✨';
+      font-size: 1.2rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transition: all 0.4s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    .social-link:hover::before {
+      width: 100%;
+      height: 100%;
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .social-icon {
+      width: 24px;
+      height: 24px;
+      position: relative;
+      z-index: 2;
+      background: white;
+    }
+
+    .facebook-icon {
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z'/%3E%3C/svg%3E") no-repeat center;
+      mask-size: contain;
+    }
+
+    .instagram-icon {
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/%3E%3C/svg%3E") no-repeat center;
+      mask-size: contain;
+    }
+
+    .footer-links h4,
+    .footer-contact h4,
+    .footer-hours h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: white;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .footer-links h4::after,
+    .footer-contact h4::after,
+    .footer-hours h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(90deg, #ffb6c1, #d98eff);
+      border-radius: 2px;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-nav a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      padding: 8px 0;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .footer-nav a::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .footer-nav a:hover {
+      color: white;
+      padding-left: 25px;
+    }
+
+    .footer-nav a:hover::before {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .contact-item strong {
+      font-weight: 600;
+      color: white;
+      font-size: 0.95rem;
+    }
+
+    .contact-item p {
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+
+    .contact-item a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: #ffb6c1;
+    }
+
+    .hours-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .day-hours {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      transition: background-color 0.3s ease;
+    }
+
+    .day-hours:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .day-hours.closed {
+      opacity: 0.6;
+    }
+
+    .day-hours .day {
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+    }
+
+    .day-hours .hours {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      font-weight: 400;
+    }
+
+    .footer-bottom {
+      background: rgba(0, 0, 0, 0.3);
+      text-align: center;
+      padding: 25px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-bottom p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      margin: 0;
+    }
   </style>
 </head>
 
 <body>
     <div class="banner">
-        <div class="banner-nav">
-            <div class="banner-buttons">
-                <a href="index.html">Home</a>
-                <a href="parties.html">Parties</a>
-                <a href="events.html">Events</a>
-                <a href="studio.html">The Studio</a>
-                <a href="visit.html">Visit Us</a>
-                <a href="#" class="menu" id="menuButton">Menu</a>
-            </div>
-        </div>
+    <div class="banner-nav">
+      <div class="banner-buttons">
+        <a href="index.html">Home</a>
+        <a href="parties.html">Parties</a>
+        <a href="events.html">Events</a>
+        <a href="visit.html">Visit Us</a>
+        <a href="#" class="menu" id="menuButton">Menu</a>
+      </div>
+      
+      <div class="hamburger" id="hamburgerButton">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="banner-content">
+      <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
+      <div class="slogan">Create. Decorate. Celebrate.</div>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="parties.html">Parties</a>
+    <a href="events.html">Events</a>
+    <a href="visit.html">Visit Us</a>
+    <a href="#" id="mobileMenuButton">Menu</a>
+  </div>
         
   <div class="text-columns">
     <div class="text-box">
@@ -277,43 +570,95 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
-      <div class="footer-logo">
-        <img class="fyc" src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png" alt="Footer Logo">
-      </div>
-      
-      <div class="footer-links">
-                <h3>Quick Links</h3>
-                <a href="index.html">Home</a>
-                <a href="index.html#about">About Us</a>
-                <a href="parties.html">Parties</a>
-                <a href="events.html">Events</a>
-                <a href="visit.html">Visit Us</a>
-                <a href="studio.html">The Studio</a>
-            </div>
-      
-      <div class="footer-contact">
-        <h3>Contact Info</h3>
-        <div class="contact-info">
-          <div class="address">
-            1008 E Oak St, Suite 105<br>
-            Conway, AR 72032
+      <div class="footer-brand">
+        <img src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png" alt="Frost Your Cake Logo" class="footer-logo">
+        <p class="footer-tagline">"Create. Decorate. Celebrate."</p>
+        <p class="footer-description">
+          A unique DIY cookie, cake and cupcake decorating studio where families create sweet memories together.
+        </p>
+        
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61566441696347" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Follow us on Facebook">
+              <div class="social-icon facebook-icon"></div>
+            </a>
+            <a href="https://www.instagram.com/frostyourcakestudio" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Follow us on Instagram">
+              <div class="social-icon instagram-icon"></div>
+            </a>
           </div>
-          <div class="phone">
-            Phone: (501) 358-6245
-            <br>
-            Hours: <br>
-            --------------- <br>
-            Mon:    11am - 7pm <br>
-            Tues:   Closed <br>
-            Weds:   Closed <br>
-            Thurs:  11am - 7pm <br>
-            Fri:    11am - 8pm <br>
-            Sat:    10am - 8pm <br>
-            Sun:    12pm - 8pm
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <nav class="footer-nav">
+          <a href="index.html">Home</a>
+          <a href="#about">About Us</a>
+          <a href="parties.html">Parties</a>
+          <a href="events.html">Events</a>
+          <a href="visit.html">Visit Us</a>
+        </nav>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <div class="contact-details">
+          <div class="contact-item">
+            <strong>Address</strong>
+            <p>
+              1008 E Oak St, Suite 105<br>
+              Conway, AR 72032
+            </p>
+          </div>
+          <div class="contact-item">
+            <strong>Phone</strong>
+            <p>
+              <a href="tel:+15013586245">(501) 358-6245</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-hours">
+        <h4>Hours</h4>
+        <div class="hours-grid">
+          <div class="day-hours">
+            <span class="day">Monday</span>
+            <span class="hours">11am - 7pm</span>
+          </div>
+          <div class="day-hours closed">
+            <span class="day">Tuesday</span>
+            <span class="hours">Closed</span>
+          </div>
+          <div class="day-hours closed">
+            <span class="day">Wednesday</span>
+            <span class="hours">Closed</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Thursday</span>
+            <span class="hours">11am - 7pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Friday</span>
+            <span class="hours">11am - 8pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Saturday</span>
+            <span class="hours">10am - 8pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Sunday</span>
+            <span class="hours">12pm - 8pm</span>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Frost Your Cake Studio. All rights reserved.</p>
+    </div>
+  </footer>
 
     <!-- Fullscreen Modal -->
   <div class="fullscreen-modal" id="fullscreenModal">
