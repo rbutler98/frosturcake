@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Frost Your Cake - Home</title>
+  <title>Home</title>
   <link rel="stylesheet" href="universal.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,44 @@
       }
     }
 
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes imageSlide {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
     /* Main Content Section */
     .handwritten-message {
       font-family: 'Caveat';
@@ -50,7 +88,7 @@
       animation: fadeInTop 1.5s ease-out 0.5s forwards;
     }
 
-    /* About Section - Fixed Layout */
+    /* About Section - Improved Layout */
     .about-section {
       background: linear-gradient(to bottom, #ffffff 0%, #fff4fb 30%, #fff4fb 70%, #ffffff 100%);
       padding: 80px 0;
@@ -66,24 +104,25 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
-      align-items: center;
+      align-items: stretch;
       margin-bottom: 80px;
     }
 
     .about-image {
       width: 100%;
-      height: 400px;
+      height: 450px;
       object-fit: cover;
       border-radius: 20px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
       transition: transform 0.3s ease, opacity 1s ease;
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateX(-50px);
     }
 
     .about-image.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(0);
+      animation: slideInLeft 1s ease-out forwards;
     }
 
     .about-image:hover {
@@ -93,16 +132,25 @@
     .text-content {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 30px;
+      justify-content: center;
     }
 
     .text-box {
       background: white;
       border-radius: 20px;
-      padding: 40px;
+      padding: 35px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border: 1px solid rgba(140, 82, 255, 0.1);
+      opacity: 0;
+      transform: translateX(50px);
+    }
+
+    .text-box.visible {
+      opacity: 1;
+      transform: translateX(0);
+      animation: slideInRight 1s ease-out forwards;
     }
 
     .text-box:hover {
@@ -122,9 +170,136 @@
       font-size: 1.1rem;
       line-height: 1.8;
       color: #555;
+      margin: 0;
     }
 
-    /* Parties Section */
+    /* Events Section - New */
+    .events-section {
+      background: linear-gradient(135deg, #f8f4ff 0%, #fff0f8 50%, #f4f0ff 100%);
+      padding: 80px 0;
+    }
+
+    .events-content {
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .events-header {
+      font-family: 'Caveat', cursive;
+      font-size: 3.5rem;
+      color: #8c52ff;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .events-intro {
+      font-size: 1.3rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 50px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .event-card {
+      background: white;
+      border-radius: 25px;
+      padding: 40px 30px;
+      box-shadow: 0 10px 30px rgba(140, 82, 255, 0.1);
+      transition: all 0.3s ease;
+      border: 2px solid rgba(140, 82, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(140, 82, 255, 0.05), transparent);
+      transform: rotate(-45deg);
+      transition: all 0.6s ease;
+      opacity: 0;
+    }
+
+    .event-card:hover::before {
+      opacity: 1;
+      transform: rotate(-45deg) translate(50%, 50%);
+    }
+
+    .event-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(140, 82, 255, 0.2);
+      border-color: rgba(140, 82, 255, 0.3);
+    }
+
+    .event-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #8c52ff, #ae88ff);
+      border-radius: 50%;
+      margin: 0 auto 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .event-card h3 {
+      font-family: 'Caveat', cursive;
+      font-size: 2rem;
+      color: #8c52ff;
+      margin-bottom: 20px;
+      font-weight: 600;
+      position: relative;
+      z-index: 2;
+    }
+
+    .event-card p {
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .events-cta {
+      background: linear-gradient(135deg, #8c52ff, #ae88ff);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(140, 82, 255, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+
+    .events-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(140, 82, 255, 0.4);
+      background: linear-gradient(135deg, #7a47e6, #9c7aff);
+    }
+
+    /* Parties Section - Improved */
     .parties-section {
       background: white;
       padding: 80px 0;
@@ -195,7 +370,7 @@
 
     .parties-image {
       width: 100%;
-      height: 400px;
+      height: 450px;
       object-fit: cover;
       border-radius: 20px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
@@ -209,83 +384,218 @@
       transform: translateY(0);
     }
 
-    /* Gooey Divider */
+    /* Fixed Gooey Divider - No gaps */
     .gooey-divider {
       width: 100%;
       overflow: hidden;
       line-height: 0;
+      position: relative;
+      height: 120px;
+      margin: 0;
+      padding: 0;
+      display: block;
     }
 
     .gooey-divider svg {
       display: block;
       width: 100%;
-      height: 100px;
+      height: 120px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
     }
 
-    /* Gallery Section */
+    /* Redesigned Gallery Section */
     .gallery-section {
-      background: linear-gradient(135deg, #ffb6c1, #d98eff);
+      background: linear-gradient(to right, #ffb6c1, #d98eff);
       padding: 80px 0;
       text-align: center;
       overflow: hidden;
+      margin: 0;
+      position: relative;
+    }
+
+    .gallery-header {
+      font-family: 'Caveat', cursive;
+      font-size: 3.5rem;
+      color: white;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-subtitle {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .slideshow-container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 400px;
+      position: relative;
+    }
+
+    .slideshow-wrapper {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 25px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
     }
 
     .slideshow {
       display: flex;
-      transition: transform 1s ease;
-      justify-content: center;
-      gap: 40px;
-      width: 100%;
-      padding: 0 20px;
-      box-sizing: border-box;
+      width: 700%;
+      height: 100%;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .slideshow img {
-      height: 150px;
-      width: auto;
+    .slide {
+      width: calc(100% / 7);
+      height: 100%;
+      position: relative;
+      overflow: hidden;
       flex-shrink: 0;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      transition: transform 1s ease;
-      z-index: 1;
-      cursor: pointer;
     }
 
-    .slideshow img.active {
-      transform: scale(2.5);
-      z-index: 2;
-    }
-
-    .dots-container {
-      margin-top: 120px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      background-color: rgba(255, 255, 255, 0.4);
-      border-radius: 50%;
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       cursor: pointer;
       transition: all 0.3s ease;
-      border: 2px solid rgba(255, 255, 255, 0.6);
+      filter: brightness(0.9);
     }
 
-    .dot.active {
-      background-color: white;
-      transform: scale(1.2);
+    .slide img:hover {
+      filter: brightness(1.1) contrast(1.1);
+      transform: scale(1.02);
+    }
+
+    .slide-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      padding: 30px;
+      color: white;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .slide:hover .slide-overlay {
+      transform: translateY(0);
+    }
+
+    .slide-title {
+      font-family: 'Caveat', cursive;
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .slide-description {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Navigation Controls */
+    .slideshow-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: none;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .slideshow-nav:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .prev-slide {
+      left: 20px;
+    }
+
+    .next-slide {
+      right: 20px;
+    }
+
+    /* Progress Bar */
+    .slideshow-progress {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .progress-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-dot.active {
+      background: white;
+      transform: scale(1.3);
+    }
+
+    .progress-dot::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: white;
+      transition: left 5s linear;
+    }
+
+    .progress-dot.active::before {
+      left: 0;
+    }
+
+    /* Loading Animation */
+    .slide-loading {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      animation: shimmer 2s infinite;
     }
 
     /* Fullscreen Modal */
@@ -297,7 +607,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0, 0, 0, 0.95);
       backdrop-filter: blur(10px);
     }
 
@@ -313,23 +623,33 @@
       max-height: 90%;
       object-fit: contain;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
     }
 
     .close-modal {
       position: absolute;
-      top: 20px;
-      right: 35px;
+      top: 30px;
+      right: 45px;
       color: white;
-      font-size: 40px;
+      font-size: 50px;
       font-weight: bold;
       cursor: pointer;
       z-index: 2001;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
     }
 
     .close-modal:hover {
       color: #ffb6c1;
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
     }
 
     /* Menu Overlay */
@@ -390,7 +710,7 @@
 
       .about-image,
       .parties-image {
-        height: 300px;
+        height: 350px;
       }
 
       .text-box {
@@ -399,6 +719,33 @@
 
       .parties-text {
         padding: 30px;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .events-header {
+        font-size: 2.8rem;
+      }
+
+      .slideshow-wrapper {
+        height: 400px;
+      }
+
+      .slideshow-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+      }
+
+      .prev-slide {
+        left: 15px;
+      }
+
+      .next-slide {
+        right: 15px;
       }
 
       .footer-content {
@@ -443,13 +790,14 @@
       }
 
       .about-section,
-      .parties-section {
+      .parties-section,
+      .events-section {
         padding: 60px 0;
       }
 
       .about-image,
       .parties-image {
-        height: 250px;
+        height: 280px;
       }
 
       .text-box {
@@ -472,20 +820,47 @@
         font-size: 1.1rem;
       }
 
+      .events-header {
+        font-size: 2.5rem;
+      }
+
+      .events-intro {
+        font-size: 1.1rem;
+      }
+
+      .event-card {
+        padding: 30px 25px;
+      }
+
+      .event-card h3 {
+        font-size: 1.8rem;
+      }
+
       .gallery-section {
         padding: 60px 0;
       }
 
-      .slideshow img {
-        height: 120px;
+      .gallery-header {
+        font-size: 2.8rem;
       }
 
-      .slideshow img.active {
-        transform: scale(2);
+      .slideshow-wrapper {
+        height: 350px;
+        margin: 0 20px;
       }
 
-      .dots-container {
-        margin-top: 100px;
+      .slideshow-nav {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+      }
+
+      .prev-slide {
+        left: 10px;
+      }
+
+      .next-slide {
+        right: 10px;
       }
 
       .footer-content {
@@ -549,8 +924,31 @@
         font-size: 1.8rem;
       }
 
-      .slideshow img {
-        height: 100px;
+      .events-header {
+        font-size: 2rem;
+      }
+
+      .events-intro {
+        font-size: 1rem;
+      }
+
+      .event-card h3 {
+        font-size: 1.5rem;
+      }
+
+      .gallery-header {
+        font-size: 2.3rem;
+      }
+
+      .slideshow-wrapper {
+        height: 300px;
+        margin: 0 15px;
+      }
+
+      .slideshow-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
       }
 
       .mobile-nav a {
@@ -624,12 +1022,12 @@
           <img class="about-image" src="https://i.postimg.cc/fy08RKtw/Firefly-Cupcakes-being-frosted-by-a-professional-95871.jpg" alt="Decorating at Frost Your Cake" id="aboutImage">
           
           <div class="text-content">
-            <div class="text-box">
+            <div class="text-box" id="aboutBox1">
               <h2>About Us</h2>
               <p>Proud to be local, we're a studio focused on icing your own desserts. Our decorating studio is open and waiting for you! We hope you'll join us to experience the fun of decorating your own cakes, cupcakes, and cookies using all the same tools the pros use in a fun, family-friendly environment that's great for any age! Hope to see you soon!</p>
             </div>
             
-            <div class="text-box">
+            <div class="text-box" id="aboutBox2">
               <h2>How it Works</h2>
               <p>If you've always wanted to try cake, cupcake, or cookie decorating but didn't know where to start, or didn't want the mess or expense, at Frost Your Cake Studio we provide all the tools, frosting, and decorations you need for an "unlimited decorating experience." Decorate cookies, cakes, or cupcakes however you desire. Use as many colors, frosting tips, and sprinkles as you need to bring your creation from idea to reality! All levels of experience and ages are welcome! Even if you've never decorated baked goods before, we're happy to help provide some inspiration or useful tips and tricks.</p>
             </div>
@@ -638,18 +1036,33 @@
       </div>
     </section>
 
-    <section class="parties-section">
+    <section class="events-section">
       <div class="container">
-        <div class="parties-content">
-          <div class="parties-text">
-            <h2 class="parties-header">Parties and Celebrations</h2>
-            <p class="parties-description">We love celebrating! Bring your friends or family and celebrate special days with private parties. We're the perfect spot for birthdays, bridal showers, baby showers, holidays, and special events. Reserve our private party room that holds up to 20 guests.
-              Call now: (501) 358-6245. Check out our parties page for more info and pricing!
-              Or <a href="https://docs.google.com/forms/d/e/1FAIpQLSd9pvCZE6X6IsV7_8nDfMxYIy_y6m0RIpCYqrMOk7IJbkRF6g/viewform?usp=sharing&ouid=114403284817281729951">Book Now</a>
-            </p>
+        <div class="events-content">
+          <h2 class="events-header">Our Events & Experiences</h2>
+          <p class="events-intro">From intimate birthday celebrations to festive holiday gatherings and hands-on decorating classes, we offer something special for everyone. Join us for memorable experiences that bring people together through the joy of creating beautiful desserts.</p>
+          
+          <div class="events-grid">
+            <div class="event-card">
+              <div class="event-icon">🎉</div>
+              <h3>Private Parties</h3>
+              <p>Perfect for birthdays, bridal showers, baby showers, and special celebrations. Our private party room accommodates up to 24 guests for an unforgettable decorating experience. Call (501) 358-6245 to book or fill out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSd9pvCZE6X6IsV7_8nDfMxYIy_y6m0RIpCYqrMOk7IJbkRF6g/viewform?usp=sharing&ouid=114403284817281729951">form</a>!</p>
+            </div>
+            
+            <div class="event-card">
+              <div class="event-icon">🎄</div>
+              <h3>Holiday Events</h3>
+              <p>Join us for seasonal celebrations throughout the year! From Valentine's Day cookie decorating to Halloween-themed cupcakes and festive Christmas treats.</p>
+            </div>
+            
+            <div class="event-card">
+              <div class="event-icon">🎂</div>
+              <h3>Decorating Classes</h3>
+              <p>Learn professional techniques in our hands-on classes. From basic piping skills to advanced fondant work, our classes are perfect for all skill levels. Spots available on our events page!</p>
+            </div>
           </div>
           
-          <img src="https://i.ibb.co/PsF9TXzr/Firefly-Many-adults-decorating-cookies-at-a-party-786202.jpg" alt="Party Celebration" class="parties-image" id="partyImage">
+          <a href="events.html" class="events-cta">Explore All Events</a>
         </div>
       </div>
     </section>
@@ -668,25 +1081,73 @@
   </div>
 
   <section class="gallery-section">
+    
     <div class="slideshow-container">
-      <div class="slideshow" id="slideshow">
-        <img src="https://i.ibb.co/fddyGHNY/img-cropped-2.png" alt="Decorated Cake 1">
-        <img src="https://i.ibb.co/cXt5mHTJ/img-1.png" alt="Decorated Cake 2">
-        <img src="https://i.ibb.co/7xJLdP9H/img-cropped-3.png" alt="Decorated Cake 3">
-        <img src="https://i.ibb.co/Hp3GRNP9/img-cropped-4.png" alt="Decorated Cake 4">
-        <img src="https://i.ibb.co/PZq2Zw6V/img-cropped-5.png" alt="Decorated Cookie 1">
-        <img src="https://i.ibb.co/wm355ft/img-cropped-6.png" alt="Decorated Cookie 2">
-        <img src="https://i.ibb.co/ycPNT0mc/img-cropped-7.png" alt="Decorated Cookie 3">
-      </div>
-      
-      <div class="dots-container" id="dotsContainer">
-        <span class="dot active" data-slide="0" aria-label="Image 1"></span>
-        <span class="dot" data-slide="1" aria-label="Image 2"></span>
-        <span class="dot" data-slide="2" aria-label="Image 3"></span>
-        <span class="dot" data-slide="3" aria-label="Image 4"></span>
-        <span class="dot" data-slide="4" aria-label="Image 5"></span>
-        <span class="dot" data-slide="5" aria-label="Image 6"></span>
-        <span class="dot" data-slide="6" aria-label="Image 7"></span>
+      <div class="slideshow-wrapper">
+        <div class="slideshow" id="slideshow">
+          <div class="slide">
+            <img src="https://i.ibb.co/fddyGHNY/img-cropped-2.png" alt="Beautifully Decorated Cake">
+            <div class="slide-overlay">
+              <div class="slide-title">Custom Cakes</div>
+              <div class="slide-description">Create your masterpiece</div>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="https://i.ibb.co/cXt5mHTJ/img-1.png" alt="Colorful Decorated Cake">
+            <div class="slide-overlay">
+              <div class="slide-title">Vibrant Designs</div>
+              <div class="slide-description">Express your creativity</div>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="https://i.ibb.co/7xJLdP9H/img-cropped-3.png" alt="Elegant Decorated Cake">
+            <div class="slide-overlay">
+              <div class="slide-title">Elegant Treats</div>
+              <div class="slide-description">Perfect for any occasion</div>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="https://i.ibb.co/Hp3GRNP9/img-cropped-4.png" alt="Festive Decorated Cake">
+            <div class="slide-overlay">
+              <div class="slide-title">Festive Flavors</div>
+              <div class="slide-description">Celebrate in style</div>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="https://i.ibb.co/PZq2Zw6V/img-cropped-5.png" alt="Decorated Cookie">
+            <div class="slide-overlay">
+              <div class="slide-title">Cookie Art</div>
+              <div class="slide-description">Sweet and stunning</div>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="https://i.ibb.co/wm355ft/img-cropped-6.png" alt="Creative Decorated Cookie">
+            <div class="slide-overlay">
+              <div class="slide-title">Cookie Magic</div>
+              <div class="slide-description">Delicious designs</div>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="https://i.ibb.co/ycPNT0mc/img-cropped-7.png" alt="Artistic Decorated Cookie">
+            <div class="slide-overlay">
+              <div class="slide-title">Artistic Cookies</div>
+              <div class="slide-description">Your imagination unleashed</div>
+            </div>
+          </div>
+        </div>
+        
+        <button class="slideshow-nav prev-slide" id="prevSlide" aria-label="Previous slide">‹</button>
+        <button class="slideshow-nav next-slide" id="nextSlide" aria-label="Next slide">›</button>
+        
+        <div class="slideshow-progress" id="slideshowProgress">
+          <span class="progress-dot active" data-slide="0"></span>
+          <span class="progress-dot" data-slide="1"></span>
+          <span class="progress-dot" data-slide="2"></span>
+          <span class="progress-dot" data-slide="3"></span>
+          <span class="progress-dot" data-slide="4"></span>
+          <span class="progress-dot" data-slide="5"></span>
+          <span class="progress-dot" data-slide="6"></span>
+        </div>
       </div>
     </div>
   </section>
@@ -794,15 +1255,27 @@
   </footer>
 
   <script>
+    // Image visibility animation
     function handleImageVisibility() {
       const aboutImage = document.getElementById('aboutImage');
+      const aboutBox1 = document.getElementById('aboutBox1');
+      const aboutBox2 = document.getElementById('aboutBox2');
       const partyImage = document.getElementById('partyImage');
       
-      [aboutImage, partyImage].forEach(img => {
-        if (img) {
-          const rect = img.getBoundingClientRect();
-          if (rect.top < window.innerHeight - 100 && rect.bottom > 0) {
-            img.classList.add('visible');
+      const elements = [
+        { element: aboutImage, threshold: 200 },
+        { element: aboutBox1, threshold: 200, delay: 200 },
+        { element: aboutBox2, threshold: 200, delay: 400 },
+        { element: partyImage, threshold: 200 }
+      ];
+
+      elements.forEach(({ element, threshold, delay = 0 }) => {
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top < window.innerHeight - threshold && rect.bottom > 0) {
+            setTimeout(() => {
+              element.classList.add('visible');
+            }, delay);
           }
         }
       });
@@ -811,6 +1284,7 @@
     window.addEventListener('scroll', handleImageVisibility);
     window.addEventListener('load', handleImageVisibility);
 
+    // Animated drip SVG
     const dripPath = document.getElementById("dripPath");
     const baseY = 80;
     const amplitude = 20;
@@ -848,6 +1322,7 @@
     
     requestAnimationFrame(animateDrip);
 
+    // Mobile navigation
     const hamburgerButton = document.getElementById("hamburgerButton");
     const mobileNav = document.getElementById("mobileNav");
     const mobileMenuButton = document.getElementById("mobileMenuButton");
@@ -873,6 +1348,7 @@
       link.addEventListener('click', closeMobileNav);
     });
 
+    // Menu overlay
     const menuButton = document.getElementById("menuButton");
     const menuOverlay = document.getElementById("menuOverlay");
     const closeMenu = document.getElementById("closeMenu");
@@ -918,12 +1394,18 @@
       });
     }
 
+    // Redesigned Slideshow
     const slideshow = document.getElementById("slideshow");
-    const images = slideshow.querySelectorAll("img");
-    const dots = document.querySelectorAll(".dot");
-    let currentIndex = 0;
+    const slides = slideshow.querySelectorAll(".slide");
+    const slideImages = slideshow.querySelectorAll(".slide img");
+    const progressDots = document.querySelectorAll(".progress-dot");
+    const prevButton = document.getElementById("prevSlide");
+    const nextButton = document.getElementById("nextSlide");
+    let currentSlide = 0;
     let slideInterval;
+    let isHovering = false;
 
+    // Fullscreen modal
     const fullscreenModal = document.getElementById("fullscreenModal");
     const fullscreenImage = document.getElementById("fullscreenImage");
     const closeModal = document.getElementById("closeModal");
@@ -944,7 +1426,7 @@
       }
     }
 
-    images.forEach((img) => {
+    slideImages.forEach((img) => {
       img.addEventListener("click", () => {
         showFullscreen(img.src, img.alt);
       });
@@ -962,50 +1444,90 @@
       });
     }
 
-    function updateSlide(index) {
-      images.forEach(img => img.classList.remove("active"));
-      dots.forEach(dot => dot.classList.remove("active"));
+    // Slideshow functions
+    function updateSlideshow(index) {
+      // Update dots
+      progressDots.forEach(dot => {
+        dot.classList.remove("active");
+      });
+      if (progressDots[index]) {
+        progressDots[index].classList.add("active");
+      }
       
-      if (images[index]) images[index].classList.add("active");
-      if (dots[index]) dots[index].classList.add("active");
+      // Calculate the slide width (each slide is 1/7th because we have 7 slides = 700% total width)
+      // We want to show one slide at a time, so we move by (100/7)% increments
+      const slidePercentage = -index * (100 / 7);
+      slideshow.style.transform = `translateX(${slidePercentage}%)`;
       
-      const containerWidth = slideshow.parentElement.offsetWidth;
-      const imageWidth = 190;
-      const totalWidth = images.length * imageWidth;
-      const offset = (containerWidth / 2) - (imageWidth / 2) - (index * imageWidth);
-      
-      slideshow.style.transform = `translateX(${Math.min(Math.max(offset, containerWidth - totalWidth - 20), 20)}px)`;
-      currentIndex = index;
+      currentSlide = index;
     }
 
     function nextSlide() {
-      const nextIndex = (currentIndex + 1) % images.length;
-      updateSlide(nextIndex);
+      const nextIndex = (currentSlide + 1) % slides.length;
+      updateSlideshow(nextIndex);
+    }
+
+    function prevSlide() {
+      const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlideshow(prevIndex);
     }
 
     function startSlideshow() {
-      slideInterval = setInterval(nextSlide, 4000);
+      if (!isHovering) {
+        slideInterval = setInterval(nextSlide, 5000);
+      }
     }
 
     function stopSlideshow() {
       if (slideInterval) {
         clearInterval(slideInterval);
+        slideInterval = null;
       }
     }
 
-    if (slideshow) {
-      slideshow.addEventListener("mouseenter", stopSlideshow);
-      slideshow.addEventListener("mouseleave", startSlideshow);
+    function restartSlideshow() {
+      stopSlideshow();
+      startSlideshow();
     }
 
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", () => {
-        updateSlide(index);
+    // Hover handling
+    const slideshowWrapper = document.querySelector('.slideshow-wrapper');
+    if (slideshowWrapper) {
+      slideshowWrapper.addEventListener("mouseenter", () => {
+        isHovering = true;
         stopSlideshow();
+      });
+      
+      slideshowWrapper.addEventListener("mouseleave", () => {
+        isHovering = false;
         startSlideshow();
+      });
+    }
+
+    // Navigation buttons
+    if (prevButton) {
+      prevButton.addEventListener("click", () => {
+        prevSlide();
+        restartSlideshow();
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener("click", () => {
+        nextSlide();
+        restartSlideshow();
+      });
+    }
+
+    // Progress dots
+    progressDots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        updateSlideshow(index);
+        restartSlideshow();
       });
     });
 
+    // Keyboard navigation
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         if (fullscreenModal && fullscreenModal.classList.contains("show")) {
@@ -1018,10 +1540,22 @@
           closeMobileNav();
         }
       }
+      
+      // Arrow key navigation for slideshow (only when not in modal)
+      if (!fullscreenModal.classList.contains("show") && !menuOverlay.classList.contains("show")) {
+        if (e.key === "ArrowLeft") {
+          prevSlide();
+          restartSlideshow();
+        } else if (e.key === "ArrowRight") {
+          nextSlide();
+          restartSlideshow();
+        }
+      }
     });
 
-    if (images.length > 0) {
-      updateSlide(0);
+    // Initialize slideshow
+    if (slides.length > 0) {
+      updateSlideshow(0);
       startSlideshow();
     }
   </script>

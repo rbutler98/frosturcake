@@ -72,8 +72,59 @@
       box-sizing: border-box;
     }
 
+    /* Menu Overlay Styles */
+    .menu-overlay {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+    }
+
+    .menu-overlay.show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .menu-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-menu {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+    }
+
+    .close-menu:hover {
+      color: #8c52ff;
+    }
+
     /* Mobile Styles */
     @media (max-width: 768px) {
+      .banner-buttons {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
       .banner {
         flex-direction: column;
         min-height: auto;
@@ -95,17 +146,6 @@
         -webkit-text-stroke: 0.8px transparent;
         margin: 15px 0;
         order: -1;
-      }
-
-      .banner-buttons {
-        justify-content: center;
-        gap: 8px;
-        margin-top: 15px;
-      }
-
-      .banner-buttons a {
-        font-size: 0.8rem;
-        padding: 8px 12px;
       }
 
       .text-columns {
@@ -172,16 +212,6 @@
       .logo {
         height: 60px;
         max-width: 120px;
-      }
-
-      .banner-buttons {
-        flex-wrap: wrap;
-        gap: 5px;
-      }
-
-      .banner-buttons a {
-        font-size: 0.75rem;
-        padding: 6px 10px;
       }
 
       .text-columns {
@@ -567,7 +597,6 @@
     </iframe>
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
@@ -660,61 +689,88 @@
     </div>
   </footer>
 
-    <!-- Fullscreen Modal -->
   <div class="fullscreen-modal" id="fullscreenModal">
     <span class="close-modal" id="closeModal">&times;</span>
     <img id="fullscreenImage" src="" alt="">
   </div>
 
-  <!-- Menu Overlay -->
   <div class="menu-overlay" id="menuOverlay">
     <span class="close-menu" id="closeMenu">&times;</span>
     <img src="https://i.ibb.co/4RWyf9dN/menu.png" alt="Frost Your Cake Menu">
   </div>
-  </footer>
+
   <script>
+    // Mobile navigation
+    const hamburgerButton = document.getElementById("hamburgerButton");
+    const mobileNav = document.getElementById("mobileNav");
+    const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+    function toggleMobileNav() {
+      hamburgerButton.classList.toggle("active");
+      mobileNav.classList.toggle("show");
+      document.body.style.overflow = mobileNav.classList.contains("show") ? "hidden" : "auto";
+    }
+
+    function closeMobileNav() {
+      hamburgerButton.classList.remove("active");
+      mobileNav.classList.remove("show");
+      document.body.style.overflow = "auto";
+    }
+
+    if (hamburgerButton) {
+      hamburgerButton.addEventListener("click", toggleMobileNav);
+    }
+
+    const mobileNavLinks = mobileNav.querySelectorAll('a:not(#mobileMenuButton)');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', closeMobileNav);
+    });
+
     // Menu overlay functionality
     const menuButton = document.getElementById("menuButton");
     const menuOverlay = document.getElementById("menuOverlay");
     const closeMenu = document.getElementById("closeMenu");
 
     function showMenu() {
-      menuOverlay.classList.add("show");
-      document.body.style.overflow = "hidden";
+      if (menuOverlay) {
+        menuOverlay.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
     }
 
     function hideMenu() {
-      menuOverlay.classList.remove("show");
-      document.body.style.overflow = "auto";
+      if (menuOverlay) {
+        menuOverlay.classList.remove("show");
+        document.body.style.overflow = "auto";
+      }
     }
 
-    // Menu button click event
-    menuButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      showMenu();
-    });
+    if (menuButton) {
+      menuButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        showMenu();
+      });
+    }
 
-    // Close menu events
-    closeMenu.addEventListener("click", hideMenu);
-    menuOverlay.addEventListener("click", (e) => {
-      if (e.target === menuOverlay) {
-        hideMenu();
-      }
-    });
+    if (mobileMenuButton) {
+      mobileMenuButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeMobileNav();
+        setTimeout(showMenu, 300);
+      });
+    }
 
-    // Close menu with escape key
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && menuOverlay.classList.contains("show")) {
-        hideMenu();
-      }
-    });
-
-    // Slideshow functionality
-    const slideshow = document.getElementById("slideshow");
-    const images = slideshow.querySelectorAll("img");
-    const dots = document.querySelectorAll(".dot");
-    let index = 0;
-    let interval;
+    if (closeMenu) {
+      closeMenu.addEventListener("click", hideMenu);
+    }
+    
+    if (menuOverlay) {
+      menuOverlay.addEventListener("click", (e) => {
+        if (e.target === menuOverlay) {
+          hideMenu();
+        }
+      });
+    }
 
     // Fullscreen modal functionality
     const fullscreenModal = document.getElementById("fullscreenModal");
@@ -722,36 +778,45 @@
     const closeModal = document.getElementById("closeModal");
 
     function showFullscreen(imageSrc, imageAlt) {
-      fullscreenImage.src = imageSrc;
-      fullscreenImage.alt = imageAlt;
-      fullscreenModal.classList.add("show");
-      document.body.style.overflow = "hidden";
+      if (fullscreenModal && fullscreenImage) {
+        fullscreenImage.src = imageSrc;
+        fullscreenImage.alt = imageAlt;
+        fullscreenModal.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
     }
 
     function hideFullscreen() {
-      fullscreenModal.classList.remove("show");
-      document.body.style.overflow = "auto";
+      if (fullscreenModal) {
+        fullscreenModal.classList.remove("show");
+        document.body.style.overflow = "auto";
+      }
     }
 
-    // Add click listeners to slideshow images
-    images.forEach((img, i) => {
-      img.addEventListener("click", () => {
-        showFullscreen(img.src, img.alt);
+    if (closeModal) {
+      closeModal.addEventListener("click", hideFullscreen);
+    }
+    
+    if (fullscreenModal) {
+      fullscreenModal.addEventListener("click", (e) => {
+        if (e.target === fullscreenModal) {
+          hideFullscreen();
+        }
       });
-    });
+    }
 
-    // Close modal events
-    closeModal.addEventListener("click", hideFullscreen);
-    fullscreenModal.addEventListener("click", (e) => {
-      if (e.target === fullscreenModal) {
-        hideFullscreen();
-      }
-    });
-
-    // Close with escape key
+    // Close all overlays with escape key
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && fullscreenModal.classList.contains("show")) {
-        hideFullscreen();
+      if (e.key === "Escape") {
+        if (fullscreenModal && fullscreenModal.classList.contains("show")) {
+          hideFullscreen();
+        }
+        if (menuOverlay && menuOverlay.classList.contains("show")) {
+          hideMenu();
+        }
+        if (mobileNav && mobileNav.classList.contains("show")) {
+          closeMobileNav();
+        }
       }
     });
   </script>

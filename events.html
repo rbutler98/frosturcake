@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Calendar - Frost Your Cake Studios</title>
+    <title>Events</title>
     
     <script src="https://apis.google.com/js/api.js"></script>
     <link rel="stylesheet" href="universal.css">
@@ -109,20 +109,65 @@
             line-height: 1.6;
         }
 
+        /* Menu Overlay Styles */
+        .menu-overlay {
+          display: none;
+          position: fixed;
+          z-index: 2000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(5px);
+        }
+
+        .menu-overlay.show {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          animation: fadeIn 0.3s ease;
+        }
+
+        .menu-overlay img {
+          max-width: 90%;
+          max-height: 90%;
+          object-fit: contain;
+          border-radius: 15px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-menu {
+          position: absolute;
+          top: 20px;
+          right: 35px;
+          color: white;
+          font-size: 40px;
+          font-weight: bold;
+          cursor: pointer;
+          z-index: 2001;
+        }
+
+        .close-menu:hover {
+          color: #8c52ff;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
         @media (max-width: 768px) {
+            .banner-buttons {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
             .banner-nav {
                 padding: 12px 0;
-            }
-
-            .banner-buttons {
-                gap: 10px;
-                padding: 0 15px;
-            }
-
-            .banner-buttons a {
-                padding: 10px 18px;
-                font-size: 1rem;
-                min-width: 100px;
             }
 
             .banner-content {
@@ -189,17 +234,6 @@
                 padding: 10px 0;
             }
 
-            .banner-buttons {
-                gap: 8px;
-                padding: 0 10px;
-            }
-
-            .banner-buttons a {
-                padding: 8px 15px;
-                font-size: 0.9rem;
-                min-width: 90px;
-            }
-
             .banner-content {
                 padding: 30px 15px;
             }
@@ -230,54 +264,7 @@
                 padding: 30px 15px 25px;
             }
         }
-        
-        /* Menu Overlay Styles */
-        .menu-overlay {
-          display: none;
-          position: fixed;
-          z-index: 2000;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.8);
-          backdrop-filter: blur(5px);
-        }
 
-        .menu-overlay.show {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          animation: fadeIn 0.3s ease;
-        }
-
-        .menu-overlay img {
-          max-width: 90%;
-          max-height: 90%;
-          object-fit: contain;
-          border-radius: 15px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .close-menu {
-          position: absolute;
-          top: 20px;
-          right: 35px;
-          color: white;
-          font-size: 40px;
-          font-weight: bold;
-          cursor: pointer;
-          z-index: 2001;
-        }
-
-        .close-menu:hover {
-          color: #8c52ff;
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
     </style>
 </head>
 
@@ -298,11 +285,6 @@
         <span></span>
       </div>
     </div>
-
-    <div class="banner-content">
-      <img src="https://i.ibb.co/M5RCvWxS/Untitled-3.png" alt="Bakery Logo" class="logo" />
-      <div class="slogan">Create. Decorate. Celebrate.</div>
-    </div>
   </div>
 
   <div class="mobile-nav" id="mobileNav">
@@ -319,31 +301,31 @@
             <p>View our upcoming cake decorating classes, workshops, and special events</p>
         </div>
 
-        <!-- Public Calendar with both iframe and API events -->
         <div class="public-calendar">
             <h3>Upcoming Classes & Events</h3>
             
-            <!-- Calendar iframe for visual calendar view -->
-            <div id="calendar-embed" style="margin-bottom: 30px;">
+            <div id="api-events-container" style="margin-bottom: 30px;">
+                <h4 style="color: #8c52ff; margin-bottom: 20px; font-size: 1.4rem;">Event Details</h4>
+                    <div id="storetemp">
+                        <p> To Join the Class, purchase a spot now! <a target="_blank" rel="noopener noreferrer" href="storetemp.html">Tickets</a> </p>
+                    </div>
+                <div id="events-list">
+                    <div class="loading">Loading upcoming events...</div>
+                </div>
+            </div>
+
+            <div id="calendar-embed">
+                <h4 style="color: #8c52ff; margin-bottom: 20px; font-size: 1.4rem;">Calendar View</h4>
                 <iframe src="https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=America%2FChicago&src=ryancbutler98%40gmail.com&color=%23039BE5&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH" 
                         style="border: 0; width: 100%; height: 400px; border-radius: 10px;" 
                         frameborder="0" 
                         scrolling="no">
                 </iframe>
             </div>
-
-            <!-- API-powered events list -->
-            <div id="api-events-container">
-                <h4 style="color: #8c52ff; margin-bottom: 20px; font-size: 1.4rem;">Event Details</h4>
-                <div id="events-list">
-                    <div class="loading">Loading upcoming events...</div>
-                </div>
-            </div>
         </div>
 
     </div>
 
-    <!-- Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay">
         <span class="close-menu" id="closeMenu">&times;</span>
         <img src="https://i.ibb.co/4RWyf9dN/menu.png" alt="Frost Your Cake Menu" />
@@ -445,7 +427,6 @@
         const API_KEY = 'AIzaSyCGb_-DEuq9WwPHQydfACGCSRChvdkeb2w';
         const CALENDAR_ID = 'ryancbutler98@gmail.com';
 
-        // Format date for display
         function formatDate(dateString) {
             const options = { 
                 weekday: 'long', 
@@ -456,7 +437,6 @@
             return new Date(dateString).toLocaleDateString('en-US', options);
         }
 
-        // Format time for display
         function formatTime(dateTimeString) {
             const options = { 
                 hour: 'numeric', 
@@ -466,28 +446,26 @@
             return new Date(dateTimeString).toLocaleTimeString('en-US', options);
         }
 
-        // Show fallback events when API fails
         function showFallbackEvents() {
             const eventsContainer = document.getElementById('events-list');
             const currentDate = new Date();
             
-            // Sample upcoming events
             const sampleEvents = [
                 {
                     title: "Beginner Cake Decorating Class",
-                    date: new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000), // Next week
+                    date: new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000),
                     time: "2:00 PM - 4:00 PM",
                     description: "Learn the basics of cake decorating with buttercream frosting techniques."
                 },
                 {
                     title: "Advanced Fondant Workshop",
-                    date: new Date(currentDate.getTime() + 14 * 24 * 60 * 60 * 1000), // Two weeks
+                    date: new Date(currentDate.getTime() + 14 * 24 * 60 * 60 * 1000),
                     time: "10:00 AM - 2:00 PM",
                     description: "Master fondant techniques and create beautiful edible decorations."
                 },
                 {
                     title: "Kids Birthday Party Package",
-                    date: new Date(currentDate.getTime() + 21 * 24 * 60 * 60 * 1000), // Three weeks
+                    date: new Date(currentDate.getTime() + 21 * 24 * 60 * 60 * 1000),
                     time: "1:00 PM - 3:00 PM",
                     description: "Fun cake decorating party for kids ages 6-12."
                 }
@@ -506,7 +484,6 @@
             `).join('');
         }
 
-        // Load events using Google Calendar API
         async function loadCalendarEvents() {
             const eventsContainer = document.getElementById('events-list');
             
@@ -516,28 +493,21 @@
                 const now = new Date();
                 const timeMin = now.toISOString();
                 
-                // Build the API URL for public calendar access
                 const apiUrl = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events?key=${API_KEY}&timeMin=${timeMin}&singleEvents=true&orderBy=startTime&maxResults=10`;
                 
-                console.log('Fetching events from:', apiUrl);
-                
                 const response = await fetch(apiUrl);
-                console.log('Response status:', response.status);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
                 const data = await response.json();
-                console.log('API Response:', data);
-                
                 const events = data.items || [];
                 displayEvents(events);
 
             } catch (error) {
                 console.error('Error loading events:', error);
                 
-                // Show error message and fallback events
                 eventsContainer.innerHTML = `
                     <div class="error-message">
                         <h4>Unable to Load Live Events</h4>
@@ -545,12 +515,10 @@
                     </div>
                 `;
                 
-                // Show fallback events after a brief delay
                 setTimeout(showFallbackEvents, 500);
             }
         }
 
-        // Display events from API response
         function displayEvents(events) {
             const eventsContainer = document.getElementById('events-list');
             
@@ -573,10 +541,8 @@
                 
                 let timeDisplay;
                 if (event.start.dateTime && event.end.dateTime) {
-                    // Time-specific event
                     timeDisplay = `${formatTime(startDate)} - ${formatTime(endDate)}`;
                 } else {
-                    // All-day event
                     timeDisplay = 'All Day';
                 }
 
@@ -594,22 +560,51 @@
             }).join('');
         }
 
+        // Mobile navigation
+        const hamburgerButton = document.getElementById("hamburgerButton");
+        const mobileNav = document.getElementById("mobileNav");
+        const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+        function toggleMobileNav() {
+            hamburgerButton.classList.toggle("active");
+            mobileNav.classList.toggle("show");
+            document.body.style.overflow = mobileNav.classList.contains("show") ? "hidden" : "auto";
+        }
+
+        function closeMobileNav() {
+            hamburgerButton.classList.remove("active");
+            mobileNav.classList.remove("show");
+            document.body.style.overflow = "auto";
+        }
+
+        if (hamburgerButton) {
+            hamburgerButton.addEventListener("click", toggleMobileNav);
+        }
+
+        const mobileNavLinks = mobileNav.querySelectorAll('a:not(#mobileMenuButton)');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileNav);
+        });
+
         // Menu overlay functionality
         const menuButton = document.getElementById("menuButton");
         const menuOverlay = document.getElementById("menuOverlay");
         const closeMenu = document.getElementById("closeMenu");
 
         function showMenu() {
-            menuOverlay.classList.add("show");
-            document.body.style.overflow = "hidden";
+            if (menuOverlay) {
+                menuOverlay.classList.add("show");
+                document.body.style.overflow = "hidden";
+            }
         }
 
         function hideMenu() {
-            menuOverlay.classList.remove("show");
-            document.body.style.overflow = "auto";
+            if (menuOverlay) {
+                menuOverlay.classList.remove("show");
+                document.body.style.overflow = "auto";
+            }
         }
 
-        // Menu button click event
         if (menuButton) {
             menuButton.addEventListener("click", (e) => {
                 e.preventDefault();
@@ -617,7 +612,14 @@
             });
         }
 
-        // Close menu events
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                closeMobileNav();
+                setTimeout(showMenu, 300);
+            });
+        }
+
         if (closeMenu) {
             closeMenu.addEventListener("click", hideMenu);
         }
@@ -630,16 +632,18 @@
             });
         }
 
-        // Close menu with escape key
         document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && menuOverlay && menuOverlay.classList.contains("show")) {
-                hideMenu();
+            if (e.key === "Escape") {
+                if (menuOverlay && menuOverlay.classList.contains("show")) {
+                    hideMenu();
+                }
+                if (mobileNav && mobileNav.classList.contains("show")) {
+                    closeMobileNav();
+                }
             }
         });
 
-        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            // Try to load live events first, fallback if it fails
             loadCalendarEvents();
         });
     </script>
