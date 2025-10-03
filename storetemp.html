@@ -1,9 +1,244 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <div id="my-store-124671227"></div>
+        <link rel="stylesheet" href="universal.css">
+        <title>Store</title>
+        <style>
+/* Fullscreen Modal */
+    .fullscreen-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .fullscreen-modal.show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .fullscreen-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 30px;
+      right: 45px;
+      color: white;
+      font-size: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+      transition: all 0.3s ease;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .close-modal:hover {
+      color: #ffb6c1;
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    /* Menu Overlay */
+    .menu-overlay {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+    }
+
+    .menu-overlay.show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .menu-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-menu {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+      transition: color 0.3s ease;
+    }
+
+    .close-menu:hover {
+      color: #8c52ff;
+    }
+
+        </style>
+    </head>
+
+    <body>
+  <div class="banner">
+    <div class="banner-nav">
+      <div class="banner-buttons">
+        <a href="index.html">Home</a>
+        <a href="parties.html">Parties</a>
+        <a href="events.html">Events</a>
+        <a href="visit.html">Visit Us</a>
+        <a href="storetemp.html">Store</a>
+        <a href="#" class="menu" id="menuButton">Menu</a>
+      </div>
+      
+      <div class="hamburger" id="hamburgerButton">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="parties.html">Parties</a>
+    <a href="events.html">Events</a>
+    <a href="visit.html">Visit Us</a>
+    <a href="storetemp.html">Store</a>
+    <a href="#" id="mobileMenuButton">Menu</a>
+  </div>
+
+  <div class="fullscreen-modal" id="fullscreenModal">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <img id="fullscreenImage" src="" alt="">
+  </div>
+
+  <div class="menu-overlay" id="menuOverlay">
+    <span class="close-menu" id="closeMenu">&times;</span>
+    <img src="https://i.ibb.co/4RWyf9dN/menu.png" alt="Frost Your Cake Menu">
+  </div>
+
+  <div id="my-store-124671227"></div>
     <div>
         <script data-cfasync="false" type="text/javascript" src="https://app.business.shop/script.js?124671227&data_platform=code&data_date=2025-09-28" charset="utf-8"></script><script type="text/javascript"> xProductBrowser("categoriesPerRow=3","views=grid(20,3) list(60) table(60)","categoryView=grid","searchView=list","id=my-store-124671227");</script>
         </div>
-    </head>
+  </body>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="https://i.ibb.co/bj48Bvkp/no-Bg-White.png" alt="Frost Your Cake Logo" class="footer-logo">
+        <p class="footer-tagline">"Create. Decorate. Celebrate."</p>
+        <p class="footer-description">
+          A unique DIY cookie, cake and cupcake decorating studio where families create sweet memories together.
+        </p>
+        
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61566441696347" target="_blank" rel="noopener noreferrer" class="social-link facebook" aria-label="Follow us on Facebook">
+              <div class="social-icon facebook-icon"></div>
+            </a>
+            <a href="https://www.instagram.com/frostyourcakestudio" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Follow us on Instagram">
+              <div class="social-icon instagram-icon"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <nav class="footer-nav">
+          <a href="index.html">Home</a>
+          <a href="#about">About Us</a>
+          <a href="parties.html">Parties</a>
+          <a href="events.html">Events</a>
+          <a href="visit.html">Visit Us</a>
+          <a href="storetemp.html">Store</a>
+        </nav>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <div class="contact-details">
+          <div class="contact-item">
+            <strong>Address</strong>
+            <p>
+              1008 E Oak St, Suite 105<br>
+              Conway, AR 72032
+            </p>
+          </div>
+          <div class="contact-item">
+            <strong>Phone</strong>
+            <p>
+              <a href="tel:+15013586245">(501) 358-6245</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-hours">
+        <h4>Hours</h4>
+        <div class="hours-grid">
+          <div class="day-hours">
+            <span class="day">Monday</span>
+            <span class="hours">11am - 7pm</span>
+          </div>
+          <div class="day-hours closed">
+            <span class="day">Tuesday</span>
+            <span class="hours">Closed</span>
+          </div>
+          <div class="day-hours closed">
+            <span class="day">Wednesday</span>
+            <span class="hours">Closed</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Thursday</span>
+            <span class="hours">11am - 7pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Friday</span>
+            <span class="hours">11am - 8pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Saturday</span>
+            <span class="hours">10am - 8pm</span>
+          </div>
+          <div class="day-hours">
+            <span class="day">Sunday</span>
+            <span class="hours">12pm - 8pm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Frost Your Cake Studio. All rights reserved.</p>
+    </div>
+  </footer>
 </html>
