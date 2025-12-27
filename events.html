@@ -7,265 +7,6 @@
     
     <script src="https://apis.google.com/js/api.js"></script>
     <link rel="stylesheet" href="universal.css">
-    <style>
-        .calendar-container {
-            max-width: 1600px;
-            margin: 60px auto;
-            padding: 40px;
-            background-color: #f9f9ff;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(140, 82, 255, 0.15);
-        }
-
-        .calendar-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .calendar-header h1 {
-            color: #8c52ff;
-            font-size: 3.2rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(140, 82, 255, 0.1);
-        }
-
-        .calendar-header p {
-            color: #666;
-            font-size: 1.3rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .public-calendar {
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            border: 1px solid #e8e8ff;
-        }
-
-        .public-calendar h3 {
-            color: #8c52ff;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
-
-        #calendar-embed, #api-events-container {
-            min-height: 400px;
-        }
-
-        .event-item {
-            padding: 25px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #f8f9ff, #ffffff);
-            border-left: 5px solid #8c52ff;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .event-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(140, 82, 255, 0.15);
-        }
-
-        .event-title {
-            font-weight: 700;
-            color: #333;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .event-details {
-            color: #666;
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #8c52ff;
-            font-size: 1.2rem;
-        }
-
-        .error-message {
-            text-align: center;
-            padding: 40px;
-            color: #721c24;
-            background-color: #f8d7da;
-            border-radius: 12px;
-            border: 1px solid #f5c6cb;
-            margin-bottom: 20px;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            line-height: 1.6;
-        }
-
-        /* Menu Overlay Styles */
-        .menu-overlay {
-          display: none;
-          position: fixed;
-          z-index: 2000;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.8);
-          backdrop-filter: blur(5px);
-        }
-
-        .menu-overlay.show {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          animation: fadeIn 0.3s ease;
-        }
-
-        .menu-overlay img {
-          max-width: 90%;
-          max-height: 90%;
-          object-fit: contain;
-          border-radius: 15px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .close-menu {
-          position: absolute;
-          top: 20px;
-          right: 35px;
-          color: white;
-          font-size: 40px;
-          font-weight: bold;
-          cursor: pointer;
-          z-index: 2001;
-        }
-
-        .close-menu:hover {
-          color: #8c52ff;
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-
-        @media (max-width: 768px) {
-            .banner-buttons {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .banner-nav {
-                padding: 12px 0;
-            }
-
-            .banner-content {
-                padding: 40px 20px;
-            }
-
-            .logo {
-                height: 100px;
-                max-width: 250px;
-                margin-bottom: 15px;
-            }
-
-            .slogan {
-                font-size: 2.5rem;
-                letter-spacing: 1px;
-            }
-
-            .calendar-container {
-                margin: 20px 15px;
-                padding: 20px;
-            }
-
-            .calendar-header h1 {
-                font-size: 2.2rem;
-            }
-
-            .calendar-header p {
-                font-size: 1.1rem;
-            }
-
-            .public-calendar {
-                padding: 25px;
-            }
-
-            .public-calendar h3 {
-                font-size: 1.5rem;
-            }
-
-            .event-item {
-                padding: 20px;
-            }
-
-            .event-title {
-                font-size: 1.2rem;
-            }
-
-            .footer {
-                padding: 40px 20px 30px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 30px;
-            }
-
-            .footer-logo img {
-                max-width: 150px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .banner-nav {
-                padding: 10px 0;
-            }
-
-            .banner-content {
-                padding: 30px 15px;
-            }
-
-            .logo {
-                height: 80px;
-                max-width: 200px;
-            }
-
-            .slogan {
-                font-size: 2rem;
-            }
-
-            .calendar-container {
-                margin: 15px 10px;
-                padding: 15px;
-            }
-
-            .calendar-header h1 {
-                font-size: 1.8rem;
-            }
-
-            .public-calendar {
-                padding: 20px;
-            }
-
-            .footer {
-                padding: 30px 15px 25px;
-            }
-        }
-
-    </style>
 </head>
 
 <body>
@@ -276,7 +17,7 @@
         <a href="parties.html">Parties</a>
         <a href="events.html">Events</a>
         <a href="visit.html">Visit Us</a>
-        <a href="storetemp.html">Store</a>
+        <a href="store.html">Store</a>
         <a href="#" class="menu" id="menuButton">Menu</a>
       </div>
       
@@ -293,7 +34,7 @@
     <a href="parties.html">Parties</a>
     <a href="events.html">Events</a>
     <a href="visit.html">Visit Us</a>
-    <a href="storetemp.html">Store</a>
+    <a href="store.html">Store</a>
     <a href="#" id="mobileMenuButton">Menu</a>
   </div>
         
@@ -360,7 +101,7 @@
           <a href="parties.html">Parties</a>
           <a href="events.html">Events</a>
           <a href="visit.html">Visit Us</a>
-          <a href="storetemp.html">Store</a>
+          <a href="store.html">Store</a>
         </nav>
       </div>
 
@@ -412,7 +153,7 @@
           </div>
           <div class="day-hours">
             <span class="day">Sunday</span>
-            <span class="hours">12pm - 8pm</span>
+            <span class="hours">12pm - 6pm</span>
           </div>
         </div>
       </div>

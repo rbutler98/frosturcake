@@ -9,540 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-
-  <style>
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInTop {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .text-columns {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px;
-      gap: 40px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .text-box {
-      flex: 0 0 20%;
-      max-width: 20%;
-      height: 560px;
-      padding: 20px 15px;
-      background-color: #f6f2ff;
-      border-radius: 12px;
-      box-shadow:
-        4px 4px 0px #5a2d91,
-        8px 8px 20px rgba(90, 45, 145, 0.3);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: left;
-      box-sizing: border-box;
-    }
-  
-    .text-box h2 {
-      font-family: 'Pacifico', cursive;
-      color: #8c52ff;
-      margin-bottom: 15px;
-      font-size: 1.5rem;
-    }
-
-    .text-box p {
-      font-size: 1rem;
-      line-height: 1.5;
-      white-space: pre-line;
-    }
-
-    iframe {
-      flex: 0 0 70%;
-      max-width: 70%;
-      height: 560px;
-      border: 4px solid #5a2d91;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      box-sizing: border-box;
-    }
-
-    /* Menu Overlay Styles */
-    .menu-overlay {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(5px);
-    }
-
-    .menu-overlay.show {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .menu-overlay img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .close-menu {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: white;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 2001;
-    }
-
-    .close-menu:hover {
-      color: #8c52ff;
-    }
-
-    /* Mobile Styles */
-    @media (max-width: 768px) {
-      .banner-buttons {
-        display: none;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .banner {
-        flex-direction: column;
-        min-height: auto;
-        padding: 15px;
-        text-align: center;
-      }
-
-      .logo {
-        position: static;
-        transform: none;
-        margin: 20px 0 15px 0;
-        height: 80px;
-        max-width: 150px;
-      }
-
-      .slogan {
-        font-size: 2rem;
-        text-align: center;
-        -webkit-text-stroke: 0.8px transparent;
-        margin: 15px 0;
-        order: -1;
-      }
-
-      .text-columns {
-        flex-direction: column;
-        padding: 20px 15px;
-        gap: 30px;
-      }
-
-      .text-box {
-        flex: none;
-        max-width: 100%;
-        width: 100%;
-        height: auto;
-        min-height: 200px;
-        padding: 20px;
-      }
-
-      .text-box h2 {
-        font-size: 1.3rem;
-        text-align: center;
-        margin-bottom: 20px;
-      }
-
-      .text-box p {
-        font-size: 0.95rem;
-        text-align: center;
-      }
-
-      iframe {
-        flex: none;
-        max-width: 100%;
-        width: 100%;
-        height: 400px;
-        border-width: 2px;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: center;
-      }
-
-      .footer-logo img {
-        max-width: 120px;
-        margin: 0 auto;
-      }
-
-      .handwritten-message {
-        font-size: 0.8rem;
-        margin: 20px auto;
-        padding: 0 15px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .banner {
-        padding: 10px;
-      }
-
-      .slogan {
-        font-size: 1.5rem;
-      }
-
-      .logo {
-        height: 60px;
-        max-width: 120px;
-      }
-
-      .text-columns {
-        padding: 15px 10px;
-      }
-
-      .text-box {
-        padding: 15px;
-      }
-
-      .text-box h2 {
-        font-size: 1.2rem;
-      }
-
-      .text-box p {
-        font-size: 0.9rem;
-      }
-
-      iframe {
-        height: 300px;
-      }
-
-      .footer {
-        padding: 30px 15px 20px;
-      }
-
-      .handwritten-message {
-        font-size: 0.75rem;
-        padding: 0 10px;
-      }
-    }
-
-    @media (min-width: 1200px) {
-      .text-columns {
-        padding: 40px 20px;
-      }
-      
-      .slogan {
-        font-size: 4rem;
-      }
-      
-      .logo {
-        height: 140px;
-      }
-    }
-
-    /* Footer Styles */
-    .footer {
-      background: linear-gradient(135deg, #6a4c93 0%, #8c52ff 100%);
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="sprinkles" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="15" cy="8" r="1" fill="rgba(255,182,193,0.2)"/><circle cx="8" cy="15" r="1" fill="rgba(217,142,255,0.15)"/></pattern></defs><rect width="100" height="100" fill="url(%23sprinkles)"/></svg>') repeat;
-      opacity: 0.3;
-      z-index: 1;
-    }
-
-    .footer-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 40px 40px;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 50px;
-      align-items: start;
-    }
-
-    .footer-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .footer-logo {
-      height: 80px;
-      width: auto;
-      filter: brightness(1.2) drop-shadow(0 2px 8px rgba(0,0,0,0.2));
-      transition: transform 0.3s ease;
-    }
-
-    .footer-logo:hover {
-      transform: scale(1.05);
-    }
-
-    .footer-tagline {
-      font-size: 1.2rem;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.9);
-      line-height: 1.4;
-      margin-bottom: 10px;
-    }
-
-    .footer-description {
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
-
-    .footer-social h4 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .footer-social h4::before {
-      content: '✨';
-      font-size: 1.2rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      text-decoration: none;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .social-link::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      transition: all 0.4s ease;
-      transform: translate(-50%, -50%);
-    }
-
-    .social-link:hover::before {
-      width: 100%;
-      height: 100%;
-    }
-
-    .social-link:hover {
-      transform: translateY(-3px) scale(1.1);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      border-color: rgba(255, 255, 255, 0.4);
-    }
-
-    .social-icon {
-      width: 24px;
-      height: 24px;
-      position: relative;
-      z-index: 2;
-      background: white;
-    }
-
-    .facebook-icon {
-      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z'/%3E%3C/svg%3E") no-repeat center;
-      mask-size: contain;
-    }
-
-    .instagram-icon {
-      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/%3E%3C/svg%3E") no-repeat center;
-      mask-size: contain;
-    }
-
-    .footer-links h4,
-    .footer-contact h4,
-    .footer-hours h4 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-      color: white;
-      position: relative;
-      padding-bottom: 8px;
-    }
-
-    .footer-links h4::after,
-    .footer-contact h4::after,
-    .footer-hours h4::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 30px;
-      height: 2px;
-      background: linear-gradient(90deg, #ffb6c1, #d98eff);
-      border-radius: 2px;
-    }
-
-    .footer-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .footer-nav a {
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      padding: 8px 0;
-      transition: all 0.3s ease;
-      position: relative;
-      padding-left: 20px;
-    }
-
-    .footer-nav a::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      opacity: 0;
-      transform: translateX(-10px);
-      transition: all 0.3s ease;
-    }
-
-    .footer-nav a:hover {
-      color: white;
-      padding-left: 25px;
-    }
-
-    .footer-nav a:hover::before {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .contact-item {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .contact-item strong {
-      font-weight: 600;
-      color: white;
-      font-size: 0.95rem;
-    }
-
-    .contact-item p {
-      color: rgba(255, 255, 255, 0.85);
-      line-height: 1.5;
-      font-size: 0.9rem;
-    }
-
-    .contact-item a {
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .contact-item a:hover {
-      color: #ffb6c1;
-    }
-
-    .hours-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .day-hours {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 6px 12px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      transition: background-color 0.3s ease;
-    }
-
-    .day-hours:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .day-hours.closed {
-      opacity: 0.6;
-    }
-
-    .day-hours .day {
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 0.9rem;
-    }
-
-    .day-hours .hours {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.85rem;
-      font-weight: 400;
-    }
-
-    .footer-bottom {
-      background: rgba(0, 0, 0, 0.3);
-      text-align: center;
-      padding: 25px 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-bottom p {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
-      margin: 0;
-    }
-  </style>
 </head>
 
 <body>
@@ -553,7 +19,7 @@
         <a href="parties.html">Parties</a>
         <a href="events.html">Events</a>
         <a href="visit.html">Visit Us</a>
-        <a href="storetemp.html">Store</a>
+        <a href="store.html">Store</a>
         <a href="#" class="menu" id="menuButton">Menu</a>
       </div>
       
@@ -575,12 +41,12 @@
     <a href="parties.html">Parties</a>
     <a href="events.html">Events</a>
     <a href="visit.html">Visit Us</a>
-    <a href="storetemp.html">Store</a>
+    <a href="store.html">Store</a>
     <a href="#" id="mobileMenuButton">Menu</a>
   </div>
         
   <div class="text-columns">
-    <div class="text-box">
+    <div class="address-box">
       <h2>Address</h2>
       <p>
         Frost Your Cake Studios
@@ -593,7 +59,7 @@
       </p>
     </div>
 
-    <iframe
+    <iframe class="themap"
       src="https://api.mapbox.com/styles/v1/deathnom/cmaoeuaha00fz01sdcig85ffk.html?title=false&access_token=pk.eyJ1IjoiZGVhdGhub20iLCJhIjoiY21hNHZwNjUxMGJ5cjJqb2lqYWxldGJleiJ9.WcQvbKcaUd-yGb2pN5svfQ&zoomwheel=false#16.89/35.091145/-92.416357"
       title="Frost Your Cake Studio">
     </iframe>
@@ -629,7 +95,7 @@
           <a href="parties.html">Parties</a>
           <a href="events.html">Events</a>
           <a href="visit.html">Visit Us</a>
-          <a href="storetemp.html">Store</a>
+          <a href="store.html">Store</a>
         </nav>
       </div>
 
@@ -681,7 +147,7 @@
           </div>
           <div class="day-hours">
             <span class="day">Sunday</span>
-            <span class="hours">12pm - 8pm</span>
+            <span class="hours">12pm - 6pm</span>
           </div>
         </div>
       </div>
@@ -703,7 +169,6 @@
   </div>
 
   <script>
-    // Mobile navigation
     const hamburgerButton = document.getElementById("hamburgerButton");
     const mobileNav = document.getElementById("mobileNav");
     const mobileMenuButton = document.getElementById("mobileMenuButton");
@@ -729,7 +194,6 @@
       link.addEventListener('click', closeMobileNav);
     });
 
-    // Menu overlay functionality
     const menuButton = document.getElementById("menuButton");
     const menuOverlay = document.getElementById("menuOverlay");
     const closeMenu = document.getElementById("closeMenu");
@@ -808,7 +272,6 @@
       });
     }
 
-    // Close all overlays with escape key
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         if (fullscreenModal && fullscreenModal.classList.contains("show")) {
