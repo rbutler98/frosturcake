@@ -140,5 +140,53 @@
     <div class="footer-bottom">
       <p>&copy; 2025 Frost Your Cake Studio. All rights reserved.</p>
     </div>
+
+    <script>
+      // Menu overlay
+    const menuButton = document.getElementById("menuButton");
+    const menuOverlay = document.getElementById("menuOverlay");
+    const closeMenu = document.getElementById("closeMenu");
+
+    function showMenu() {
+      if (menuOverlay) {
+        menuOverlay.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+    }
+
+    function hideMenu() {
+      if (menuOverlay) {
+        menuOverlay.classList.remove("show");
+        document.body.style.overflow = "auto";
+      }
+    }
+
+    if (menuButton) {
+      menuButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        showMenu();
+      });
+    }
+
+    if (mobileMenuButton) {
+      mobileMenuButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeMobileNav();
+        setTimeout(showMenu, 300);
+      });
+    }
+
+    if (closeMenu) {
+      closeMenu.addEventListener("click", hideMenu);
+    }
+    
+    if (menuOverlay) {
+      menuOverlay.addEventListener("click", (e) => {
+        if (e.target === menuOverlay) {
+          hideMenu();
+        }
+      });
+    }
+    </script>
   </footer>
 </html>
